@@ -1,1 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Advanced GPA and CGPA Calculator - Calculate semester GPA, cumulative CGPA, credits and grade points.">
+
+<meta name="theme-color" content="#07152f">
+
+<title>GPA & CGPA Calculator | Calculator World</title>
+
+<style>
+
+/* ===============================
+   GLOBAL
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --navy:#07152f;
+    --navy2:#0d2552;
+    --blue:#2563eb;
+    --cyan:#06b6d4;
+    --green:#10b981;
+    --red:#ef4444;
+    --orange:#f59e0b;
+    --bg:#f4f7fb;
+    --white:#ffffff;
+    --text:#0f172a;
+    --muted:#64748b;
+    --border:#e2e8f0;
+
+    --shadow:
+    0 18px 50px rgba(15,23,42,.09);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:var(--bg);
+    color:var(--text);
+
+    min-height:100vh;
+    line-height:1.5;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+
+/* ===============================
+   HEADER
+================================ */
+
+header{
+    background:
+    linear-gradient(
+        135deg,
+        var(--navy),
+        var(--navy2)
+    );
+
+    color:white;
+
+    padding:18px 5%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+    0 8px 30px rgba(7,21,47,.25);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:900;
+}
+
+.owner{
+    color:#bae6fd;
+    font-weight:700;
+}
+
+
+/* ===============================
+   HERO
+================================ */
+
+.hero{
+    width:min(1180px,94%);
+
+    margin:30px auto;
+
+    padding:60px 25px;
+
+    text-align:center;
+
+    color:white;
+
+    border-radius:30px;
+
+    background:
+
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(6,182,212,.25),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 85% 20%,
+        rgba(37,99,235,.35),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        135deg,
+        var(--navy),
+        #16459a
+    );
+
+    box-shadow:
+    0 25px 65px rgba(15,23,42,.18);
+}
+
+.badge{
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border:
+    1px solid rgba(255,255,255,.25);
+
+    background:
+    rgba(255,255,255,.08);
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:
+    clamp(36px,6vw,60px);
+
+    line-height:1.05;
+
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:750px;
+
+    margin:auto;
+
+    color:#dbeafe;
+
+    font-size:17px;
+}
+
+
+/* ===============================
+   CONTAINER
+================================ */
+
+.container{
+    width:min(1180px,94%);
+
+    margin:
+    0 auto 50px;
+}
+
+
+/* ===============================
+   TOOLBAR
+================================ */
+
+.toolbar{
+    background:white;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr auto;
+
+    gap:15px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:22px;
+}
+
+.field label{
+    display:block;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:var(--muted);
+
+    margin-bottom:6px;
+
+    text-transform:uppercase;
+}
+
+input,
+select{
+    width:100%;
+
+    padding:12px 13px;
+
+    border:
+    1px solid #cbd5e1;
+
+    border-radius:11px;
+
+    background:white;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--blue);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(37,99,235,.10);
+}
+
+
+/* ===============================
+   CARD
+================================ */
+
+.card{
+    background:white;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    margin-bottom:22px;
+}
+
+.card-head{
+    padding:22px 25px;
+
+    border-bottom:
+    1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.card-head h2{
+    font-size:23px;
+}
+
+.sub{
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* ===============================
+   TABLE
+================================ */
+
+.table-wrap{
+    overflow-x:auto;
+
+    padding:
+    0 15px;
+}
+
+table{
+    width:100%;
+
+    min-width:850px;
+
+    border-collapse:collapse;
+}
+
+th{
+    padding:15px 10px;
+
+    background:#f8fafc;
+
+    color:#475569;
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    text-align:left;
+
+    letter-spacing:.4px;
+}
+
+td{
+    padding:10px;
+
+    border-bottom:
+    1px solid #edf2f7;
+}
+
+.grade-point{
+    font-weight:900;
+
+    color:var(--blue);
+}
+
+.weighted-point{
+    font-weight:800;
+
+    color:#047857;
+}
+
+
+/* ===============================
+   BUTTONS
+================================ */
+
+.actions{
+    padding:22px;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.btn{
+    border:none;
+
+    border-radius:11px;
+
+    padding:13px 20px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:
+    translateY(-2px);
+}
+
+.primary{
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color:white;
+
+    box-shadow:
+    0 8px 20px
+    rgba(37,99,235,.25);
+}
+
+.success{
+    background:#dcfce7;
+
+    color:#047857;
+}
+
+.danger{
+    background:#fee2e2;
+
+    color:#b91c1c;
+}
+
+.dark{
+    background:#0f172a;
+
+    color:white;
+}
+
+.light{
+    background:#eef2ff;
+
+    color:#3730a3;
+}
+
+
+/* ===============================
+   REMOVE BUTTON
+================================ */
+
+.remove{
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* ===============================
+   RESULT
+================================ */
+
+.result{
+    display:none;
+
+    padding:28px;
+
+    margin:
+    0 22px 22px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #eff6ff,
+        #ecfeff
+    );
+
+    border:
+    1px solid #bfdbfe;
+}
+
+.result.show{
+    display:block;
+
+    animation:
+    resultAppear .35s ease;
+}
+
+@keyframes resultAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.big-gpa{
+    text-align:center;
+
+    margin-bottom:20px;
+}
+
+.big-gpa span{
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:800;
+}
+
+.big-gpa strong{
+    display:block;
+
+    font-size:70px;
+
+    line-height:1;
+
+    margin-top:8px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563eb,
+        #06b6d4
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+
+/* ===============================
+   METRICS
+================================ */
+
+.metrics{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:12px;
+}
+
+.metric{
+    background:
+    rgba(255,255,255,.75);
+
+    border:
+    1px solid #dbeafe;
+
+    border-radius:15px;
+
+    padding:16px;
+
+    text-align:center;
+}
+
+.metric small{
+    color:var(--muted);
+
+    font-weight:700;
+}
+
+.metric strong{
+    display:block;
+
+    font-size:27px;
+
+    margin-top:3px;
+
+    color:#1d4ed8;
+}
+
+
+/* ===============================
+   PROGRESS
+================================ */
+
+.progress{
+    height:12px;
+
+    background:#e2e8f0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    margin-top:18px;
+}
+
+.progress-bar{
+    height:100%;
+
+    width:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563eb,
+        #06b6d4
+    );
+
+    transition:.6s;
+}
+
+.note{
+    margin-top:15px;
+
+    padding:12px;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* ===============================
+   CGPA SEMESTERS
+================================ */
+
+.semesters{
+    padding:20px 24px;
+}
+
+.semester{
+    display:grid;
+
+    grid-template-columns:
+    1fr 150px 150px 45px;
+
+    gap:12px;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:
+    1px solid #edf2f7;
+}
+
+.semester:last-child{
+    border-bottom:none;
+}
+
+.semester-name strong{
+    font-size:14px;
+}
+
+.semester-name span{
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+/* ===============================
+   INFO
+================================ */
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.info{
+    background:white;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:23px;
+
+    box-shadow:
+    0 10px 30px
+    rgba(15,23,42,.06);
+}
+
+.info h3{
+    color:#1d4ed8;
+
+    margin-bottom:9px;
+}
+
+.info p{
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+.formula{
+    margin-top:13px;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    text-align:center;
+
+    font-weight:800;
+}
+
+
+/* ===============================
+   FOOTER
+================================ */
+
+footer{
+    background:var(--navy);
+
+    color:#cbd5e1;
+
+    text-align:center;
+
+    padding:32px 20px;
+
+    margin-top:50px;
+}
+
+footer p{
+    margin:6px;
+}
+
+footer a{
+    color:#38bdf8;
+
+    text-decoration:none;
+
+    font-weight:800;
+}
+
+
+/* ===============================
+   TOAST
+================================ */
+
+.toast{
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
+
+    display:none;
+
+    z-index:9999;
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media(max-width:900px){
+
+    .toolbar{
+        grid-template-columns:
+        1fr 1fr;
+    }
+
+    .toolbar .btn{
+        grid-column:
+        1/-1;
+    }
+
+    .metrics{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    header{
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:16px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .owner{
+        font-size:14px;
+    }
+
+    .hero{
+        width:94%;
+
+        padding:45px 18px;
+
+        border-radius:22px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .container{
+        width:94%;
+    }
+
+    .toolbar{
+        grid-template-columns:1fr;
+    }
+
+    .toolbar .btn{
+        grid-column:auto;
+    }
+
+    .card-head{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .actions .btn{
+        width:100%;
+    }
+
+    .result{
+        margin:
+        0 15px 18px;
+    }
+
+    .big-gpa strong{
+        font-size:56px;
+    }
+
+    .metrics{
+        grid-template-columns:
+        1fr 1fr;
+    }
+
+    .metric strong{
+        font-size:23px;
+    }
+
+    .semester{
+        grid-template-columns:
+        1fr 1fr;
+    }
+
+    .semester-name{
+        grid-column:
+        1/-1;
+    }
+
+}
+
+@media(max-width:420px){
+
+    .metrics{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:31px;
+    }
+
+    .big-gpa strong{
+        font-size:50px;
+    }
+
+}
+
+@media print{
+
+    header,
+    .hero,
+    .toolbar,
+    .actions,
+    footer,
+    .info-grid,
+    .note{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .card{
+        box-shadow:none;
+
+        border:
+        1px solid #ccc;
+    }
+
+    .result{
+        display:block !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ===============================
+     HEADER
+================================ -->
+
+<header>
+
+    <div class="logo">
+        🧮 Calculator World
+    </div>
+
+    <div class="owner">
+        Advanced GPA & CGPA Calculator
+    </div>
+
+</header>
+
+
+<!-- ===============================
+     HERO
+================================ -->
+
+<section class="hero">
+
+    <div class="badge">
+        🎓 ADVANCED STUDENT TOOL
+    </div>
+
+    <h1>
+        GPA & CGPA Calculator
+    </h1>
+
+    <p>
+        Calculate semester GPA, cumulative CGPA,
+        total credits, weighted points and
+        academic performance instantly.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ===============================
+     SETTINGS
+================================ -->
+
+<section class="toolbar">
+
+    <div class="field">
+
+        <label>
+            Student Name
+        </label>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Enter your name"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            Grade Scale
+        </label>
+
+        <select
+            id="scale"
+            onchange="changeScale()"
+        >
+
+            <option value="10">
+                10 Point Scale
+            </option>
+
+            <option value="4">
+                4 Point Scale
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <button
+        class="btn dark"
+        onclick="addSemesterRow()"
+    >
+        ＋ Add Semester
+    </button>
+
+</section>
+
+
+<!-- ===============================
+     GPA CALCULATOR
+================================ -->
+
+<section class="card">
+
+    <div class="card-head">
+
+        <div>
+
+            <h2>
+                📚 Current Semester
+            </h2>
+
+            <div class="sub">
+                Enter subject, credits and grades.
+            </div>
+
+        </div>
+
+        <button
+            class="btn success"
+            onclick="addSubject()"
+        >
+            ＋ Add Subject
+        </button>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Subject
+                    </th>
+
+                    <th>
+                        Credit
+                    </th>
+
+                    <th>
+                        Grade
+                    </th>
+
+                    <th>
+                        Grade Point
+                    </th>
+
+                    <th>
+                        Weighted Point
+                    </th>
+
+                    <th>
+                        Remove
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="subjectTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="btn primary"
+            onclick="calculateGPA()"
+        >
+            Calculate GPA
+        </button>
+
+
+        <button
+            class="btn light"
+            onclick="saveData()"
+        >
+            💾 Save Data
+        </button>
+
+
+        <button
+            class="btn dark"
+            onclick="window.print()"
+        >
+            🖨️ Print / PDF
+        </button>
+
+
+        <button
+            class="btn danger"
+            onclick="resetCalculator()"
+        >
+            Reset
+        </button>
+
+    </div>
+
+
+    <!-- GPA RESULT -->
+
+    <div
+        class="result"
+        id="gpaResult"
+    >
+
+        <div class="big-gpa">
+
+            <span>
+                SEMESTER GPA
+            </span>
+
+            <strong id="gpaValue">
+                0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metrics">
+
+            <div class="metric">
+
+                <small>
+                    Total Credits
+                </small>
+
+                <strong id="totalCredits">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <small>
+                    Weighted Points
+                </small>
+
+                <strong id="totalPoints">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <small>
+                    Subjects
+                </small>
+
+                <strong id="subjectCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <small>
+                    Approx. %
+                </small>
+
+                <strong id="percentage">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+
+        <div class="note">
+
+            * Percentage is an approximate conversion.
+            Always follow your university's official
+            GPA-to-percentage rule.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===============================
+     CGPA CALCULATOR
+================================ -->
+
+<section class="card">
+
+    <div class="card-head">
+
+        <div>
+
+            <h2>
+                📈 CGPA Calculator
+            </h2>
+
+            <div class="sub">
+                Add previous semester GPA and credits.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="semesters"
+        id="semesterList"
+    >
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="btn success"
+            onclick="addSemesterRow()"
+        >
+            ＋ Add Previous Semester
+        </button>
+
+
+        <button
+            class="btn primary"
+            onclick="calculateCGPA()"
+        >
+            Calculate CGPA
+        </button>
+
+    </div>
+
+
+    <div
+        class="result"
+        id="cgpaResult"
+    >
+
+        <div class="big-gpa">
+
+            <span>
+                CUMULATIVE CGPA
+            </span>
+
+            <strong id="cgpaValue">
+                0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metrics">
+
+            <div class="metric">
+
+                <small>
+                    Total Credits
+                </small>
+
+                <strong id="cgpaCredits">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <small>
+                    Semesters
+                </small>
+
+                <strong id="semesterCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===============================
+     INFORMATION
+================================ -->
+
+<section class="info-grid">
+
+
+    <div class="info">
+
+        <h3>
+            📘 GPA Formula
+        </h3>
+
+        <p>
+            GPA is calculated using
+            credit-weighted grade points.
+        </p>
+
+        <div class="formula">
+
+            GPA =
+            Σ(Credit × Grade Point)
+            ÷ Σ Credits
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        <h3>
+            📊 CGPA Formula
+        </h3>
+
+        <p>
+            CGPA uses semester GPA weighted
+            according to semester credits.
+        </p>
+
+        <div class="formula">
+
+            CGPA =
+            Σ(GPA × Credits)
+            ÷ Σ Credits
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        <h3>
+            ⚠️ Important
+        </h3>
+
+        <p>
+            Different universities may use
+            different grade mappings and
+            percentage conversion rules.
+        </p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ===============================
+     FOOTER
+================================ -->
+
+<footer>
+
+    <p>
+        © 2026 Calculator World |
+        Developed by Vijay Kumar Mandal
+    </p>
+
+    <p>
+
+        📧 Email:
+
+        <a href="mailto:electrovoltkwh@gmail.com">
+
+            electrovoltkwh@gmail.com
+
+        </a>
+
+    </p>
+
+</footer>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+/* =====================================
+   GRADE SCALES
+===================================== */
+
+let currentScale = 10;
+
+
+const gradeScales = {
+
+    10: [
+
+        ["A+",10],
+        ["A",9],
+        ["B+",8],
+        ["B",7],
+        ["C+",6],
+        ["C",5],
+        ["D",4],
+        ["F",0]
+
+    ],
+
+    4: [
+
+        ["A+",4],
+        ["A",4],
+        ["A-",3.7],
+        ["B+",3.3],
+        ["B",3],
+        ["B-",2.7],
+        ["C+",2.3],
+        ["C",2],
+        ["D",1],
+        ["F",0]
+
+    ]
+
+};
+
+
+/* =====================================
+   CREATE GRADE OPTIONS
+===================================== */
+
+function createGradeOptions(){
+
+    return `
+
+        <option value="">
+            Select Grade
+        </option>
+
+        ${
+            gradeScales[currentScale]
+
+            .map(
+                grade =>
+
+                `<option value="${grade[1]}">
+                    ${grade[0]} — ${grade[1]}
+                </option>`
+
+            )
+
+            .join("")
+        }
+
+    `;
+
+}
+
+
+/* =====================================
+   ADD SUBJECT
+===================================== */
+
+function addSubject(){
+
+    const table =
+        document.getElementById(
+            "subjectTable"
+        );
+
+
+    const row =
+        document.createElement("tr");
+
+
+    row.innerHTML = `
+
+        <td>
+
+            <input
+                class="subject"
+                type="text"
+                placeholder="Subject name"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="credit"
+                type="number"
+                min="0"
+                step="0.5"
+                placeholder="4"
+            >
+
+        </td>
+
+
+        <td>
+
+            <select class="grade">
+
+                ${createGradeOptions()}
+
+            </select>
+
+        </td>
+
+
+        <td class="grade-point">
+
+            —
+
+        </td>
+
+
+        <td class="weighted-point">
+
+            —
+
+        </td>
+
+
+        <td>
+
+            <button
+                class="remove"
+                onclick="removeSubject(this)"
+            >
+                ×
+            </button>
+
+        </td>
+
+    `;
+
+
+    table.appendChild(row);
+
+}
+
+
+/* =====================================
+   REMOVE SUBJECT
+===================================== */
+
+function removeSubject(button){
+
+    const table =
+        document.getElementById(
+            "subjectTable"
+        );
+
+
+    if(table.rows.length <= 1){
+
+        showToast(
+            "At least one subject is required."
+        );
+
+        return;
+
+    }
+
+
+    button
+        .closest("tr")
+        .remove();
+
+}
+
+
+/* =====================================
+   CHANGE SCALE
+===================================== */
+
+function changeScale(){
+
+    currentScale =
+        Number(
+            document.getElementById(
+                "scale"
+            ).value
+        );
+
+
+    document
+        .querySelectorAll(".grade")
+        .forEach(
+            select => {
+
+                select.innerHTML =
+                    createGradeOptions();
+
+            }
+        );
+
+
+    showToast(
+        currentScale +
+        "-point scale selected."
+    );
+
+}
+
+
+/* =====================================
+   CALCULATE GPA
+===================================== */
+
+function calculateGPA(){
+
+    const rows =
+        document.querySelectorAll(
+            "#subjectTable tr"
+        );
+
+
+    let totalCredits = 0;
+
+    let totalPoints = 0;
+
+    let validSubjects = 0;
+
+
+    rows.forEach(row => {
+
+        const credit =
+            Number(
+                row.querySelector(
+                    ".credit"
+                ).value
+            );
+
+
+        const gradeSelect =
+            row.querySelector(
+                ".grade"
+            );
+
+
+        const grade =
+            Number(
+                gradeSelect.value
+            );
+
+
+        const gradePoint =
+            row.querySelector(
+                ".grade-point"
+            );
+
+
+        const weighted =
+            row.querySelector(
+                ".weighted-point"
+            );
+
+
+        if(
+
+            credit > 0 &&
+
+            gradeSelect.value !== ""
+
+        ){
+
+            totalCredits += credit;
+
+            totalPoints +=
+                credit * grade;
+
+            validSubjects++;
+
+
+            gradePoint.textContent =
+                grade.toFixed(2);
+
+
+            weighted.textContent =
+                (credit * grade)
+                .toFixed(2);
+
+        }
+
+        else{
+
+            gradePoint.textContent =
+                "—";
+
+            weighted.textContent =
+                "—";
+
+        }
+
+    });
+
+
+    if(totalCredits === 0){
+
+        showToast(
+            "Please enter valid credits and grades."
+        );
+
+        return;
+
+    }
+
+
+    const gpa =
+        totalPoints /
+        totalCredits;
+
+
+    let percentage;
+
+
+    if(currentScale === 10){
+
+        percentage =
+            gpa * 10;
+
+    }
+
+    else{
+
+        percentage =
+            (gpa / 4) * 100;
+
+    }
+
+
+    document.getElementById(
+        "gpaValue"
+    ).textContent =
+        gpa.toFixed(2);
+
+
+    document.getElementById(
+        "totalCredits"
+    ).textContent =
+        totalCredits.toFixed(1);
+
+
+    document.getElementById(
+        "totalPoints"
+    ).textContent =
+        totalPoints.toFixed(2);
+
+
+    document.getElementById(
+        "subjectCount"
+    ).textContent =
+        validSubjects;
+
+
+    document.getElementById(
+        "percentage"
+    ).textContent =
+        percentage.toFixed(1) + "%";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        Math.min(
+            percentage,
+            100
+        ) + "%";
+
+
+    document.getElementById(
+        "gpaResult"
+    ).classList.add("show");
+
+}
+
+
+/* =====================================
+   ADD SEMESTER
+===================================== */
+
+function addSemesterRow(){
+
+    const list =
+        document.getElementById(
+            "semesterList"
+        );
+
+
+    const semesterNumber =
+        list.children.length + 1;
+
+
+    const row =
+        document.createElement("div");
+
+
+    row.className =
+        "semester";
+
+
+    row.innerHTML = `
+
+        <div
+            class="semester-name"
+        >
+
+            <strong>
+                Semester ${semesterNumber}
+            </strong>
+
+            <br>
+
+            <span>
+                Previous semester
+            </span>
+
+        </div>
+
+
+        <input
+            class="semester-gpa"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="GPA"
+        >
+
+
+        <input
+            class="semester-credit"
+            type="number"
+            min="0"
+            step="0.5"
+            placeholder="Credits"
+        >
+
+
+        <button
+            class="remove"
+            onclick="this.closest('.semester').remove()"
+        >
+            ×
+        </button>
+
+    `;
+
+
+    list.appendChild(row);
+
+}
+
+
+/* =====================================
+   CALCULATE CGPA
+===================================== */
+
+function calculateCGPA(){
+
+    const rows =
+        document.querySelectorAll(
+            ".semester"
+        );
+
+
+    let totalCredits = 0;
+
+    let weightedGPA = 0;
+
+    let count = 0;
+
+
+    rows.forEach(row => {
+
+        const gpa =
+            Number(
+                row.querySelector(
+                    ".semester-gpa"
+                ).value
+            );
+
+
+        const credit =
+            Number(
+                row.querySelector(
+                    ".semester-credit"
+                ).value
+            );
+
+
+        if(
+
+            gpa >= 0 &&
+
+            credit > 0
+
+        ){
+
+            weightedGPA +=
+                gpa * credit;
+
+            totalCredits +=
+                credit;
+
+            count++;
+
+        }
+
+    });
+
+
+    if(totalCredits === 0){
+
+        showToast(
+            "Enter semester GPA and credits."
+        );
+
+        return;
+
+    }
+
+
+    const cgpa =
+        weightedGPA /
+        totalCredits;
+
+
+    document.getElementById(
+        "cgpaValue"
+    ).textContent =
+        cgpa.toFixed(2);
+
+
+    document.getElementById(
+        "cgpaCredits"
+    ).textContent =
+        totalCredits.toFixed(1);
+
+
+    document.getElementById(
+        "semesterCount"
+    ).textContent =
+        count;
+
+
+    document.getElementById(
+        "cgpaResult"
+    ).classList.add("show");
+
+}
+
+
+/* =====================================
+   SAVE DATA
+===================================== */
+
+function saveData(){
+
+    const subjects = [];
+
+
+    document
+        .querySelectorAll(
+            "#subjectTable tr"
+        )
+        .forEach(row => {
+
+            subjects.push({
+
+                subject:
+                    row.querySelector(
+                        ".subject"
+                    ).value,
+
+                credit:
+                    row.querySelector(
+                        ".credit"
+                    ).value,
+
+                grade:
+                    row.querySelector(
+                        ".grade"
+                    ).value
+
+            });
+
+        });
+
+
+    const data = {
+
+        student:
+            document.getElementById(
+                "studentName"
+            ).value,
+
+        scale:
+            currentScale,
+
+        subjects:
+            subjects
+
+    };
+
+
+    localStorage.setItem(
+        "calculatorWorldGPA",
+        JSON.stringify(data)
+    );
+
+
+    showToast(
+        "GPA data saved on this device."
+    );
+
+}
+
+
+/* =====================================
+   LOAD SAVED DATA
+===================================== */
+
+function loadData(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "calculatorWorldGPA"
+            );
+
+
+        if(!saved){
+
+            return;
+
+        }
+
+
+        const data =
+            JSON.parse(saved);
+
+
+        document.getElementById(
+            "studentName"
+        ).value =
+            data.student || "";
+
+
+        currentScale =
+            Number(
+                data.scale || 10
+            );
+
+
+        document.getElementById(
+            "scale"
+        ).value =
+            currentScale;
+
+
+        const table =
+            document.getElementById(
+                "subjectTable"
+            );
+
+
+        table.innerHTML = "";
+
+
+        if(
+            data.subjects &&
+            data.subjects.length
+        ){
+
+            data.subjects.forEach(
+                subject => {
+
+                    addSubject();
+
+
+                    const row =
+                        table.lastElementChild;
+
+
+                    row.querySelector(
+                        ".subject"
+                    ).value =
+                        subject.subject || "";
+
+
+                    row.querySelector(
+                        ".credit"
+                    ).value =
+                        subject.credit || "";
+
+
+                    row.querySelector(
+                        ".grade"
+                    ).value =
+                        subject.grade || "";
+
+                }
+            );
+
+        }
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Saved data could not be loaded."
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   RESET
+===================================== */
+
+function resetCalculator(){
+
+    const confirmReset =
+        confirm(
+            "Are you sure you want to reset the GPA calculator?"
+        );
+
+
+    if(!confirmReset){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "calculatorWorldGPA"
+    );
+
+
+    document.getElementById(
+        "studentName"
+    ).value = "";
+
+
+    document.getElementById(
+        "subjectTable"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "gpaResult"
+    ).classList.remove(
+        "show"
+    );
+
+
+    addSubject();
+
+    addSubject();
+
+
+    showToast(
+        "Calculator has been reset."
+    );
+
+}
+
+
+/* =====================================
+   TOAST
+===================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.style.display =
+        "block";
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+
+                toast.style.display =
+                    "none";
+
+            },
+
+            2500
+        );
+
+}
+
+
+/* =====================================
+   INITIAL LOAD
+===================================== */
+
+addSubject();
+
+addSubject();
+
+loadData();
+
+</script>
+
+</body>
+</html>

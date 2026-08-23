@@ -8,6 +8,10 @@
 
 <style>
 
+/* =========================
+   GLOBAL
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -30,13 +34,11 @@ body{
     color:white;
 }
 
-/* MAIN CONTAINER */
-
 .container{
     width:100%;
     max-width:850px;
 
-    background:rgba(15,23,42,.75);
+    background:rgba(15,23,42,.78);
 
     border:1px solid rgba(255,255,255,.12);
 
@@ -59,13 +61,17 @@ body{
         opacity:0;
         transform:translateY(25px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
     text-align:center;
@@ -98,8 +104,6 @@ h1{
 
     font-size:32px;
     font-weight:800;
-
-    letter-spacing:-.5px;
 }
 
 .subtitle{
@@ -110,11 +114,10 @@ h1{
     font-size:15px;
 }
 
-/* INPUT AREA */
 
-.input-section{
-    margin-top:25px;
-}
+/* =========================
+   INPUTS
+========================= */
 
 .input-group{
     margin-bottom:18px;
@@ -181,13 +184,14 @@ input:focus{
     font-size:13px;
 }
 
-/* BUTTONS */
+
+/* =========================
+   BUTTONS
+========================= */
 
 .button-row{
     display:flex;
-
     gap:12px;
-
     margin-top:22px;
 }
 
@@ -240,7 +244,10 @@ button{
     background:rgba(255,255,255,.12);
 }
 
-/* RESULT */
+
+/* =========================
+   RESULT
+========================= */
 
 .result{
     display:none;
@@ -251,6 +258,7 @@ button{
 }
 
 @keyframes resultIn{
+
     from{
         opacity:0;
         transform:translateY(15px);
@@ -260,9 +268,13 @@ button{
         opacity:1;
         transform:translateY(0);
     }
+
 }
 
-/* RESULT TOP */
+
+/* =========================
+   RESULT TOP
+========================= */
 
 .result-top{
     display:grid;
@@ -274,7 +286,10 @@ button{
     align-items:center;
 }
 
-/* CIRCLE */
+
+/* =========================
+   CIRCLE
+========================= */
 
 .circle-wrapper{
     display:flex;
@@ -317,9 +332,6 @@ button{
     border-radius:50%;
 
     background:#0f172a;
-
-    box-shadow:
-        inset 0 0 20px rgba(0,0,0,.35);
 }
 
 .progress-content{
@@ -342,7 +354,10 @@ button{
     font-size:13px;
 }
 
-/* RESULT INFO */
+
+/* =========================
+   RESULT INFO
+========================= */
 
 .result-info{
     padding:25px;
@@ -392,13 +407,15 @@ button{
     font-size:14px;
 }
 
-/* STATS */
+
+/* =========================
+   STATS
+========================= */
 
 .stats-grid{
     display:grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
     gap:14px;
 
@@ -422,8 +439,7 @@ button{
 .stat-card:hover{
     transform:translateY(-3px);
 
-    background:
-        rgba(255,255,255,.08);
+    background:rgba(255,255,255,.08);
 }
 
 .stat-icon{
@@ -446,7 +462,445 @@ button{
     font-weight:800;
 }
 
-/* FORMULA */
+
+/* =========================
+   CREATE CARD BUTTON
+========================= */
+
+.create-card-section{
+    margin-top:22px;
+
+    padding:20px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,.12),
+            rgba(124,58,237,.12)
+        );
+
+    border:
+        1px solid
+        rgba(124,58,237,.2);
+}
+
+.create-card-title{
+    font-size:16px;
+
+    font-weight:700;
+
+    margin-bottom:5px;
+}
+
+.create-card-text{
+    color:#94a3b8;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+}
+
+.create-card-btn{
+    width:100%;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(124,58,237,.25);
+}
+
+.create-card-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   NAME MODAL
+========================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(2,6,23,.75);
+
+    backdrop-filter:blur(10px);
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+
+    padding:28px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #0f172a
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.55);
+
+    animation:modalIn .35s ease;
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.modal-icon{
+    text-align:center;
+
+    font-size:45px;
+
+    margin-bottom:10px;
+}
+
+.modal-box h2{
+    text-align:center;
+
+    font-size:24px;
+}
+
+.modal-description{
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+    margin-top:8px;
+
+    margin-bottom:20px;
+}
+
+.modal-box input{
+    margin-bottom:14px;
+}
+
+.modal-buttons{
+    display:flex;
+
+    gap:10px;
+}
+
+.generate-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    color:white;
+}
+
+.close-btn{
+    background:
+        rgba(255,255,255,.07);
+
+    color:#cbd5e1;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+}
+
+
+/* =========================
+   PREMIUM RESULT CARD
+========================= */
+
+.card-preview-wrapper{
+    display:none;
+
+    margin-top:25px;
+
+    animation:resultIn .5s ease;
+}
+
+.result-card{
+    position:relative;
+
+    width:100%;
+
+    max-width:650px;
+
+    margin:auto;
+
+    padding:35px;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #1e1b4b,
+            #172554
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.45);
+}
+
+.result-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    background:
+        rgba(59,130,246,.16);
+
+    top:-120px;
+    right:-100px;
+}
+
+.result-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+    height:200px;
+
+    border-radius:50%;
+
+    background:
+        rgba(124,58,237,.14);
+
+    bottom:-100px;
+    left:-80px;
+}
+
+.card-content{
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+}
+
+.card-brand{
+    color:#93c5fd;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.card-title{
+    margin-top:10px;
+
+    font-size:27px;
+
+    font-weight:800;
+}
+
+.card-name{
+    margin-top:18px;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.card-line{
+    width:80px;
+    height:3px;
+
+    margin:15px auto;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #a855f7
+        );
+}
+
+.card-subtitle{
+    color:#94a3b8;
+
+    font-size:13px;
+}
+
+.card-percentage{
+    margin-top:20px;
+
+    font-size:60px;
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #c084fc
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.card-grade{
+    display:inline-block;
+
+    margin-top:5px;
+
+    padding:7px 18px;
+
+    border-radius:50px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    font-weight:700;
+}
+
+.card-stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+    margin-top:25px;
+}
+
+.card-stat{
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+}
+
+.card-stat-label{
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+.card-stat-value{
+    margin-top:4px;
+
+    font-size:18px;
+
+    font-weight:800;
+}
+
+.card-footer{
+    margin-top:25px;
+
+    color:#64748b;
+
+    font-size:11px;
+}
+
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download-btn{
+    display:block;
+
+    width:100%;
+
+    max-width:650px;
+
+    margin:15px auto 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #059669
+        );
+
+    color:white;
+
+    box-shadow:
+        0 10px 25px
+        rgba(16,185,129,.2);
+}
+
+
+/* =========================
+   FORMULA
+========================= */
 
 .formula{
     margin-top:18px;
@@ -469,7 +923,10 @@ button{
     line-height:1.6;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
     text-align:center;
@@ -481,7 +938,10 @@ button{
     font-size:12px;
 }
 
-/* RESPONSIVE */
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:700px){
 
@@ -521,6 +981,26 @@ button{
         flex:1;
     }
 
+    .result-card{
+        padding:25px 18px;
+    }
+
+    .card-name{
+        font-size:24px;
+    }
+
+    .card-percentage{
+        font-size:48px;
+    }
+
+    .card-stats{
+        grid-template-columns:1fr;
+    }
+
+    .modal-buttons{
+        flex-direction:column;
+    }
+
 }
 
 </style>
@@ -529,264 +1009,485 @@ button{
 
 <body>
 
+
 <div class="container">
 
-    <!-- HEADER -->
 
-    <div class="header">
+<!-- =========================
+     HEADER
+========================= -->
 
-        <div class="icon">
-            📊
-        </div>
+<div class="header">
 
-        <h1>
-            Percentage Calculator
-        </h1>
-
-        <p class="subtitle">
-            Calculate percentage, grade & marks instantly
-        </p>
-
+    <div class="icon">
+        📊
     </div>
 
+    <h1>
+        Percentage Calculator
+    </h1>
 
-    <!-- INPUTS -->
+    <p class="subtitle">
+        Calculate percentage, grade & create your result card
+    </p>
 
-    <div class="input-section">
-
-        <div class="input-group">
-
-            <label>
-                Obtained Marks
-            </label>
-
-            <div class="input-box">
-
-                <input
-                    type="number"
-                    id="obtained"
-                    placeholder="Example: 450"
-                    min="0"
-                >
-
-                <span class="unit">
-                    Marks
-                </span>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="input-group">
+<!-- =========================
+     INPUTS
+========================= -->
 
-            <label>
-                Total Marks
-            </label>
+<div class="input-group">
 
-            <div class="input-box">
+    <label>
+        Obtained Marks
+    </label>
 
-                <input
-                    type="number"
-                    id="total"
-                    placeholder="Example: 500"
-                    min="1"
-                >
+    <div class="input-box">
 
-                <span class="unit">
-                    Marks
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- BUTTONS -->
-
-    <div class="button-row">
-
-        <button
-            class="calculate-btn"
-            onclick="calculatePercentage()"
+        <input
+            type="number"
+            id="obtained"
+            placeholder="Example: 450"
+            min="0"
         >
-            Calculate Percentage
-        </button>
 
-        <button
-            class="reset-btn"
-            onclick="resetCalculator()"
-        >
-            Reset
-        </button>
-
-    </div>
-
-
-    <!-- RESULT -->
-
-    <div
-        class="result"
-        id="result"
-    >
-
-        <div class="result-top">
-
-            <!-- CIRCLE -->
-
-            <div class="circle-wrapper">
-
-                <div
-                    class="progress"
-                    id="progressCircle"
-                >
-
-                    <div class="progress-content">
-
-                        <div
-                            class="progress-value"
-                            id="percentageValue"
-                        >
-                            0%
-                        </div>
-
-                        <div class="progress-label">
-                            Percentage
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- GRADE -->
-
-            <div class="result-info">
-
-                <div class="small-title">
-                    Your Result
-                </div>
-
-                <div
-                    class="grade"
-                    id="grade"
-                >
-                    —
-                </div>
-
-                <div
-                    class="grade-name"
-                    id="gradeName"
-                >
-                    —
-                </div>
-
-                <div
-                    class="result-message"
-                    id="resultMessage"
-                >
-                    Calculate your percentage to see the result.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- STATS -->
-
-        <div class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    📝
-                </div>
-
-                <div class="stat-title">
-                    Obtained Marks
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="obtainedResult"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    📚
-                </div>
-
-                <div class="stat-title">
-                    Total Marks
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="totalResult"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    🎯
-                </div>
-
-                <div class="stat-title">
-                    Percentage
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="percentageResult"
-                >
-                    0%
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- FORMULA -->
-
-        <div class="formula">
-
-            <strong>📐 Formula:</strong>
-
-            Percentage =
-            (Obtained Marks ÷ Total Marks) × 100
-
-        </div>
-
-    </div>
-
-
-    <div class="footer">
-
-        Premium Student Utility • Percentage Calculator
+        <span class="unit">
+            Marks
+        </span>
 
     </div>
 
 </div>
 
 
+<div class="input-group">
+
+    <label>
+        Total Marks
+    </label>
+
+    <div class="input-box">
+
+        <input
+            type="number"
+            id="total"
+            placeholder="Example: 500"
+            min="1"
+        >
+
+        <span class="unit">
+            Marks
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     BUTTONS
+========================= -->
+
+<div class="button-row">
+
+    <button
+        class="calculate-btn"
+        onclick="calculatePercentage()"
+    >
+        Calculate Percentage
+    </button>
+
+    <button
+        class="reset-btn"
+        onclick="resetCalculator()"
+    >
+        Reset
+    </button>
+
+</div>
+
+
+<!-- =========================
+     RESULT
+========================= -->
+
+<div
+    class="result"
+    id="result"
+>
+
+
+<div class="result-top">
+
+
+<!-- CIRCLE -->
+
+<div class="circle-wrapper">
+
+    <div
+        class="progress"
+        id="progressCircle"
+    >
+
+        <div class="progress-content">
+
+            <div
+                class="progress-value"
+                id="percentageValue"
+            >
+                0%
+            </div>
+
+            <div class="progress-label">
+                Percentage
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- GRADE -->
+
+<div class="result-info">
+
+    <div class="small-title">
+        Your Result
+    </div>
+
+    <div
+        class="grade"
+        id="grade"
+    >
+        —
+    </div>
+
+    <div
+        class="grade-name"
+        id="gradeName"
+    >
+        —
+    </div>
+
+    <div
+        class="result-message"
+        id="resultMessage"
+    >
+        Calculate your percentage to see your result.
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats-grid">
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        📝
+    </div>
+
+    <div class="stat-title">
+        Obtained Marks
+    </div>
+
+    <div
+        class="stat-value"
+        id="obtainedResult"
+    >
+        0
+    </div>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        📚
+    </div>
+
+    <div class="stat-title">
+        Total Marks
+    </div>
+
+    <div
+        class="stat-value"
+        id="totalResult"
+    >
+        0
+    </div>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        🎯
+    </div>
+
+    <div class="stat-title">
+        Percentage
+    </div>
+
+    <div
+        class="stat-value"
+        id="percentageResult"
+    >
+        0%
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     CREATE CARD
+========================= -->
+
+<div class="create-card-section">
+
+    <div class="create-card-title">
+        ✨ Create Your Premium Result Card
+    </div>
+
+    <div class="create-card-text">
+        Add your name and generate a beautiful shareable result card.
+    </div>
+
+    <button
+        class="create-card-btn"
+        onclick="openNameModal()"
+    >
+        🎓 Create Result Card
+    </button>
+
+</div>
+
+
+<!-- FORMULA -->
+
+<div class="formula">
+
+    <strong>📐 Formula:</strong>
+
+    Percentage =
+    (Obtained Marks ÷ Total Marks) × 100
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     RESULT CARD PREVIEW
+========================= -->
+
+<div
+    class="card-preview-wrapper"
+    id="cardPreviewWrapper"
+>
+
+    <div
+        class="result-card"
+        id="resultCard"
+    >
+
+        <div class="card-content">
+
+            <div class="card-brand">
+                ACADEMIC RESULT
+            </div>
+
+            <div class="card-title">
+                Percentage Achievement
+            </div>
+
+            <div
+                class="card-name"
+                id="cardName"
+            >
+                Student Name
+            </div>
+
+            <div class="card-line"></div>
+
+            <div class="card-subtitle">
+                Academic Performance
+            </div>
+
+            <div
+                class="card-percentage"
+                id="cardPercentage"
+            >
+                0%
+            </div>
+
+            <div
+                class="card-grade"
+                id="cardGrade"
+            >
+                A+
+            </div>
+
+
+            <div class="card-stats">
+
+
+                <div class="card-stat">
+
+                    <div class="card-stat-label">
+                        OBTAINED MARKS
+                    </div>
+
+                    <div
+                        class="card-stat-value"
+                        id="cardObtained"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="card-stat">
+
+                    <div class="card-stat-label">
+                        TOTAL MARKS
+                    </div>
+
+                    <div
+                        class="card-stat-value"
+                        id="cardTotal"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card-footer">
+                Generated using Premium Percentage Calculator
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="download-btn"
+        onclick="downloadResultCard()"
+    >
+        ⬇️ Download Result Card
+    </button>
+
+</div>
+
+
+<div class="footer">
+    Premium Student Utility • Percentage Calculator
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     NAME MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="nameModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            👤
+        </div>
+
+        <h2>
+            Personalize Your Card
+        </h2>
+
+        <p class="modal-description">
+            What name would you like to display on your result card?
+        </p>
+
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Enter your full name"
+            maxlength="60"
+        >
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="generate-btn"
+                onclick="generateResultCard()"
+            >
+                ✨ Generate Card
+            </button>
+
+            <button
+                class="close-btn"
+                onclick="closeNameModal()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- html2canvas for PNG download -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
 <script>
+
+/* =========================
+   GLOBAL RESULT DATA
+========================= */
+
+let resultData = {
+    obtained:0,
+    total:0,
+    percentage:0,
+    grade:"",
+    gradeName:""
+};
+
+
+/* =========================
+   CALCULATE
+========================= */
 
 function calculatePercentage(){
 
@@ -846,7 +1547,7 @@ function calculatePercentage(){
     }
 
 
-    /* CALCULATION */
+    /* PERCENTAGE */
 
     const percentage =
         (obtained / total) * 100;
@@ -863,37 +1564,53 @@ function calculatePercentage(){
     if(percentage >= 90){
 
         grade = "A+";
-        gradeName = "Outstanding Performance";
+        gradeName =
+            "Outstanding Performance";
 
     }
 
     else if(percentage >= 80){
 
         grade = "A";
-        gradeName = "Excellent Performance";
+        gradeName =
+            "Excellent Performance";
 
     }
 
     else if(percentage >= 70){
 
         grade = "B";
-        gradeName = "Very Good Performance";
+        gradeName =
+            "Very Good Performance";
 
     }
 
     else if(percentage >= 60){
 
         grade = "C";
-        gradeName = "Good Performance";
+        gradeName =
+            "Good Performance";
 
     }
 
     else if(percentage >= 50){
 
         grade = "D";
-        gradeName = "Average Performance";
+        gradeName =
+            "Average Performance";
 
     }
+
+
+    /* SAVE RESULT */
+
+    resultData = {
+        obtained:obtained,
+        total:total,
+        percentage:percentage,
+        grade:grade,
+        gradeName:gradeName
+    };
 
 
     /* DISPLAY */
@@ -938,6 +1655,7 @@ function calculatePercentage(){
 
     let message = "";
 
+
     if(percentage >= 90){
 
         message =
@@ -976,7 +1694,7 @@ function calculatePercentage(){
     else{
 
         message =
-            "Your score is below the passing range. Don't give up—identify weak areas and improve them. 💡";
+            "Your score is below the passing range. Identify weak areas and improve them. 💡";
 
     }
 
@@ -987,7 +1705,7 @@ function calculatePercentage(){
         message;
 
 
-    /* PROGRESS CIRCLE */
+    /* PROGRESS */
 
     const degrees =
         Math.min(percentage,100) * 3.6;
@@ -1042,10 +1760,236 @@ function calculatePercentage(){
     ).style.display =
         "block";
 
+
+    /* SCROLL */
+
+    setTimeout(() => {
+
+        document.getElementById(
+            "result"
+        ).scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    },100);
+
 }
 
 
-/* RESET */
+/* =========================
+   OPEN MODAL
+========================= */
+
+function openNameModal(){
+
+    if(resultData.total === 0){
+
+        alert(
+            "Please calculate your percentage first."
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "nameModal"
+    ).style.display =
+        "flex";
+
+
+    setTimeout(() => {
+
+        document.getElementById(
+            "studentName"
+        ).focus();
+
+    },100);
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeNameModal(){
+
+    document.getElementById(
+        "nameModal"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================
+   GENERATE RESULT CARD
+========================= */
+
+function generateResultCard(){
+
+    const name =
+        document.getElementById(
+            "studentName"
+        ).value.trim();
+
+
+    if(name === ""){
+
+        alert(
+            "Please enter your name."
+        );
+
+        return;
+    }
+
+
+    /* CARD DATA */
+
+    document.getElementById(
+        "cardName"
+    ).innerHTML =
+        escapeHTML(name);
+
+
+    document.getElementById(
+        "cardPercentage"
+    ).innerHTML =
+        resultData.percentage.toFixed(2) + "%";
+
+
+    document.getElementById(
+        "cardGrade"
+    ).innerHTML =
+        resultData.grade +
+        " — " +
+        resultData.gradeName;
+
+
+    document.getElementById(
+        "cardObtained"
+    ).innerHTML =
+        resultData.obtained;
+
+
+    document.getElementById(
+        "cardTotal"
+    ).innerHTML =
+        resultData.total;
+
+
+    /* CLOSE MODAL */
+
+    closeNameModal();
+
+
+    /* SHOW CARD */
+
+    document.getElementById(
+        "cardPreviewWrapper"
+    ).style.display =
+        "block";
+
+
+    /* SCROLL */
+
+    setTimeout(() => {
+
+        document.getElementById(
+            "cardPreviewWrapper"
+        ).scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    },150);
+
+}
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   DOWNLOAD PNG
+========================= */
+
+async function downloadResultCard(){
+
+    const card =
+        document.getElementById(
+            "resultCard"
+        );
+
+
+    try{
+
+        const canvas =
+            await html2canvas(
+                card,
+                {
+                    scale:3,
+                    backgroundColor:null,
+                    useCORS:true
+                }
+            );
+
+
+        const link =
+            document.createElement("a");
+
+
+        const name =
+            document.getElementById(
+                "studentName"
+            ).value.trim()
+            .replace(/\s+/g,"_");
+
+
+        link.download =
+            `${name || "Student"}_Result_Card.png`;
+
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+
+        link.click();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to download the card. Please try again."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   RESET
+========================= */
 
 function resetCalculator(){
 
@@ -1053,8 +1997,14 @@ function resetCalculator(){
         "obtained"
     ).value = "";
 
+
     document.getElementById(
         "total"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentName"
     ).value = "";
 
 
@@ -1062,6 +2012,27 @@ function resetCalculator(){
         "result"
     ).style.display =
         "none";
+
+
+    document.getElementById(
+        "cardPreviewWrapper"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "nameModal"
+    ).style.display =
+        "none";
+
+
+    resultData = {
+        obtained:0,
+        total:0,
+        percentage:0,
+        grade:"",
+        gradeName:""
+    };
 
 
     document.getElementById(
@@ -1076,15 +2047,50 @@ function resetCalculator(){
 }
 
 
-/* ENTER KEY */
+/* =========================
+   ENTER KEY
+========================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
+        if(
+            event.key === "Enter" &&
+            document.getElementById(
+                "nameModal"
+            ).style.display === "flex"
+        ){
+
+            generateResultCard();
+
+            return;
+        }
+
+
         if(event.key === "Enter"){
 
             calculatePercentage();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
+
+document.getElementById(
+    "nameModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeNameModal();
 
         }
 

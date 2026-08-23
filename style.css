@@ -477,3 +477,237 @@ background-position:0% 50%;
 background-position:100% 50%;
 }
 }
+/* ================================
+   MOBILE RESPONSIVE DESIGN
+   ================================ */
+
+@media (max-width: 768px){
+
+    /* Header */
+    header{
+        padding:15px;
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .owner-name{
+        position:static;
+        transform:none;
+        font-size:22px;
+        letter-spacing:1px;
+        order:2;
+    }
+
+    #searchBox{
+        width:100%;
+        max-width:400px;
+        order:3;
+    }
+
+
+    /* Hero */
+    .hero{
+        margin:10px;
+        padding:50px 15px;
+        border-radius:15px;
+    }
+
+    .hero h1{
+        font-size:36px;
+        line-height:1.2;
+    }
+
+    .hero p{
+        font-size:17px;
+        line-height:1.6;
+    }
+
+
+    /* Hero Buttons */
+    .hero-buttons{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons .btn2{
+        width:90%;
+        max-width:300px;
+        margin-right:0;
+        text-align:center;
+    }
+
+
+    /* Search Box */
+    .search-box{
+        margin:20px 15px;
+    }
+
+    .search-box input{
+        width:100%;
+        padding:14px;
+    }
+
+
+    /* Categories */
+    .categories{
+        grid-template-columns:1fr;
+        gap:18px;
+        padding:20px 15px;
+    }
+
+    .category-card{
+        padding:25px;
+        text-align:center;
+    }
+
+    .category-card h3{
+        font-size:25px;
+    }
+
+
+    /* Profile / Creator Section */
+    .team{
+        padding:50px 15px;
+    }
+
+    .team h2{
+        font-size:32px;
+        margin-bottom:30px;
+    }
+
+    .profile-card{
+        flex-direction:column;
+        padding:25px 18px;
+        gap:25px;
+        text-align:center;
+    }
+
+    .profile-image img{
+        width:220px;
+        height:260px;
+    }
+
+    .profile-info h3{
+        font-size:36px;
+    }
+
+    .profile-info p{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+
+    /* Stats */
+    .stats{
+        grid-template-columns:1fr;
+        margin:20px 15px;
+        gap:15px;
+    }
+
+
+    /* Popular Section */
+    .popular-section{
+        padding:40px 15px;
+    }
+
+    .popular-section h2{
+        font-size:28px;
+    }
+
+    .popular-grid{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .popular-btn{
+        width:90%;
+        max-width:350px;
+        text-align:center;
+    }
+
+
+    /* Featured Section */
+    .featured{
+        margin:20px 15px;
+        padding:30px 20px;
+    }
+
+    .featured h2{
+        font-size:28px;
+    }
+
+    .featured h3{
+        font-size:24px;
+    }
+
+    .featured p{
+        font-size:16px;
+        line-height:1.6;
+    }
+
+
+    /* Footer */
+    footer{
+        padding:25px 15px;
+        margin-top:30px;
+    }
+
+    footer p{
+        font-size:14px;
+        line-height:1.7;
+    }
+
+    footer a{
+        word-break:break-word;
+    }
+}
+
+
+/* Extra Small Phones */
+@media (max-width: 480px){
+
+    .logo{
+        font-size:21px;
+    }
+
+    .owner-name{
+        font-size:19px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .card-icon{
+        font-size:40px;
+    }
+
+    .category-card h3{
+        font-size:23px;
+    }
+
+    .profile-image img{
+        width:190px;
+        height:230px;
+    }
+
+    .profile-info h3{
+        font-size:30px;
+    }
+
+    .team h2{
+        font-size:28px;
+    }
+}

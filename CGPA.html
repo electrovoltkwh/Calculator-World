@@ -1,90 +1,3436 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>CGPA Calculator</title>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#6757e8"
+>
+
+<title>Premium CGPA Calculator | Calculator World</title>
+
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-text-align:center;
-padding:50px;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 0% 0%,
+            #ebe8ff 0,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 100% 10%,
+            #e4faff 0,
+            transparent 25%
+        ),
+
+        #f5f7fc;
+
+    color:#20263a;
+
+    min-height:100vh;
+
 }
 
-h1{
-color:#2563eb;
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+
+    --primary:#6757e8;
+    --primary-dark:#4e3fd0;
+
+    --secondary:#18aec9;
+
+    --green:#14a574;
+
+    --red:#e85d72;
+
+    --text:#20263a;
+
+    --muted:#737c90;
+
+    --border:#e4e7ef;
+
+    --white:#ffffff;
+
+    --soft:#f7f8fc;
+
 }
 
-input{
-padding:10px;
-margin:10px;
-width:220px;
-font-size:18px;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    height:72px;
+
+    padding:
+        0 5%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:
+        rgba(255,255,255,.90);
+
+    backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+
 }
 
-button{
-padding:10px 20px;
-font-size:18px;
-cursor:pointer;
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    font-weight:900;
+
+    font-size:19px;
+
 }
 
-#result{
-margin-top:20px;
-font-size:22px;
-font-weight:bold;
+.logo-icon{
+
+    width:42px;
+    height:42px;
+
+    display:grid;
+
+    place-items:center;
+
+    color:white;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8d7ff5
+        );
+
+    box-shadow:
+        0 8px 22px
+        rgba(103,87,232,.25);
+
 }
+
+.header-badge{
+
+    padding:
+        9px 14px;
+
+    border-radius:30px;
+
+    color:var(--primary);
+
+    background:#efedff;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:.7px;
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container{
+
+    width:
+        min(1120px,94%);
+
+    margin:auto;
+
+    padding:
+        32px 0 70px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    padding:
+        55px 25px;
+
+    text-align:center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f2f0ff
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(50,55,90,.08);
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:
+        8px 14px;
+
+    border-radius:30px;
+
+    color:var(--primary);
+
+    background:#eeecff;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+}
+
+.hero h1{
+
+    margin-top:18px;
+
+    font-size:
+        clamp(38px,6vw,68px);
+
+    line-height:1;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f40d1,
+            #7769ee,
+            #16a6c4
+        );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+.hero p{
+
+    max-width:700px;
+
+    margin:
+        18px auto 0;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+
+    margin-top:22px;
+
+    padding:27px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:25px;
+
+    background:white;
+
+    box-shadow:
+        0 15px 45px
+        rgba(40,45,75,.07);
+
+}
+
+.card-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:23px;
+
+}
+
+.card-title h2{
+
+    font-size:21px;
+
+}
+
+.card-title p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+.title-icon{
+
+    width:47px;
+    height:47px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:14px;
+
+    background:#efedff;
+
+    font-size:21px;
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-layout{
+
+    display:grid;
+
+    grid-template-columns:
+        160px 1fr;
+
+    gap:28px;
+
+}
+
+.photo-area{
+
+    text-align:center;
+
+}
+
+.photo-preview{
+
+    width:145px;
+    height:170px;
+
+    margin:auto;
+
+    overflow:hidden;
+
+    display:grid;
+
+    place-items:center;
+
+    border:
+        2px dashed #d6dae5;
+
+    border-radius:20px;
+
+    background:#f5f6fa;
+
+    color:#9299a8;
+
+    font-size:11px;
+
+}
+
+.photo-preview img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.upload-btn{
+
+    display:inline-block;
+
+    margin-top:12px;
+
+    padding:
+        10px 14px;
+
+    border-radius:10px;
+
+    color:var(--primary);
+
+    background:#efedff;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+.upload-btn input{
+
+    display:none;
+
+}
+
+.photo-note{
+
+    margin-top:7px;
+
+    color:#a0a6b3;
+
+    font-size:8px;
+
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.field label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#687185;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+}
+
+.field input{
+
+    width:100%;
+
+    height:45px;
+
+    padding:
+        0 12px;
+
+    outline:none;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:11px;
+
+    background:#fafbfe;
+
+    color:var(--text);
+
+    font-size:12px;
+
+}
+
+.field input:focus{
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(103,87,232,.08);
+
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.btn{
+
+    min-height:43px;
+
+    padding:
+        0 17px;
+
+    border:0;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+.save-btn{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8b7cf6
+        );
+
+}
+
+.load-btn{
+
+    color:var(--primary);
+
+    background:#efedff;
+
+}
+
+.reset-btn{
+
+    color:var(--red);
+
+    background:#fff0f3;
+
+}
+
+
+/* =========================================================
+   CALCULATOR
+========================================================= */
+
+.calculator{
+
+    margin-top:22px;
+
+    overflow:hidden;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:25px;
+
+    background:white;
+
+    box-shadow:
+        0 15px 45px
+        rgba(40,45,75,.07);
+
+}
+
+.calc-header{
+
+    padding:
+        25px 27px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.calc-header h2{
+
+    font-size:21px;
+
+}
+
+.calc-header p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+   SEMESTER TABLE
+========================================================= */
+
+.table-wrapper{
+
+    padding:
+        24px 27px;
+
+    overflow-x:auto;
+
+}
+
+.semester-table{
+
+    width:100%;
+
+    min-width:650px;
+
+    border-collapse:separate;
+
+    border-spacing:
+        0 9px;
+
+}
+
+.semester-table th{
+
+    padding:
+        0 10px 5px;
+
+    color:#858da0;
+
+    text-align:left;
+
+    font-size:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+.semester-table td{
+
+    padding:
+        10px;
+
+    background:#fcfdff;
+
+    border-top:
+        1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.semester-table td:first-child{
+
+    border-left:
+        1px solid var(--border);
+
+    border-radius:
+        13px 0 0 13px;
+
+}
+
+.semester-table td:last-child{
+
+    border-right:
+        1px solid var(--border);
+
+    border-radius:
+        0 13px 13px 0;
+
+}
+
+.semester-table input{
+
+    width:100%;
+
+    height:40px;
+
+    padding:
+        0 10px;
+
+    border:
+        1px solid #e1e4eb;
+
+    border-radius:9px;
+
+    background:white;
+
+    outline:none;
+
+    color:var(--text);
+
+    font-size:11px;
+
+}
+
+.semester-table input:focus{
+
+    border-color:
+        var(--primary);
+
+}
+
+.remove-semester{
+
+    width:38px;
+    height:38px;
+
+    border:0;
+
+    border-radius:9px;
+
+    color:var(--red);
+
+    background:#fff0f3;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:900;
+
+}
+
+.add-semester{
+
+    margin:
+        0 27px 25px;
+
+    width:
+        calc(100% - 54px);
+
+    height:47px;
+
+    border:
+        1px dashed #c9c4f8;
+
+    border-radius:11px;
+
+    color:var(--primary);
+
+    background:#faf9ff;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   CALCULATE
+========================================================= */
+
+.calculate-area{
+
+    padding:
+        0 27px 27px;
+
+}
+
+.calculate-btn{
+
+    width:100%;
+
+    height:56px;
+
+    border:0;
+
+    border-radius:14px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            100deg,
+            #6757e8,
+            #8c7df6,
+            #17b1cf
+        );
+
+    box-shadow:
+        0 13px 32px
+        rgba(103,87,232,.22);
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result-card{
+
+    margin:
+        0 27px 27px;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    color:white;
+
+    background:
+
+        radial-gradient(
+            circle at 90% 5%,
+            rgba(255,255,255,.20),
+            transparent 27%
+        ),
+
+        linear-gradient(
+            135deg,
+            #5143ca,
+            #7668ed 55%,
+            #159fb9
+        );
+
+    box-shadow:
+        0 22px 55px
+        rgba(80,67,190,.24);
+
+}
+
+.result-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.result-header h2{
+
+    font-size:21px;
+
+}
+
+.result-header p{
+
+    margin-top:5px;
+
+    color:
+        rgba(255,255,255,.70);
+
+    font-size:11px;
+
+}
+
+.result-date{
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:9px;
+
+}
+
+.result-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:11px;
+
+    margin-top:24px;
+
+}
+
+.result-item{
+
+    padding:
+        17px 10px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+}
+
+.result-item span{
+
+    display:block;
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size:8px;
+
+    font-weight:900;
+
+}
+
+.result-item strong{
+
+    display:block;
+
+    margin-top:7px;
+
+    font-size:20px;
+
+}
+
+.cgpa-main{
+
+    margin-top:20px;
+
+    padding:22px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+        rgba(255,255,255,.13);
+
+}
+
+.cgpa-main small{
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+}
+
+.cgpa-main strong{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:62px;
+
+    line-height:1;
+
+}
+
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+.performance{
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    text-align:center;
+
+}
+
+.performance span{
+
+    display:block;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:8px;
+
+    text-transform:uppercase;
+
+}
+
+.performance strong{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:17px;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-card{
+
+    margin-top:22px;
+
+    padding:27px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:25px;
+
+    background:white;
+
+    box-shadow:
+        0 15px 45px
+        rgba(40,45,75,.07);
+
+}
+
+.progress-layout{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+
+}
+
+.circle{
+
+    width:155px;
+    height:155px;
+
+    flex:none;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:50%;
+
+    background:
+        conic-gradient(
+            var(--primary) 0deg,
+            var(--primary2) 0deg,
+            #e9ebf2 0deg
+        );
+
+    position:relative;
+
+}
+
+.circle::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:122px;
+    height:122px;
+
+    border-radius:50%;
+
+    background:white;
+
+}
+
+.circle-content{
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+}
+
+.circle-content strong{
+
+    display:block;
+
+    font-size:29px;
+
+}
+
+.circle-content span{
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+}
+
+.progress-info h2{
+
+    font-size:21px;
+
+}
+
+.progress-info p{
+
+    max-width:600px;
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:11px;
+
+}
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:17px;
+
+}
+
+.stat{
+
+    padding:15px;
+
+    border-radius:13px;
+
+    background:#f7f8fc;
+
+}
+
+.stat span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:17px;
+
+}
+
+
+/* =========================================================
+   PDF CARD
+========================================================= */
+
+.pdf-card{
+
+    margin-top:22px;
+
+    padding:30px;
+
+    border:
+        1px solid #ded9ff;
+
+    border-radius:26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f3f0ff
+        );
+
+    box-shadow:
+        0 18px 50px
+        rgba(103,87,232,.10);
+
+}
+
+.pdf-layout{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+.pdf-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:17px;
+
+}
+
+.pdf-icon{
+
+    width:62px;
+    height:62px;
+
+    flex:none;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:18px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8b7cf6
+        );
+
+    font-size:27px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(103,87,232,.25);
+
+}
+
+.pdf-info h2{
+
+    font-size:20px;
+
+}
+
+.pdf-info p{
+
+    max-width:650px;
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+.pdf-btn{
+
+    flex:none;
+
+    min-height:50px;
+
+    padding:
+        0 20px;
+
+    border:0;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6252dc,
+            #8b7cf6
+        );
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   FORMULA
+========================================================= */
+
+.formula-card{
+
+    margin-top:22px;
+
+    padding:24px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:22px;
+
+    background:white;
+
+}
+
+.formula-card h3{
+
+    font-size:15px;
+
+    margin-bottom:13px;
+
+}
+
+.formula{
+
+    padding:16px;
+
+    border-radius:13px;
+
+    background:#f7f8fb;
+
+    color:#687286;
+
+    line-height:1.8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    padding:
+        30px 20px;
+
+    text-align:center;
+
+    color:#7d8596;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    z-index:9999;
+
+    padding:
+        12px 18px;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:#20263a;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.20);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    transform:
+        translate(-50%,30px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    header{
+
+        height:64px;
+
+    }
+
+    .header-badge{
+
+        display:none;
+
+    }
+
+    .container{
+
+        width:94%;
+
+        padding-top:20px;
+
+    }
+
+    .hero{
+
+        padding:
+            38px 18px;
+
+        border-radius:23px;
+
+    }
+
+    .hero h1{
+
+        font-size:43px;
+
+    }
+
+    .card{
+
+        padding:19px;
+
+        border-radius:21px;
+
+    }
+
+    .profile-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .photo-area{
+
+        text-align:left;
+
+    }
+
+    .photo-preview{
+
+        margin:0;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .result-card{
+
+        margin:
+            0 14px 20px;
+
+        padding:21px;
+
+    }
+
+    .result-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .progress-layout{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .circle{
+
+        margin:auto;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .pdf-layout{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .pdf-btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:430px){
+
+    .cgpa-main strong{
+
+        font-size:53px;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRINT / PDF
+========================================================= */
+
+@media print{
+
+    @page{
+
+        size:A4;
+
+        margin:10mm;
+
+    }
+
+    body{
+
+        background:white !important;
+
+    }
+
+    header,
+    .hero,
+    .actions,
+    .add-semester,
+    .calculate-area,
+    .pdf-card,
+    .formula-card,
+    footer,
+    .upload-btn,
+    .photo-note{
+
+        display:none !important;
+
+    }
+
+    .container{
+
+        width:100%;
+
+        padding:0;
+
+    }
+
+    .card,
+    .calculator,
+    .progress-card{
+
+        margin:
+            0 0 10px;
+
+        box-shadow:none;
+
+        border:
+            1px solid #aaa;
+
+    }
+
+    .card{
+
+        padding:14px;
+
+    }
+
+    .profile-layout{
+
+        grid-template-columns:
+            100px 1fr;
+
+        gap:15px;
+
+    }
+
+    .photo-preview{
+
+        width:90px;
+        height:110px;
+
+    }
+
+    .form-grid{
+
+        gap:6px;
+
+    }
+
+    .field label{
+
+        font-size:7px;
+
+    }
+
+    .field input{
+
+        height:27px;
+
+        color:#111;
+
+        background:white;
+
+        border:
+            1px solid #aaa;
+
+        font-size:8px;
+
+    }
+
+    .calc-header{
+
+        padding:
+            9px 0;
+
+    }
+
+    .table-wrapper{
+
+        padding:
+            8px 0;
+
+    }
+
+    .semester-table{
+
+        min-width:0;
+
+    }
+
+    .semester-table th{
+
+        font-size:7px;
+
+    }
+
+    .semester-table input{
+
+        height:25px;
+
+        font-size:7px;
+
+        color:#111;
+
+    }
+
+    .remove-semester{
+
+        display:none;
+
+    }
+
+    .result-card{
+
+        margin:
+            0 0 10px;
+
+        padding:15px;
+
+        color:#111 !important;
+
+        background:#f1efff !important;
+
+        box-shadow:none;
+
+    }
+
+    .result-header h2,
+    .result-header p,
+    .result-date{
+
+        color:#111 !important;
+
+    }
+
+    .result-item{
+
+        background:white;
+
+        border:
+            1px solid #ddd;
+
+    }
+
+    .result-item span,
+    .result-item strong{
+
+        color:#111 !important;
+
+    }
+
+    .cgpa-main{
+
+        background:white;
+
+        border:
+            1px solid #ddd;
+
+    }
+
+    .cgpa-main small,
+    .cgpa-main strong{
+
+        color:#111 !important;
+
+    }
+
+    .progress-card{
+
+        padding:15px;
+
+    }
+
+    .circle{
+
+        width:100px;
+        height:100px;
+
+    }
+
+    .circle::before{
+
+        width:76px;
+        height:76px;
+
+    }
+
+    .progress-info h2{
+
+        font-size:14px;
+
+    }
+
+    .progress-info p{
+
+        font-size:8px;
+
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<h1>🎓 CGPA Calculator</h1>
 
-<input type="number" step="0.01" id="sem1" placeholder="Semester 1 GPA">
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<br>
+<header>
 
-<input type="number" step="0.01" id="sem2" placeholder="Semester 2 GPA">
+    <div class="logo">
 
-<br>
+        <div class="logo-icon">
+            Σ
+        </div>
 
-<input type="number" step="0.01" id="sem3" placeholder="Semester 3 GPA">
+        <span>
+            Calculator World
+        </span>
 
-<br>
+    </div>
 
-<input type="number" step="0.01" id="sem4" placeholder="Semester 4 GPA">
 
-<br>
+    <div class="header-badge">
+        PREMIUM ACADEMIC TOOL
+    </div>
 
-<button onclick="calculateCGPA()">Calculate CGPA</button>
+</header>
 
-<div id="result"></div>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <span class="hero-badge">
+        SMART • FAST • STUDENT FRIENDLY
+    </span>
+
+    <h1>
+        CGPA Calculator
+    </h1>
+
+    <p>
+        Calculate your overall CGPA using semester-wise
+        SGPA and credits. Save your academic profile,
+        track performance and generate a professional
+        academic report.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section class="card">
+
+    <div class="card-title">
+
+        <div>
+
+            <h2>
+                🎓 Student Profile
+            </h2>
+
+            <p>
+                Add your information for a personalized
+                academic report.
+            </p>
+
+        </div>
+
+        <div class="title-icon">
+            👤
+        </div>
+
+    </div>
+
+
+    <div class="profile-layout">
+
+
+        <div class="photo-area">
+
+            <div
+                class="photo-preview"
+                id="photoPreview"
+            >
+                No Photo
+            </div>
+
+
+            <label class="upload-btn">
+
+                📷 Upload Photo
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                >
+
+            </label>
+
+
+            <div class="photo-note">
+                JPG / PNG • Max 2MB
+            </div>
+
+        </div>
+
+
+
+        <div>
+
+            <div class="form-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        Student Name
+                    </label>
+
+                    <input
+                        id="studentName"
+                        type="text"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Roll Number
+                    </label>
+
+                    <input
+                        id="rollNumber"
+                        type="text"
+                        placeholder="Enter roll number"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        College Name
+                    </label>
+
+                    <input
+                        id="collegeName"
+                        type="text"
+                        placeholder="Enter college name"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        University
+                    </label>
+
+                    <input
+                        id="universityName"
+                        type="text"
+                        placeholder="Enter university"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Branch
+                    </label>
+
+                    <input
+                        id="branchName"
+                        type="text"
+                        placeholder="Example: Electrical Engineering"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Academic Session
+                    </label>
+
+                    <input
+                        id="session"
+                        type="text"
+                        placeholder="Example: 2023-2027"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn save-btn"
+                    onclick="saveData()"
+                >
+                    💾 Save Data
+                </button>
+
+
+                <button
+                    class="btn load-btn"
+                    onclick="loadData()"
+                >
+                    ↻ Load Data
+                </button>
+
+
+                <button
+                    class="btn reset-btn"
+                    onclick="resetAll()"
+                >
+                    🗑 Reset
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALCULATOR
+===================================================== -->
+
+<section class="calculator">
+
+
+    <div class="calc-header">
+
+        <div>
+
+            <h2>
+                📊 Semester SGPA
+            </h2>
+
+            <p>
+                Enter SGPA and semester credits.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="table-wrapper">
+
+        <table class="semester-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Semester
+                    </th>
+
+                    <th>
+                        SGPA
+                    </th>
+
+                    <th>
+                        Credits
+                    </th>
+
+                    <th>
+                        Credit Points
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="semesterBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+    <button
+        class="add-semester"
+        onclick="addSemester()"
+    >
+        ＋ Add Semester
+    </button>
+
+
+
+    <div class="calculate-area">
+
+        <button
+            class="calculate-btn"
+            onclick="calculateCGPA()"
+        >
+            Calculate Overall CGPA →
+        </button>
+
+    </div>
+
+
+
+    <!-- RESULT -->
+
+    <div class="result-card">
+
+
+        <div class="result-header">
+
+            <div>
+
+                <h2>
+                    Academic Result
+                </h2>
+
+                <p id="studentResultName">
+                    Student Performance Summary
+                </p>
+
+            </div>
+
+
+            <div
+                class="result-date"
+                id="resultDate"
+            >
+            </div>
+
+        </div>
+
+
+
+        <div class="result-grid">
+
+
+            <div class="result-item">
+
+                <span>
+                    Semesters
+                </span>
+
+                <strong id="totalSemesters">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <span>
+                    Total Credits
+                </span>
+
+                <strong id="totalCredits">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <span>
+                    Average SGPA
+                </span>
+
+                <strong id="averageSGPA">
+                    0.00
+                </strong>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <span>
+                    Estimated %
+                </span>
+
+                <strong id="percentage">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="cgpa-main">
+
+            <small>
+                OVERALL CGPA
+            </small>
+
+            <strong id="cgpa">
+                0.00
+            </strong>
+
+        </div>
+
+
+
+        <div class="performance">
+
+            <span>
+                Academic Performance
+            </span>
+
+            <strong id="performance">
+                Enter your semester details
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROGRESS CARD
+===================================================== -->
+
+<section class="progress-card">
+
+
+    <div class="progress-layout">
+
+
+        <div
+            class="circle"
+            id="progressCircle"
+        >
+
+            <div class="circle-content">
+
+                <strong id="progressValue">
+                    0%
+                </strong>
+
+                <span>
+                    Score
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="progress-info">
+
+            <h2>
+                📈 Academic Progress
+            </h2>
+
+            <p>
+                Your performance indicator is based on your
+                overall CGPA. Keep improving your semester
+                performance to reach the next academic level.
+            </p>
+
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <span>
+                        Current CGPA
+                    </span>
+
+                    <strong id="statCGPA">
+                        0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>
+                        Total Credits
+                    </span>
+
+                    <strong id="statCredits">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>
+                        Performance
+                    </span>
+
+                    <strong id="statPerformance">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PDF
+===================================================== -->
+
+<section class="pdf-card">
+
+
+    <div class="pdf-layout">
+
+
+        <div class="pdf-info">
+
+            <div class="pdf-icon">
+                📄
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Premium Academic Report
+                </h2>
+
+                <p>
+                    Generate an A4-ready report with student
+                    profile, photo, semester-wise SGPA,
+                    credits, CGPA and academic performance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="pdf-btn"
+            onclick="generatePDF()"
+        >
+            📄 Generate PDF
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FORMULA
+===================================================== -->
+
+<section class="formula-card">
+
+    <h3>
+        🧮 CGPA Calculation
+    </h3>
+
+
+    <div class="formula">
+
+        <b>Credit Points</b>
+        =
+        SGPA × Semester Credits
+
+        <br>
+
+        <b>Overall CGPA</b>
+        =
+        Σ(SGPA × Credits)
+        ÷
+        Σ(Credits)
+
+        <br>
+
+        <b>Estimated Percentage</b>
+        =
+        CGPA × 10
+
+        <br><br>
+
+        <b>Important:</b>
+        Some universities use a different CGPA-to-percentage
+        conversion formula. Always verify the official formula
+        of your university before using the percentage
+        for official purposes.
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+    © 2026 Calculator World |
+    Premium CGPA Calculator
+
+</footer>
+
+
+
+<div
+    class="toast"
+    id="toast"
+>
+    Saved successfully
+</div>
+
+
 
 <script>
 
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let semesterCount = 0;
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove("show");
+
+        },
+        2200
+    );
+
+}
+
+
+/* =========================================================
+   ADD SEMESTER
+========================================================= */
+
+function addSemester(
+    name = "",
+    sgpa = "",
+    credits = ""
+){
+
+    semesterCount++;
+
+
+    const row =
+        document.createElement("tr");
+
+
+    row.className =
+        "semester-row";
+
+
+    row.innerHTML = `
+
+        <td>
+
+            <input
+                class="semester-name"
+                type="text"
+                value="${name || "Semester " + semesterCount}"
+                placeholder="Semester"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="semester-sgpa"
+                type="number"
+                step="0.01"
+                min="0"
+                max="10"
+                value="${sgpa}"
+                placeholder="0.00"
+                oninput="calculateCGPA()"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="semester-credit"
+                type="number"
+                min="1"
+                step="1"
+                value="${credits}"
+                placeholder="Credits"
+                oninput="calculateCGPA()"
+            >
+
+        </td>
+
+
+        <td>
+
+            <div class="credit-point">
+                0.00
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <button
+                class="remove-semester"
+                onclick="removeSemester(this)"
+            >
+                ×
+            </button>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById("semesterBody")
+        .appendChild(row);
+
+
+    calculateCGPA();
+
+}
+
+
+/* =========================================================
+   REMOVE
+========================================================= */
+
+function removeSemester(button){
+
+    button
+        .closest("tr")
+        .remove();
+
+
+    calculateCGPA();
+
+}
+
+
+/* =========================================================
+   CALCULATE CGPA
+========================================================= */
+
 function calculateCGPA(){
 
-let s1 = parseFloat(document.getElementById("sem1").value) || 0;
-let s2 = parseFloat(document.getElementById("sem2").value) || 0;
-let s3 = parseFloat(document.getElementById("sem3").value) || 0;
-let s4 = parseFloat(document.getElementById("sem4").value) || 0;
+    const rows =
+        document.querySelectorAll(
+            ".semester-row"
+        );
 
-let count = 0;
 
-if(s1>0) count++;
-if(s2>0) count++;
-if(s3>0) count++;
-if(s4>0) count++;
+    let totalCredits = 0;
 
-let cgpa = (s1+s2+s3+s4)/count;
+    let weightedPoints = 0;
 
-document.getElementById("result").innerHTML =
-`
-Your CGPA: ${cgpa.toFixed(2)}
-`;
+    let sgpaSum = 0;
+
+    let validSemesters = 0;
+
+
+    rows.forEach(
+        row => {
+
+            const sgpa =
+                parseFloat(
+                    row.querySelector(
+                        ".semester-sgpa"
+                    ).value
+                );
+
+
+            const credits =
+                parseFloat(
+                    row.querySelector(
+                        ".semester-credit"
+                    ).value
+                );
+
+
+            const validSGPA =
+                !isNaN(sgpa) &&
+                sgpa >= 0 &&
+                sgpa <= 10;
+
+
+            const validCredits =
+                !isNaN(credits) &&
+                credits > 0;
+
+
+            let points = 0;
+
+
+            if(
+                validSGPA &&
+                validCredits
+            ){
+
+                points =
+                    sgpa *
+                    credits;
+
+
+                totalCredits +=
+                    credits;
+
+
+                weightedPoints +=
+                    points;
+
+
+                sgpaSum +=
+                    sgpa;
+
+
+                validSemesters++;
+
+            }
+
+
+            const pointBox =
+                row.querySelector(
+                    ".credit-point"
+                );
+
+
+            pointBox.textContent =
+                points.toFixed(2);
+
+        }
+    );
+
+
+    let cgpa = 0;
+
+    let averageSGPA = 0;
+
+
+    if(totalCredits > 0){
+
+        cgpa =
+            weightedPoints /
+            totalCredits;
+
+    }
+
+
+    if(validSemesters > 0){
+
+        averageSGPA =
+            sgpaSum /
+            validSemesters;
+
+    }
+
+
+    const percentage =
+        cgpa * 10;
+
+
+    /* RESULT */
+
+    document.getElementById(
+        "totalSemesters"
+    ).textContent =
+        validSemesters;
+
+
+    document.getElementById(
+        "totalCredits"
+    ).textContent =
+        totalCredits;
+
+
+    document.getElementById(
+        "averageSGPA"
+    ).textContent =
+        averageSGPA.toFixed(2);
+
+
+    document.getElementById(
+        "percentage"
+    ).textContent =
+        percentage.toFixed(2) + "%";
+
+
+    document.getElementById(
+        "cgpa"
+    ).textContent =
+        cgpa.toFixed(2);
+
+
+    document.getElementById(
+        "statCGPA"
+    ).textContent =
+        cgpa.toFixed(2);
+
+
+    document.getElementById(
+        "statCredits"
+    ).textContent =
+        totalCredits;
+
+
+    /* PERFORMANCE */
+
+    let performance =
+        "Enter your semester details";
+
+
+    if(validSemesters > 0){
+
+        if(cgpa >= 9){
+
+            performance =
+                "Outstanding 🌟";
+
+        }
+        else if(cgpa >= 8){
+
+            performance =
+                "Excellent 🚀";
+
+        }
+        else if(cgpa >= 7){
+
+            performance =
+                "Very Good 👍";
+
+        }
+        else if(cgpa >= 6){
+
+            performance =
+                "Good 📚";
+
+        }
+        else if(cgpa >= 5){
+
+            performance =
+                "Needs Improvement 📈";
+
+        }
+        else{
+
+            performance =
+                "Keep Working 💪";
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "performance"
+    ).textContent =
+        performance;
+
+
+    document.getElementById(
+        "statPerformance"
+    ).textContent =
+        performance;
+
+
+    /* PROGRESS */
+
+    const progress =
+        Math.min(
+            Math.max(
+                cgpa * 10,
+                0
+            ),
+            100
+        );
+
+
+    document.getElementById(
+        "progressValue"
+    ).textContent =
+        progress.toFixed(0) + "%";
+
+
+    const degree =
+        progress * 3.6;
+
+
+    document.getElementById(
+        "progressCircle"
+    ).style.background =
+        `
+        conic-gradient(
+            #6757e8 0deg,
+            #8c7cf6 ${degree}deg,
+            #e9ebf2 ${degree}deg
+        )
+        `;
+
+
+    const name =
+        document.getElementById(
+            "studentName"
+        ).value.trim();
+
+
+    document.getElementById(
+        "studentResultName"
+    ).textContent =
+        name
+        ? name + " • Academic Performance"
+        : "Student Performance Summary";
+
+
+    document.getElementById(
+        "resultDate"
+    ).textContent =
+        new Date().toLocaleDateString();
+
+
+    return {
+
+        cgpa,
+
+        totalCredits,
+
+        validSemesters,
+
+        averageSGPA,
+
+        percentage
+
+    };
+
 }
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+document
+    .getElementById("photoInput")
+    .addEventListener(
+        "change",
+        function(){
+
+            const file =
+                this.files[0];
+
+
+            if(!file){
+
+                return;
+
+            }
+
+
+            if(
+                !file.type.startsWith(
+                    "image/"
+                )
+            ){
+
+                showToast(
+                    "Please select an image."
+                );
+
+                return;
+
+            }
+
+
+            if(
+                file.size >
+                2 * 1024 * 1024
+            ){
+
+                showToast(
+                    "Photo must be below 2MB."
+                );
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(event){
+
+                    document.getElementById(
+                        "photoPreview"
+                    ).innerHTML = `
+
+                        <img
+                            src="${event.target.result}"
+                            alt="Student Photo"
+                        >
+
+                    `;
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function getProfile(){
+
+    return {
+
+        name:
+            document.getElementById(
+                "studentName"
+            ).value,
+
+        roll:
+            document.getElementById(
+                "rollNumber"
+            ).value,
+
+        college:
+            document.getElementById(
+                "collegeName"
+            ).value,
+
+        university:
+            document.getElementById(
+                "universityName"
+            ).value,
+
+        branch:
+            document.getElementById(
+                "branchName"
+            ).value,
+
+        session:
+            document.getElementById(
+                "session"
+            ).value
+
+    };
+
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+function saveData(){
+
+    const semesters = [];
+
+
+    document
+        .querySelectorAll(
+            ".semester-row"
+        )
+        .forEach(
+            row => {
+
+                semesters.push({
+
+                    name:
+                        row.querySelector(
+                            ".semester-name"
+                        ).value,
+
+                    sgpa:
+                        row.querySelector(
+                            ".semester-sgpa"
+                        ).value,
+
+                    credits:
+                        row.querySelector(
+                            ".semester-credit"
+                        ).value
+
+                });
+
+            }
+        );
+
+
+    const photo =
+        document
+            .querySelector(
+                "#photoPreview img"
+            )
+            ?.src || "";
+
+
+    const data = {
+
+        profile:
+            getProfile(),
+
+        photo,
+
+        semesters
+
+    };
+
+
+    localStorage.setItem(
+        "calculatorWorldCGPA",
+        JSON.stringify(data)
+    );
+
+
+    showToast(
+        "Academic data saved in this browser."
+    );
+
+}
+
+
+/* =========================================================
+   LOAD
+========================================================= */
+
+function loadData(){
+
+    const saved =
+        localStorage.getItem(
+            "calculatorWorldCGPA"
+        );
+
+
+    if(!saved){
+
+        showToast(
+            "No saved data found."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        const p =
+            data.profile || {};
+
+
+        document.getElementById(
+            "studentName"
+        ).value =
+            p.name || "";
+
+
+        document.getElementById(
+            "rollNumber"
+        ).value =
+            p.roll || "";
+
+
+        document.getElementById(
+            "collegeName"
+        ).value =
+            p.college || "";
+
+
+        document.getElementById(
+            "universityName"
+        ).value =
+            p.university || "";
+
+
+        document.getElementById(
+            "branchName"
+        ).value =
+            p.branch || "";
+
+
+        document.getElementById(
+            "session"
+        ).value =
+            p.session || "";
+
+
+        if(data.photo){
+
+            document.getElementById(
+                "photoPreview"
+            ).innerHTML = `
+
+                <img
+                    src="${data.photo}"
+                    alt="Student Photo"
+                >
+
+            `;
+
+        }
+
+
+        document.getElementById(
+            "semesterBody"
+        ).innerHTML = "";
+
+
+        semesterCount = 0;
+
+
+        if(
+            data.semesters &&
+            data.semesters.length
+        ){
+
+            data.semesters.forEach(
+                item => {
+
+                    addSemester(
+                        item.name,
+                        item.sgpa,
+                        item.credits
+                    );
+
+                }
+            );
+
+        }
+
+
+        calculateCGPA();
+
+
+        showToast(
+            "Saved data loaded."
+        );
+
+    }
+    catch(error){
+
+        showToast(
+            "Unable to load saved data."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetAll(){
+
+    const ok =
+        confirm(
+            "Reset profile, photo and all CGPA data?"
+        );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "calculatorWorldCGPA"
+    );
+
+
+    document
+        .querySelectorAll(
+            "#studentName,#rollNumber,#collegeName,#universityName,#branchName,#session"
+        )
+        .forEach(
+            input => {
+
+                input.value = "";
+
+            }
+        );
+
+
+    document.getElementById(
+        "photoPreview"
+    ).textContent =
+        "No Photo";
+
+
+    document.getElementById(
+        "semesterBody"
+    ).innerHTML = "";
+
+
+    semesterCount = 0;
+
+
+    createDefaultSemesters();
+
+
+    calculateCGPA();
+
+
+    showToast(
+        "Calculator has been reset."
+    );
+
+}
+
+
+/* =========================================================
+   PDF
+========================================================= */
+
+function generatePDF(){
+
+    calculateCGPA();
+
+
+    saveData();
+
+
+    setTimeout(
+        () => {
+
+            window.print();
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================================================
+   DEFAULT
+========================================================= */
+
+function createDefaultSemesters(){
+
+    for(
+        let i=1;
+        i<=8;
+        i++
+    ){
+
+        addSemester(
+            "Semester " + i,
+            "",
+            ""
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const saved =
+            localStorage.getItem(
+                "calculatorWorldCGPA"
+            );
+
+
+        if(saved){
+
+            loadData();
+
+        }
+        else{
+
+            createDefaultSemesters();
+
+            calculateCGPA();
+
+        }
+
+
+        document.getElementById(
+            "resultDate"
+        ).textContent =
+            new Date().toLocaleDateString();
+
+    }
+);
 
 </script>
 
+
 </body>
+
 </html>

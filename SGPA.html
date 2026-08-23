@@ -1,995 +1,1561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#6d5dfc">
-<title>GPA Calculator | Calculator World</title>
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta name="theme-color" content="#5b5ce2">
+
+<title>SGPA Calculator | Calculator World</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Inter,Arial,sans-serif;
 }
 
 :root{
-    --primary:#6757e8;
-    --primary2:#8b7cf6;
-    --cyan:#18b7d8;
-    --green:#17a673;
-    --text:#20263a;
-    --muted:#70798d;
-    --border:#e7eaf1;
-    --bg:#f5f7fc;
-    --white:#fff;
-    --danger:#e95d73;
+
+    --primary:#5b5ce2;
+    --primary2:#7879f1;
+    --cyan:#18b7cf;
+
+    --green:#18a878;
+    --red:#e05268;
+    --orange:#ed9b32;
+
+    --dark:#20233a;
+    --text:#292d42;
+    --muted:#73798c;
+
+    --bg:#f4f6fb;
+    --card:#ffffff;
+    --border:#e5e7ef;
+
 }
 
 body{
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
     background:
-        radial-gradient(circle at 5% 0%,#ebe8ff 0,transparent 28%),
-        radial-gradient(circle at 95% 10%,#e5f9ff 0,transparent 25%),
+
+        radial-gradient(
+            circle at 0 0,
+            #e9e8ff,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 100% 10%,
+            #def9ff,
+            transparent 28%
+        ),
+
         var(--bg);
+
     color:var(--text);
+
     min-height:100vh;
+
 }
 
-/* HEADER */
 
-header{
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
     position:sticky;
     top:0;
-    z-index:1000;
-    height:72px;
+    z-index:999;
+
+    height:70px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 5%;
-    background:rgba(255,255,255,.88);
+
+    background:
+        rgba(255,255,255,.92);
+
     backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
 }
 
 .logo{
+
     display:flex;
     align-items:center;
     gap:10px;
-    font-size:19px;
+
+    font-size:18px;
     font-weight:900;
+
 }
 
 .logo-icon{
-    width:40px;
-    height:40px;
-    border-radius:12px;
+
+    width:42px;
+    height:42px;
+
     display:grid;
     place-items:center;
+
     color:white;
-    background:linear-gradient(135deg,var(--primary),#9b8cff);
-    box-shadow:0 8px 22px rgba(103,87,232,.25);
-}
 
-.header-badge{
-    padding:9px 14px;
-    border-radius:30px;
-    color:var(--primary);
-    background:#f0eeff;
-    font-size:11px;
-    font-weight:800;
-}
+    border-radius:13px;
 
-/* MAIN */
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
 
-.container{
-    width:min(1180px,94%);
-    margin:auto;
-    padding:35px 0 70px;
-}
+    box-shadow:
+        0 8px 25px
+        rgba(91,92,226,.25);
 
-/* HERO */
-
-.hero{
-    padding:50px 30px;
-    text-align:center;
-    border-radius:30px;
-    background:linear-gradient(135deg,#ffffff,#f3f1ff);
-    border:1px solid var(--border);
-    box-shadow:0 18px 55px rgba(43,49,75,.08);
 }
 
 .badge{
-    display:inline-block;
-    padding:7px 13px;
+
+    padding:8px 14px;
+
     border-radius:30px;
+
+    background:#efefff;
+
     color:var(--primary);
-    background:#eeecff;
-    font-size:10px;
+
+    font-size:9px;
+
     font-weight:900;
+
+    letter-spacing:.8px;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container{
+
+    width:min(1180px,94%);
+
+    margin:auto;
+
+    padding:28px 0 70px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    text-align:center;
+
+    padding:55px 20px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f1f0ff
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 20px 60px
+        rgba(50,55,90,.08);
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    color:var(--primary);
+
+    background:#efefff;
+
+    font-size:9px;
+
+    font-weight:900;
+
     letter-spacing:1px;
+
 }
 
 .hero h1{
+
     margin-top:17px;
-    font-size:clamp(38px,6vw,65px);
+
+    font-size:
+        clamp(38px,6vw,68px);
+
     line-height:1;
-    background:linear-gradient(90deg,#4d3fd0,#7d6df3,#15a9ca);
+
+    background:
+        linear-gradient(
+            90deg,
+            #4d4ed0,
+            #7475ef,
+            #13a9c3
+        );
+
     -webkit-background-clip:text;
+
     color:transparent;
+
 }
 
 .hero p{
-    max-width:680px;
+
+    max-width:760px;
+
     margin:18px auto 0;
+
     color:var(--muted);
-    line-height:1.7;
+
+    font-size:14px;
+
+    line-height:1.8;
+
 }
 
-/* CARD */
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
 
 .card{
+
     margin-top:22px;
-    padding:26px;
+
+    padding:27px;
+
     background:white;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:25px;
-    box-shadow:0 14px 45px rgba(43,49,75,.07);
+
+    box-shadow:
+        0 15px 45px
+        rgba(40,45,75,.07);
+
 }
 
-.card-title{
+.card-head{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
-    margin-bottom:22px;
+
+    margin-bottom:23px;
+
 }
 
-.card-title h2{
-    font-size:21px;
+.card-head h2{
+
+    font-size:20px;
+
 }
 
-.card-title p{
+.card-head p{
+
     margin-top:5px;
+
     color:var(--muted);
-    font-size:12px;
+
+    font-size:10px;
+
 }
 
-.title-icon{
-    width:45px;
-    height:45px;
+.icon{
+
+    width:46px;
+    height:46px;
+
     display:grid;
     place-items:center;
+
     border-radius:14px;
-    background:#f0eeff;
-    font-size:21px;
+
+    background:#efefff;
+
+    font-size:20px;
+
 }
 
-/* PROFILE */
 
-.profile-layout{
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-grid{
+
     display:grid;
-    grid-template-columns:180px 1fr;
+
+    grid-template-columns:170px 1fr;
+
     gap:28px;
-    align-items:start;
+
 }
 
-.photo-box{
+.photo-column{
+
     text-align:center;
+
 }
 
-.photo-preview{
-    width:155px;
-    height:180px;
+.photo{
+
+    width:150px;
+    height:175px;
+
     margin:auto;
-    border-radius:22px;
-    overflow:hidden;
-    background:#f2f4f9;
-    border:2px dashed #d7dbe6;
+
     display:grid;
     place-items:center;
-    color:#9299a8;
-    font-size:12px;
+
+    overflow:hidden;
+
+    border:
+        2px dashed #cfd2df;
+
+    border-radius:20px;
+
+    background:#f7f8fc;
+
+    color:#9298aa;
+
+    font-size:11px;
+
 }
 
-.photo-preview img{
+.photo img{
+
     width:100%;
     height:100%;
+
     object-fit:cover;
+
 }
 
-.photo-upload{
-    margin-top:12px;
+.upload{
+
     display:inline-block;
-    padding:10px 15px;
-    border-radius:11px;
+
+    margin-top:12px;
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    background:#efefff;
+
     color:var(--primary);
-    background:#f0eeff;
+
     cursor:pointer;
-    font-size:11px;
+
+    font-size:10px;
+
     font-weight:900;
+
 }
 
-.photo-upload input{
+.upload input{
+
     display:none;
+
 }
 
 .photo-note{
-    margin-top:7px;
-    color:#9299a8;
-    font-size:9px;
+
+    margin-top:6px;
+
+    color:#a2a7b5;
+
+    font-size:8px;
+
 }
 
 .form-grid{
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:13px;
+
 }
 
 .field label{
+
     display:block;
-    margin-bottom:7px;
-    color:#626c80;
-    font-size:10px;
+
+    margin-bottom:6px;
+
+    color:#73798b;
+
+    font-size:9px;
+
     font-weight:900;
+
     text-transform:uppercase;
-    letter-spacing:.6px;
+
+    letter-spacing:.5px;
+
 }
 
 .field input,
 .field select{
+
     width:100%;
-    height:45px;
-    padding:0 12px;
-    border:1px solid var(--border);
-    border-radius:11px;
+
+    height:44px;
+
+    padding:0 11px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:10px;
+
     outline:none;
+
     background:#fafbfe;
+
     color:var(--text);
-    font-size:13px;
+
+    font-size:11px;
+
 }
 
 .field input:focus,
 .field select:focus{
-    border-color:var(--primary2);
-    box-shadow:0 0 0 3px rgba(103,87,232,.09);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(91,92,226,.08);
+
 }
 
-/* BUTTONS */
 
-.action-row{
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.actions{
+
     display:flex;
-    gap:10px;
+
     flex-wrap:wrap;
-    margin-top:20px;
+
+    gap:10px;
+
+    margin-top:18px;
+
 }
 
-button{
-    font-family:inherit;
-}
+.btn{
 
-.action-btn{
-    min-height:44px;
-    padding:0 17px;
-    border-radius:11px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:900;
+    min-height:42px;
+
+    padding:0 16px;
+
     border:0;
-}
 
-.save{
-    color:white;
-    background:linear-gradient(135deg,var(--primary),#8b7cf6);
-}
-
-.load{
-    color:var(--primary);
-    background:#f0eeff;
-}
-
-.clear{
-    color:var(--danger);
-    background:#fff1f3;
-}
-
-/* CALCULATOR */
-
-.calculator{
-    margin-top:22px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 14px 45px rgba(43,49,75,.07);
-}
-
-.calc-top{
-    padding:24px 26px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.calc-top h2{
-    font-size:21px;
-}
-
-.calc-top p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:12px;
-}
-
-.reset{
-    border:1px solid #ffd5db;
-    background:#fff5f6;
-    color:var(--danger);
-    padding:9px 13px;
     border-radius:10px;
+
     cursor:pointer;
-    font-size:11px;
+
+    font-size:10px;
+
     font-weight:900;
+
 }
 
-/* SUBJECT */
+.primary{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+}
+
+.secondary{
+
+    color:var(--primary);
+
+    background:#efefff;
+
+}
+
+.danger{
+
+    color:var(--red);
+
+    background:#fff0f3;
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+.settings-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
+
+}
+
+.setting-box{
+
+    padding:16px;
+
+    border-radius:15px;
+
+    background:#f8f9fd;
+
+    border:
+        1px solid var(--border);
+
+}
+
+.setting-box h3{
+
+    font-size:11px;
+
+    margin-bottom:8px;
+
+}
+
+.setting-box p{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   SUBJECT SECTION
+========================================================= */
 
 .subject-section{
-    padding:24px 26px;
-}
 
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-}
+    margin-top:22px;
 
-.section-head h3{
-    font-size:16px;
-}
-
-.section-head span{
-    color:var(--muted);
-    font-size:11px;
-}
-
-/* THEORY TABLE */
-
-.table-head,
-.subject-row{
-    display:grid;
-    grid-template-columns:
-        2fr
-        75px
-        100px
-        110px
-        90px
-        85px
-        45px;
-    gap:8px;
-    align-items:center;
-}
-
-.table-head{
-    padding:0 9px 8px;
-    color:#858da0;
-    font-size:9px;
-    font-weight:900;
-    text-transform:uppercase;
-}
-
-.subject-row{
-    padding:8px;
-    margin-bottom:8px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    background:#fcfdff;
-}
-
-.subject-row input,
-.subject-row select{
-    width:100%;
-    height:42px;
-    border:1px solid #e4e7ee;
-    border-radius:9px;
-    padding:0 9px;
     background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 45px
+        rgba(40,45,75,.07);
+
+}
+
+.subject-head{
+
+    padding:25px 27px;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.subject-head h2{
+
+    font-size:20px;
+
+}
+
+.subject-head p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.table-wrap{
+
+    overflow-x:auto;
+
+    padding:20px 27px;
+
+}
+
+table{
+
+    width:100%;
+
+    min-width:1000px;
+
+    border-collapse:separate;
+
+    border-spacing:0 8px;
+
+}
+
+th{
+
+    padding:
+        0 9px 5px;
+
+    text-align:left;
+
+    color:#7e8598;
+
+    font-size:8px;
+
+    text-transform:uppercase;
+
+}
+
+td{
+
+    padding:9px;
+
+    background:#fcfdff;
+
+    border-top:
+        1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+td:first-child{
+
+    border-left:
+        1px solid var(--border);
+
+    border-radius:
+        12px 0 0 12px;
+
+}
+
+td:last-child{
+
+    border-right:
+        1px solid var(--border);
+
+    border-radius:
+        0 12px 12px 0;
+
+}
+
+td input,
+td select{
+
+    width:100%;
+
+    height:38px;
+
+    padding:0 8px;
+
+    border:
+        1px solid #dfe2ea;
+
+    border-radius:8px;
+
     outline:none;
-    font-size:12px;
+
+    background:white;
+
+    font-size:10px;
+
+    color:var(--text);
+
 }
 
-.subject-row input:focus,
-.subject-row select:focus{
-    border-color:var(--primary2);
-}
+.total-mark,
+.grade-point,
+.credit-point{
 
-.total-marks{
-    height:42px;
-    display:grid;
-    place-items:center;
-    border-radius:9px;
-    background:#f5f6fa;
+    font-size:11px;
+
     font-weight:900;
-    font-size:12px;
+
+}
+
+.grade-point{
+
+    color:var(--primary);
+
+}
+
+.credit-point{
+
+    color:var(--green);
+
 }
 
 .remove{
-    width:100%;
-    height:42px;
+
+    width:36px;
+    height:36px;
+
     border:0;
-    border-radius:9px;
-    background:#fff2f4;
-    color:var(--danger);
+
+    border-radius:8px;
+
+    background:#fff0f3;
+
+    color:var(--red);
+
     cursor:pointer;
-    font-size:17px;
-    font-weight:900;
+
+    font-size:16px;
+
 }
 
-.add-btn{
-    width:100%;
-    height:46px;
-    margin-top:8px;
-    border:1px dashed #c9c4f8;
+.add-row{
+
+    margin:
+        0 27px 25px;
+
+    width:
+        calc(100% - 54px);
+
+    height:45px;
+
+    border:
+        1px dashed #c7c5ef;
+
     border-radius:11px;
+
     background:#faf9ff;
+
     color:var(--primary);
+
     cursor:pointer;
+
+    font-size:10px;
+
     font-weight:900;
+
 }
 
-/* PRACTICAL */
 
-.practical-row{
-    display:grid;
-    grid-template-columns:2fr 75px 120px 90px 110px 45px;
-    gap:8px;
-    align-items:center;
-    padding:8px;
-    margin-bottom:8px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    background:#fcfdff;
-}
+/* =========================================================
+   CALCULATE
+========================================================= */
 
-.practical-row input,
-.practical-row select{
-    width:100%;
-    height:42px;
-    border:1px solid #e4e7ee;
-    border-radius:9px;
-    padding:0 9px;
-    background:white;
-}
+.calculate{
 
-.practical-head{
-    display:grid;
-    grid-template-columns:2fr 75px 120px 90px 110px 45px;
-    gap:8px;
-    padding:0 9px 8px;
-    color:#858da0;
-    font-size:9px;
-    font-weight:900;
-    text-transform:uppercase;
-}
+    margin:
+        0 27px 27px;
 
-/* CALCULATE */
+    width:
+        calc(100% - 54px);
 
-.calculate-area{
-    padding:5px 26px 20px;
-}
-
-.calculate-btn{
-    width:100%;
     height:55px;
+
     border:0;
+
     border-radius:14px;
+
     color:white;
+
+    background:
+        linear-gradient(
+            100deg,
+            #5758d9,
+            #7b7cee,
+            #13aabe
+        );
+
     cursor:pointer;
-    font-size:15px;
+
+    font-size:13px;
+
     font-weight:900;
-    background:linear-gradient(100deg,#6757e8,#8b7cf6,#18b7d8);
-    box-shadow:0 12px 30px rgba(103,87,232,.2);
+
+    box-shadow:
+        0 12px 30px
+        rgba(91,92,226,.22);
+
 }
 
-/* RESULT CARD */
+
+/* =========================================================
+   RESULT CARD
+========================================================= */
 
 .result-card{
-    margin:0 26px 26px;
-    padding:30px;
-    border-radius:25px;
-    color:white;
-    background:
-        radial-gradient(circle at 90% 10%,rgba(255,255,255,.18),transparent 25%),
-        linear-gradient(135deg,#4f43c8,#7567ed 55%,#159db9);
-    box-shadow:0 20px 50px rgba(80,67,190,.25);
+
+    display:none;
+
+    margin-top:22px;
+
+    overflow:hidden;
+
+    background:white;
+
+    border:
+        1px solid #dedff0;
+
+    border-radius:28px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(50,50,90,.14);
+
 }
 
 .result-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
 
-.result-top h2{
-    font-size:21px;
-}
+    padding:28px;
 
-.result-top p{
-    margin-top:5px;
-    color:rgba(255,255,255,.75);
-    font-size:11px;
-}
+    color:white;
 
-.result-date{
-    color:rgba(255,255,255,.75);
-    font-size:10px;
-}
-
-.summary-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-top:25px;
-}
-
-.summary-item{
-    padding:17px 10px;
-    border-radius:15px;
-    text-align:center;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.12);
-}
-
-.summary-item span{
-    display:block;
-    color:rgba(255,255,255,.72);
-    font-size:9px;
-    font-weight:800;
-}
-
-.summary-item strong{
-    display:block;
-    margin-top:7px;
-    font-size:21px;
-}
-
-.big-sgpa{
-    margin-top:22px;
-    padding:20px;
-    text-align:center;
-    border-radius:18px;
-    background:rgba(255,255,255,.13);
-}
-
-.big-sgpa small{
-    display:block;
-    font-size:10px;
-    letter-spacing:1px;
-}
-
-.big-sgpa strong{
-    display:block;
-    margin-top:3px;
-    font-size:55px;
-    line-height:1;
-}
-
-/* PDF CARD */
-
-.pdf-card{
-    margin-top:22px;
-    padding:30px;
-    border-radius:26px;
     background:
-        linear-gradient(135deg,#fff,#f4f1ff);
-    border:1px solid #ded9ff;
-    box-shadow:0 18px 50px rgba(103,87,232,.10);
+        radial-gradient(
+            circle at 100% 0,
+            rgba(255,255,255,.25),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #4d4ecb,
+            #7778ee 55%,
+            #15a8c0
+        );
+
 }
 
-.pdf-layout{
+.result-brand{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
-    gap:25px;
-}
 
-.pdf-info{
-    display:flex;
-    align-items:center;
-    gap:17px;
-}
-
-.pdf-icon{
-    width:62px;
-    height:62px;
-    flex:none;
-    display:grid;
-    place-items:center;
-    border-radius:18px;
-    background:linear-gradient(135deg,var(--primary),#9a8cff);
-    color:white;
-    font-size:27px;
-    box-shadow:0 12px 30px rgba(103,87,232,.25);
-}
-
-.pdf-info h2{
-    font-size:21px;
-}
-
-.pdf-info p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.6;
-}
-
-.pdf-btn{
-    flex:none;
-    min-height:49px;
-    padding:0 21px;
-    border:0;
-    border-radius:12px;
-    color:white;
-    background:linear-gradient(135deg,#6252dc,#8b7cf6);
-    cursor:pointer;
-    font-weight:900;
-    box-shadow:0 10px 25px rgba(103,87,232,.2);
-}
-
-/* INFO */
-
-.info{
-    display:grid;
-    grid-template-columns:1fr 1fr;
     gap:20px;
+
 }
 
-.info-box{
-    margin-top:22px;
-    padding:23px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
+.result-brand h2{
+
+    font-size:21px;
+
 }
 
-.info-box h3{
-    margin-bottom:14px;
-    font-size:15px;
-}
+.result-brand p{
 
-.grade-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-}
+    margin-top:5px;
 
-.grade-box{
-    padding:10px;
-    text-align:center;
-    border:1px solid var(--border);
-    border-radius:10px;
-    background:#fafbfe;
-}
+    color:
+        rgba(255,255,255,.72);
 
-.grade-box b{
-    display:block;
-    color:var(--primary);
-}
-
-.grade-box span{
-    color:var(--muted);
     font-size:10px;
+
 }
 
-.formula{
-    padding:15px;
+.result-body{
+
+    padding:28px;
+
+}
+
+.student-summary{
+
+    display:grid;
+
+    grid-template-columns:
+        90px 1fr auto;
+
+    gap:20px;
+
+    align-items:center;
+
+    padding-bottom:22px;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.result-photo{
+
+    width:80px;
+    height:95px;
+
+    overflow:hidden;
+
+    border-radius:13px;
+
+    background:#f1f2f7;
+
+}
+
+.result-photo img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.student-summary h3{
+
+    font-size:20px;
+
+}
+
+.student-summary p{
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    line-height:1.7;
+
+}
+
+.sgpa-box{
+
+    min-width:145px;
+
+    padding:18px;
+
+    text-align:center;
+
+    border-radius:17px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5c5ddc,
+            #7778ef
+        );
+
+}
+
+.sgpa-box small{
+
+    display:block;
+
+    opacity:.75;
+
+    font-size:8px;
+
+}
+
+.sgpa-box strong{
+
+    display:block;
+
+    margin-top:4px;
+
+    font-size:36px;
+
+    line-height:1;
+
+}
+
+.result-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+
+    margin-top:22px;
+
+}
+
+.result-stat{
+
+    padding:16px 10px;
+
+    text-align:center;
+
+    border-radius:13px;
+
+    background:#f7f8fc;
+
+}
+
+.result-stat span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+.result-stat strong{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:18px;
+
+}
+
+.result-table{
+
+    margin-top:24px;
+
+}
+
+.result-table table{
+
+    min-width:0;
+
+    border-collapse:collapse;
+
+}
+
+.result-table th{
+
+    padding:10px;
+
+    background:#f3f4f8;
+
+    color:#5e6475;
+
+    font-size:8px;
+
+}
+
+.result-table td{
+
+    padding:10px;
+
+    background:white;
+
+    border:
+        1px solid #e5e6ed;
+
+    border-radius:0;
+
+    font-size:9px;
+
+}
+
+.final-summary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:22px;
+
+}
+
+.final-box{
+
+    padding:20px;
+
+    text-align:center;
+
+    border-radius:17px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #252943,
+            #353953
+        );
+
+}
+
+.final-box span{
+
+    display:block;
+
+    color:#c8ccda;
+
+    font-size:8px;
+
+    text-transform:uppercase;
+
+}
+
+.final-box strong{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:28px;
+
+}
+
+.result-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:
+        0 28px 28px;
+
+}
+
+.download-btn{
+
+    min-height:48px;
+
+    padding:0 20px;
+
+    border:0;
+
     border-radius:12px;
-    background:#f7f8fb;
-    color:#697387;
-    line-height:1.8;
-    font-size:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5758d9,
+            #7b7cee
+        );
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:900;
+
 }
 
-/* FOOTER */
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.notice{
+
+    margin-top:22px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:#fffaf0;
+
+    border:
+        1px solid #f5dfae;
+
+    color:#80652b;
+
+    font-size:9px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
+
     text-align:center;
+
     padding:30px 20px;
-    color:#7b8497;
-    font-size:11px;
+
+    color:#858b9b;
+
+    font-size:9px;
+
 }
 
-/* TOAST */
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast{
+
     position:fixed;
+
     left:50%;
     bottom:25px;
-    z-index:99999;
-    transform:translate(-50%,30px);
-    opacity:0;
+
+    z-index:9999;
+
     padding:12px 18px;
+
     border-radius:12px;
+
+    background:#24283b;
+
     color:white;
-    background:#20263a;
-    box-shadow:0 12px 35px rgba(0,0,0,.2);
-    font-size:12px;
-    font-weight:800;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    transform:
+        translate(-50%,30px);
+
+    opacity:0;
+
+    pointer-events:none;
+
     transition:.3s;
+
 }
 
 .toast.show{
+
     opacity:1;
-    transform:translate(-50%,0);
-}
 
-/* MOBILE */
-
-@media(max-width:850px){
-
-    .profile-layout{
-        grid-template-columns:1fr;
-    }
-
-    .photo-box{
-        text-align:left;
-    }
-
-    .photo-preview{
-        margin:0;
-    }
-
-    .table-head,
-    .practical-head{
-        display:none;
-    }
-
-    .subject-row{
-        grid-template-columns:1fr 1fr;
-        gap:9px;
-        padding:12px;
-    }
-
-    .subject-row .subject-name{
-        grid-column:1/-1;
-    }
-
-    .subject-row .remove{
-        grid-column:1/-1;
-    }
-
-    .practical-row{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .practical-row .subject-name,
-    .practical-row .remove{
-        grid-column:1/-1;
-    }
-
-    .summary-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .info{
-        grid-template-columns:1fr;
-    }
+    transform:
+        translate(-50%,0);
 
 }
 
-@media(max-width:600px){
 
-    header{
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .header{
+
         height:64px;
+
     }
 
-    .header-badge{
+    .badge{
+
         display:none;
+
     }
 
     .container{
+
         width:94%;
-        padding-top:22px;
+
+        padding-top:18px;
+
     }
 
     .hero{
-        padding:38px 18px;
+
+        padding:40px 16px;
+
         border-radius:23px;
+
+    }
+
+    .hero h1{
+
+        font-size:44px;
+
     }
 
     .card{
+
         padding:19px;
+
         border-radius:21px;
+
+    }
+
+    .profile-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .photo-column{
+
+        text-align:left;
+
+    }
+
+    .photo{
+
+        margin:0;
+
     }
 
     .form-grid{
+
         grid-template-columns:1fr;
+
     }
 
-    .calc-top{
-        padding:20px 17px;
+    .settings-grid{
+
+        grid-template-columns:1fr;
+
     }
 
-    .subject-section{
-        padding:20px 14px;
+    .subject-head{
+
+        padding:20px;
+
     }
 
-    .result-card{
-        margin:0 14px 20px;
-        padding:21px;
+    .table-wrap{
+
+        padding:17px;
+
     }
 
-    .pdf-layout{
-        flex-direction:column;
-        align-items:flex-start;
+    .add-row{
+
+        margin:
+            0 17px 20px;
+
+        width:
+            calc(100% - 34px);
+
     }
 
-    .pdf-btn{
-        width:100%;
+    .calculate{
+
+        margin:
+            0 17px 20px;
+
+        width:
+            calc(100% - 34px);
+
     }
 
-    .grade-grid{
-        grid-template-columns:repeat(2,1fr);
+    .student-summary{
+
+        grid-template-columns:80px 1fr;
+
+    }
+
+    .sgpa-box{
+
+        grid-column:1/-1;
+
+    }
+
+    .result-stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .final-summary{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .result-body{
+
+        padding:18px;
+
+    }
+
+    .result-top{
+
+        padding:20px;
+
     }
 
 }
 
-/* PRINT / PDF */
+
+/* =========================================================
+   PRINT / PDF
+========================================================= */
 
 @media print{
 
     @page{
+
         size:A4;
-        margin:10mm;
+
+        margin:8mm;
+
     }
 
     body{
+
         background:white !important;
-        color:#111 !important;
+
     }
 
-    header,
+    .header,
     .hero,
-    .action-row,
-    .calc-top .reset,
-    .calculate-area,
-    .add-btn,
-    .remove,
-    .info,
+    .profile-card,
+    .settings-card,
+    .subject-section,
+    .notice,
     footer,
-    .pdf-card{
+    .result-actions,
+    .toast{
+
         display:none !important;
+
     }
 
     .container{
+
         width:100%;
+
         padding:0;
+
     }
 
-    .card,
-    .calculator,
     .result-card{
-        margin:0 0 10px;
+
+        display:block !important;
+
+        margin:0;
+
         box-shadow:none;
-        border:1px solid #ccc;
+
+        border:1px solid #aaa;
+
+        border-radius:0;
+
     }
 
-    .card{
-        padding:15px;
+    .result-top{
+
+        -webkit-print-color-adjust:exact;
+
+        print-color-adjust:exact;
+
     }
 
-    .profile-layout{
-        grid-template-columns:120px 1fr;
-        gap:18px;
+    .sgpa-box,
+    .final-box{
+
+        -webkit-print-color-adjust:exact;
+
+        print-color-adjust:exact;
+
     }
 
-    .photo-preview{
-        width:105px;
-        height:125px;
+    .result-table{
+
+        page-break-inside:auto;
+
     }
 
-    .form-grid{
-        gap:7px;
-    }
+    .result-table tr{
 
-    .field label{
-        color:#555;
-    }
+        page-break-inside:avoid;
 
-    .field input,
-    .field select{
-        height:30px;
-        font-size:9px;
-        color:#111;
-        background:white;
-        border:1px solid #ccc;
-    }
+        page-break-after:auto;
 
-    .calc-top{
-        padding:10px 0;
-    }
-
-    .calc-top h2{
-        color:#111;
-    }
-
-    .subject-section{
-        padding:10px 0;
-    }
-
-    .table-head{
-        display:grid !important;
-    }
-
-    .subject-row{
-        background:white;
-        border:1px solid #ccc;
-    }
-
-    .subject-row input,
-    .subject-row select{
-        height:27px;
-        font-size:8px;
-        color:#111;
-        background:white;
-        border:1px solid #ccc;
-    }
-
-    .total-marks{
-        height:27px;
-        background:#f5f5f5;
-        color:#111;
-        font-size:8px;
-    }
-
-    .result-card{
-        color:#111 !important;
-        background:#f5f3ff !important;
-        padding:18px;
-    }
-
-    .result-top h2,
-    .result-date,
-    .result-top p{
-        color:#111 !important;
-    }
-
-    .summary-grid{
-        grid-template-columns:repeat(5,1fr);
-    }
-
-    .summary-item{
-        background:white;
-        border:1px solid #ddd;
-    }
-
-    .summary-item span,
-    .summary-item strong{
-        color:#111 !important;
-    }
-
-    .big-sgpa{
-        background:white;
-        border:1px solid #ddd;
-    }
-
-    .big-sgpa small,
-    .big-sgpa strong{
-        color:#111 !important;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<header>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
 
     <div class="logo">
 
@@ -997,78 +1563,88 @@ footer{
             Σ
         </div>
 
-        <div>
-            Calculator World
-        </div>
+        Calculator World
 
     </div>
 
-    <div class="header-badge">
-        Student Academic Tools
+    <div class="badge">
+        SMART ACADEMIC CALCULATOR
     </div>
 
 </header>
 
 
+
 <main class="container">
 
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
-    <span class="badge">
-        PREMIUM STUDENT CALCULATOR
+    <span class="hero-tag">
+        INDIAN UNIVERSITY FRIENDLY
     </span>
 
     <h1>
-        GPA Calculator
+        SGPA Calculator
     </h1>
 
     <p>
-        Create your academic profile, enter marks and grades,
-        calculate SGPA instantly and generate a professional
-        PDF result report.
+        Calculate your Semester Grade Point Average
+        using subject credits and grade points.
+        Build a professional academic result card
+        with your profile and photo.
     </p>
 
 </section>
 
 
-<!-- PROFILE -->
 
-<section class="card">
+<!-- =====================================================
+     PROFILE
+===================================================== -->
 
-    <div class="card-title">
+<section class="card profile-card">
+
+    <div class="card-head">
 
         <div>
-            <h2>🎓 Student Profile</h2>
+
+            <h2>
+                🎓 Student Profile
+            </h2>
+
             <p>
-                Your profile information will appear on the report.
+                These details will appear on your downloadable
+                academic result card.
             </p>
+
         </div>
 
-        <div class="title-icon">
+        <div class="icon">
             👤
         </div>
 
     </div>
 
 
-    <div class="profile-layout">
+    <div class="profile-grid">
 
 
-        <!-- PHOTO -->
-
-        <div class="photo-box">
+        <div class="photo-column">
 
             <div
-                class="photo-preview"
+                class="photo"
                 id="photoPreview"
             >
-                No Photo
+                Student Photo
             </div>
 
-            <label class="photo-upload">
+
+            <label class="upload">
 
                 📷 Upload Photo
 
@@ -1080,14 +1656,14 @@ footer{
 
             </label>
 
+
             <div class="photo-note">
-                JPG / PNG • Max 2MB
+                PNG / JPG • Max 2MB
             </div>
 
         </div>
 
 
-        <!-- INFORMATION -->
 
         <div>
 
@@ -1102,8 +1678,7 @@ footer{
 
                     <input
                         id="studentName"
-                        type="text"
-                        placeholder="Enter full name"
+                        placeholder="Full name"
                     >
 
                 </div>
@@ -1112,13 +1687,12 @@ footer{
                 <div class="field">
 
                     <label>
-                        Roll Number
+                        Registration / Roll No.
                     </label>
 
                     <input
                         id="rollNumber"
-                        type="text"
-                        placeholder="Enter roll number"
+                        placeholder="Registration number"
                     >
 
                 </div>
@@ -1127,13 +1701,26 @@ footer{
                 <div class="field">
 
                     <label>
-                        Registration Number
+                        Father's Name
                     </label>
 
                     <input
-                        id="registrationNumber"
-                        type="text"
-                        placeholder="Enter registration number"
+                        id="fatherName"
+                        placeholder="Father's name"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Mother's Name
+                    </label>
+
+                    <input
+                        id="motherName"
+                        placeholder="Mother's name"
                     >
 
                 </div>
@@ -1147,8 +1734,7 @@ footer{
 
                     <input
                         id="collegeName"
-                        type="text"
-                        placeholder="Enter college name"
+                        placeholder="College / Institute"
                     >
 
                 </div>
@@ -1162,8 +1748,7 @@ footer{
 
                     <input
                         id="universityName"
-                        type="text"
-                        placeholder="Enter university"
+                        placeholder="University name"
                     >
 
                 </div>
@@ -1172,13 +1757,12 @@ footer{
                 <div class="field">
 
                     <label>
-                        Branch
+                        Course / Branch
                     </label>
 
                     <input
                         id="branchName"
-                        type="text"
-                        placeholder="Example: Electrical Engineering"
+                        placeholder="B.Tech Electrical Engineering"
                     >
 
                 </div>
@@ -1190,22 +1774,32 @@ footer{
                         Semester
                     </label>
 
-                    <select id="semester">
+                    <select id="semesterName">
 
-                        <option value="">
-                            Select Semester
-                        </option>
-
-                        <option>1st Semester</option>
-                        <option>2nd Semester</option>
-                        <option>3rd Semester</option>
-                        <option>4th Semester</option>
-                        <option>5th Semester</option>
-                        <option>6th Semester</option>
-                        <option>7th Semester</option>
-                        <option>8th Semester</option>
+                        <option>Semester I</option>
+                        <option>Semester II</option>
+                        <option>Semester III</option>
+                        <option>Semester IV</option>
+                        <option>Semester V</option>
+                        <option>Semester VI</option>
+                        <option>Semester VII</option>
+                        <option>Semester VIII</option>
 
                     </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Examination / Month
+                    </label>
+
+                    <input
+                        id="examDate"
+                        placeholder="May / 2026"
+                    >
 
                 </div>
 
@@ -1217,9 +1811,8 @@ footer{
                     </label>
 
                     <input
-                        id="academicSession"
-                        type="text"
-                        placeholder="Example: 2023-2027"
+                        id="session"
+                        placeholder="2023-2027"
                     >
 
                 </div>
@@ -1227,27 +1820,27 @@ footer{
             </div>
 
 
-            <div class="action-row">
+            <div class="actions">
 
                 <button
-                    class="action-btn save"
-                    onclick="saveProfile()"
+                    class="btn primary"
+                    onclick="saveData()"
                 >
-                    💾 Save Profile
+                    💾 Save Data
                 </button>
 
                 <button
-                    class="action-btn load"
-                    onclick="loadProfile()"
+                    class="btn secondary"
+                    onclick="loadData()"
                 >
-                    ↻ Load Profile
+                    ↻ Load
                 </button>
 
                 <button
-                    class="action-btn clear"
-                    onclick="clearProfile()"
+                    class="btn danger"
+                    onclick="resetAll()"
                 >
-                    🗑 Clear
+                    Reset
                 </button>
 
             </div>
@@ -1259,282 +1852,593 @@ footer{
 </section>
 
 
-<!-- CALCULATOR -->
 
-<section class="calculator">
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
+<section class="card settings-card">
 
-    <div class="calc-top">
+    <div class="card-head">
 
         <div>
 
             <h2>
-                📊 Semester Result
+                ⚙️ Calculation Settings
             </h2>
 
             <p>
-                Enter marks and manually select the grade.
+                Choose how your university's grading system
+                should be interpreted.
             </p>
 
         </div>
 
-        <button
-            class="reset"
-            onclick="resetCalculator()"
-        >
-            Reset
-        </button>
+        <div class="icon">
+            ⚙️
+        </div>
 
     </div>
 
 
-    <!-- THEORY -->
+    <div class="settings-grid">
 
-    <div class="subject-section">
 
-        <div class="section-head">
+        <div class="setting-box">
 
             <h3>
-                📘 Theory Subjects
+                Grade Scale
             </h3>
 
-            <span>
-                Marks + Grade
-            </span>
+            <select
+                id="gradeScale"
+                onchange="calculateSGPA()"
+                style="
+                    width:100%;
+                    height:38px;
+                    border:1px solid #e1e3eb;
+                    border-radius:8px;
+                    padding:0 8px;
+                "
+            >
+
+                <option value="ugc">
+                    UGC 10-Point
+                </option>
+
+                <option value="common">
+                    Common Indian 10-Point
+                </option>
+
+            </select>
+
+            <p>
+                Grade points are configurable through
+                the grade selector in each subject.
+            </p>
 
         </div>
 
 
-        <div class="table-head">
-
-            <div>Subject</div>
-            <div>Credits</div>
-            <div>Max Marks</div>
-            <div>Obtained</div>
-            <div>Total</div>
-            <div>Grade</div>
-            <div></div>
-
-        </div>
-
-
-        <div id="theoryList"></div>
-
-
-        <button
-            class="add-btn"
-            onclick="addTheory()"
-        >
-            ＋ Add Theory Subject
-        </button>
-
-    </div>
-
-
-    <!-- PRACTICAL -->
-
-    <div class="subject-section">
-
-        <div class="section-head">
+        <div class="setting-box">
 
             <h3>
-                🧪 Practical Subjects
+                Percentage Method
             </h3>
 
-            <span>
-                Grade + Credits
-            </span>
+            <select
+                id="percentageMethod"
+                onchange="calculateSGPA()"
+                style="
+                    width:100%;
+                    height:38px;
+                    border:1px solid #e1e3eb;
+                    border-radius:8px;
+                    padding:0 8px;
+                "
+            >
+
+                <option value="none">
+                    Do not convert
+                </option>
+
+                <option value="x10">
+                    SGPA × 10
+                </option>
+
+                <option value="minus075">
+                    (SGPA − 0.75) × 10
+                </option>
+
+                <option value="x95">
+                    SGPA × 9.5
+                </option>
+
+            </select>
+
+            <p>
+                Percentage conversion is university-dependent.
+            </p>
 
         </div>
 
 
-        <div class="practical-head">
+        <div class="setting-box">
 
-            <div>Practical</div>
-            <div>Credits</div>
-            <div>Grade</div>
-            <div>Point</div>
-            <div>Credit Point</div>
-            <div></div>
+            <h3>
+                Result Precision
+            </h3>
+
+            <select
+                id="precision"
+                onchange="calculateSGPA()"
+                style="
+                    width:100%;
+                    height:38px;
+                    border:1px solid #e1e3eb;
+                    border-radius:8px;
+                    padding:0 8px;
+                "
+            >
+
+                <option value="2">
+                    2 Decimal Places
+                </option>
+
+                <option value="3">
+                    3 Decimal Places
+                </option>
+
+            </select>
+
+            <p>
+                Academic transcripts commonly report SGPA
+                to two decimal places.
+            </p>
 
         </div>
 
+    </div>
 
-        <div id="practicalList"></div>
+</section>
 
 
-        <button
-            class="add-btn"
-            onclick="addPractical()"
-        >
-            ＋ Add Practical
-        </button>
+
+<!-- =====================================================
+     THEORY
+===================================================== -->
+
+<section class="subject-section">
+
+    <div class="subject-head">
+
+        <h2>
+            📚 Theory Subjects
+        </h2>
+
+        <p>
+            Enter marks or directly select the grade.
+            Grade points are calculated automatically.
+        </p>
 
     </div>
 
 
-    <!-- CALCULATE -->
+    <div class="table-wrap">
 
-    <div class="calculate-area">
+        <table>
 
-        <button
-            class="calculate-btn"
-            onclick="calculate()"
-        >
-            Calculate My GPA →
-        </button>
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Subject Code
+                    </th>
+
+                    <th>
+                        Subject Name
+                    </th>
+
+                    <th>
+                        Internal
+                    </th>
+
+                    <th>
+                        External
+                    </th>
+
+                    <th>
+                        Total
+                    </th>
+
+                    <th>
+                        Grade
+                    </th>
+
+                    <th>
+                        Grade Point
+                    </th>
+
+                    <th>
+                        Credit
+                    </th>
+
+                    <th>
+                        Credit Point
+                    </th>
+
+                    <th>
+                        Delete
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="theoryBody">
+            </tbody>
+
+        </table>
 
     </div>
 
 
-    <!-- RESULT -->
+    <button
+        class="add-row"
+        onclick="addTheory()"
+    >
+        ＋ Add Theory Subject
+    </button>
 
-    <div class="result-card">
+</section>
 
-        <div class="result-top">
+
+
+<!-- =====================================================
+     PRACTICAL
+===================================================== -->
+
+<section class="subject-section">
+
+    <div class="subject-head">
+
+        <h2>
+            🧪 Practical / Project Subjects
+        </h2>
+
+        <p>
+            Add practical, project, internship, seminar or
+            other credit-bearing components.
+        </p>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Subject Code
+                    </th>
+
+                    <th>
+                        Subject Name
+                    </th>
+
+                    <th>
+                        Internal
+                    </th>
+
+                    <th>
+                        External
+                    </th>
+
+                    <th>
+                        Total
+                    </th>
+
+                    <th>
+                        Grade
+                    </th>
+
+                    <th>
+                        Grade Point
+                    </th>
+
+                    <th>
+                        Credit
+                    </th>
+
+                    <th>
+                        Credit Point
+                    </th>
+
+                    <th>
+                        Delete
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="practicalBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <button
+        class="add-row"
+        onclick="addPractical()"
+    >
+        ＋ Add Practical / Project
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALCULATE BUTTON
+===================================================== -->
+
+<button
+    class="calculate"
+    onclick="calculateSGPA()"
+>
+    Calculate SGPA & Generate Result →
+</button>
+
+
+
+<!-- =====================================================
+     RESULT CARD
+===================================================== -->
+
+<section
+    class="result-card"
+    id="resultCard"
+>
+
+
+    <div class="result-top">
+
+        <div class="result-brand">
 
             <div>
 
                 <h2>
-                    Academic Performance
+                    Academic Performance Report
                 </h2>
 
-                <p id="resultStudent">
-                    Student Result Summary
+                <p>
+                    Generated by Calculator World
                 </p>
 
             </div>
 
-            <div
-                class="result-date"
-                id="resultDate"
-            ></div>
+            <div id="resultSemester">
+                Semester
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="result-body">
+
+
+        <div class="student-summary">
+
+
+            <div class="result-photo">
+
+                <img
+                    id="resultPhoto"
+                    alt="Student"
+                >
+
+            </div>
+
+
+            <div>
+
+                <h3 id="resultStudentName">
+                    Student Name
+                </h3>
+
+                <p id="resultDetails">
+                    Academic details
+                </p>
+
+            </div>
+
+
+            <div class="sgpa-box">
+
+                <small>
+                    SEMESTER SGPA
+                </small>
+
+                <strong id="finalSGPA">
+                    0.00
+                </strong>
+
+            </div>
 
         </div>
 
 
-        <div class="summary-grid">
+
+        <div class="result-stats">
 
 
-            <div class="summary-item">
+            <div class="result-stat">
 
                 <span>
                     Total Subjects
                 </span>
 
-                <strong id="totalSubjects">
+                <strong id="finalSubjects">
                     0
                 </strong>
 
             </div>
 
 
-            <div class="summary-item">
+            <div class="result-stat">
 
                 <span>
-                    Total Marks
+                    Total Credits
                 </span>
 
-                <strong id="maxMarks">
+                <strong id="finalCredits">
                     0
                 </strong>
 
             </div>
 
 
-            <div class="summary-item">
+            <div class="result-stat">
 
                 <span>
-                    Obtained Marks
+                    Credit Points
                 </span>
 
-                <strong id="obtainedMarks">
+                <strong id="finalPoints">
                     0
                 </strong>
 
             </div>
 
 
-            <div class="summary-item">
+            <div class="result-stat">
 
                 <span>
                     Percentage
                 </span>
 
-                <strong id="percentage">
-                    0%
+                <strong id="finalPercentage">
+                    —
                 </strong>
 
             </div>
-
-
-            <div class="summary-item">
-
-                <span>
-                    Credits
-                </span>
-
-                <strong id="totalCredits">
-                    0
-                </strong>
-
-            </div>
-
 
         </div>
 
 
-        <div class="big-sgpa">
 
-            <small>
-                SEMESTER GPA / SGPA
-            </small>
+        <div class="result-table">
 
-            <strong id="sgpa">
-                0.00
-            </strong>
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Code</th>
+
+                        <th>Subject</th>
+
+                        <th>Internal</th>
+
+                        <th>External</th>
+
+                        <th>Total</th>
+
+                        <th>Grade</th>
+
+                        <th>Credit</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="resultTableBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <div class="final-summary">
+
+
+            <div class="final-box">
+
+                <span>
+                    SGPA
+                </span>
+
+                <strong id="finalSGPA2">
+                    0.00
+                </strong>
+
+            </div>
+
+
+            <div class="final-box">
+
+                <span>
+                    CGPA
+                </span>
+
+                <strong id="finalCGPA">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="final-box">
+
+                <span>
+                    Performance
+                </span>
+
+                <strong
+                    id="finalPerformance"
+                    style="font-size:18px;"
+                >
+                    —
+                </strong>
+
+            </div>
 
         </div>
 
     </div>
 
-</section>
 
 
-<!-- PDF CARD -->
-
-<section class="pdf-card">
-
-    <div class="pdf-layout">
-
-        <div class="pdf-info">
-
-            <div class="pdf-icon">
-                📄
-            </div>
-
-            <div>
-
-                <h2>
-                    Your Premium Academic Report
-                </h2>
-
-                <p>
-                    Generate a clean A4 PDF containing your
-                    student profile, photo, subjects, marks,
-                    grades, credits, percentage and SGPA.
-                </p>
-
-            </div>
-
-        </div>
-
+    <div class="result-actions">
 
         <button
-            class="pdf-btn"
-            onclick="generatePDF()"
+            class="download-btn"
+            onclick="downloadResult()"
         >
-            📄 Generate Premium PDF
+            📥 Download Result Card
+        </button>
+
+        <button
+            class="btn secondary"
+            onclick="window.print()"
+        >
+            🖨 Save as PDF
         </button>
 
     </div>
@@ -1542,94 +2446,29 @@ footer{
 </section>
 
 
-<!-- INFORMATION -->
 
-<div class="info">
+<!-- =====================================================
+     NOTICE
+===================================================== -->
 
+<div class="notice">
 
-    <div class="info-box">
+    <b>Important:</b>
 
-        <h3>
-            Grade Reference
-        </h3>
+    This calculator uses the standard credit-weighted
+    SGPA concept:
 
-        <div class="grade-grid">
+    <b>
+        SGPA = Σ(Credit × Grade Point) ÷ ΣCredits
+    </b>
 
-            <div class="grade-box">
-                <b>O</b>
-                <span>10</span>
-            </div>
-
-            <div class="grade-box">
-                <b>A+</b>
-                <span>9</span>
-            </div>
-
-            <div class="grade-box">
-                <b>A</b>
-                <span>8</span>
-            </div>
-
-            <div class="grade-box">
-                <b>B+</b>
-                <span>7</span>
-            </div>
-
-            <div class="grade-box">
-                <b>B</b>
-                <span>6</span>
-            </div>
-
-            <div class="grade-box">
-                <b>C</b>
-                <span>5</span>
-            </div>
-
-            <div class="grade-box">
-                <b>D</b>
-                <span>4</span>
-            </div>
-
-            <div class="grade-box">
-                <b>F</b>
-                <span>0</span>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="info-box">
-
-        <h3>
-            Calculation Formula
-        </h3>
-
-        <div class="formula">
-
-            <b>Credit Point</b>
-            = Credit × Grade Point
-
-            <br>
-
-            <b>SGPA</b>
-            = Total Credit Points ÷ Total Credits
-
-            <br>
-
-            <b>Percentage</b>
-            = Obtained Marks ÷ Maximum Marks × 100
-
-            <br><br>
-
-            Grade conversion can vary by university.
-            Always verify your university's official rules
-            before using the result officially.
-
-        </div>
-
-    </div>
+    UGC recommends this method and recommends reporting
+    SGPA/CGPA to two decimal places. However, individual
+    universities may use their own grade mappings,
+    eligibility rules, failed-course treatment and
+    percentage-conversion formula. Therefore, always
+    verify the official regulations of your university
+    before using the generated result for official purposes.
 
 </div>
 
@@ -1637,12 +2476,15 @@ footer{
 </main>
 
 
+
 <footer>
 
-    © 2026 Calculator World |
-    Premium Student GPA Calculator
+    © 2026 Calculator World
+    • SGPA Calculator
+    • Student Academic Tools
 
 </footer>
+
 
 
 <div
@@ -1653,50 +2495,79 @@ footer{
 </div>
 
 
+
 <script>
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+/* =========================================================
+   GRADE SCALE
+========================================================= */
 
-let theoryCount = 0;
-let practicalCount = 0;
+/*
+   UGC recommended 10-point scale:
 
+   O   = 10
+   A+  = 9
+   A   = 8
+   B+  = 7
+   B   = 6
+   C   = 5
+   P   = 4
+   F   = 0
+   Ab  = 0
+*/
 
-/* =====================================================
-   GRADE MAP
-===================================================== */
+const gradePoints = {
 
-const grades = {
-
-    "O":10,
+    O:10,
     "A+":9,
-    "A":8,
+    A:8,
     "B+":7,
-    "B":6,
-    "C":5,
-    "D":4,
-    "F":0
+    B:6,
+    C:5,
+    P:4,
+    F:0,
+    Ab:0
 
 };
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+/* =========================================================
+   HELPERS
+========================================================= */
 
-function toast(message){
+function gradeOptions(){
 
-    const box =
-    document.getElementById("toast");
+    return Object.entries(
+        gradePoints
+    )
+    .map(
+        ([grade,point]) =>
 
-    box.textContent = message;
+        `<option value="${point}" data-grade="${grade}">
+            ${grade} — ${point}
+        </option>`
 
-    box.classList.add("show");
+    )
+    .join("");
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
 
     setTimeout(
-        ()=>{
-            box.classList.remove("show");
+        () => {
+
+            toast.classList.remove("show");
+
         },
         2200
     );
@@ -1704,657 +2575,1270 @@ function toast(message){
 }
 
 
-/* =====================================================
-   GRADE OPTIONS
-===================================================== */
+/* =========================================================
+   ADD SUBJECT
+========================================================= */
 
-function gradeOptions(){
+function createSubjectRow(
+    type,
+    code="",
+    name="",
+    internal="",
+    external="",
+    grade="P",
+    credit=""
+){
 
-    return Object.keys(grades)
-    .map(
-        grade => `
-            <option value="${grade}">
-                ${grade} (${grades[grade]})
-            </option>
-        `
-    )
-    .join("");
+    const tbody =
+        document.getElementById(
+            type === "theory"
+            ? "theoryBody"
+            : "practicalBody"
+        );
+
+
+    const tr =
+        document.createElement("tr");
+
+
+    tr.className =
+        "subject-row";
+
+
+    tr.dataset.type =
+        type;
+
+
+    tr.innerHTML = `
+
+        <td>
+
+            <input
+                class="code"
+                value="${code}"
+                placeholder="Code"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="subject"
+                value="${name}"
+                placeholder="Subject name"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="internal"
+                type="number"
+                min="0"
+                value="${internal}"
+                placeholder="IA"
+                oninput="updateRow(this)"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="external"
+                type="number"
+                min="0"
+                value="${external}"
+                placeholder="ESE"
+                oninput="updateRow(this)"
+            >
+
+        </td>
+
+
+        <td>
+
+            <div class="total-mark">
+                0
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <select
+                class="grade"
+                onchange="updateGrade(this)"
+            >
+
+                ${gradeOptions()}
+
+            </select>
+
+        </td>
+
+
+        <td>
+
+            <div class="grade-point">
+                0
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <input
+                class="credit"
+                type="number"
+                min="0"
+                step="0.5"
+                value="${credit}"
+                placeholder="3"
+                oninput="calculateSGPA()"
+            >
+
+        </td>
+
+
+        <td>
+
+            <div class="credit-point">
+                0.00
+            </div>
+
+        </td>
+
+
+        <td>
+
+            <button
+                class="remove"
+                onclick="removeSubject(this)"
+            >
+                ×
+            </button>
+
+        </td>
+
+    `;
+
+
+    tbody.appendChild(tr);
+
+
+    const select =
+        tr.querySelector(".grade");
+
+
+    select.value =
+        grade;
+
+
+    updateGrade(select);
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD THEORY
-===================================================== */
+========================================================= */
 
 function addTheory(){
 
-    theoryCount++;
-
-    const row =
-    document.createElement("div");
-
-    row.className =
-    "subject-row";
-
-    row.innerHTML = `
-
-        <input
-            class="subject-name"
-            type="text"
-            value="Theory ${theoryCount}"
-            placeholder="Subject name"
-        >
-
-
-        <select class="credit">
-
-            <option>1</option>
-            <option>2</option>
-            <option selected>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-
-        </select>
-
-
-        <input
-            class="max-marks"
-            type="number"
-            value="100"
-            min="1"
-            oninput="calculate()"
-        >
-
-
-        <input
-            class="obtained"
-            type="number"
-            value=""
-            min="0"
-            placeholder="Marks"
-            oninput="calculate()"
-        >
-
-
-        <div class="total-marks">
-            0
-        </div>
-
-
-        <select class="grade">
-
-            <option value="">
-                Select
-            </option>
-
-            ${gradeOptions()}
-
-        </select>
-
-
-        <button
-            class="remove"
-            onclick="removeRow(this)"
-        >
-            ×
-        </button>
-
-    `;
-
-
-    document
-    .getElementById("theoryList")
-    .appendChild(row);
+    createSubjectRow(
+        "theory"
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD PRACTICAL
-===================================================== */
+========================================================= */
 
 function addPractical(){
 
-    practicalCount++;
+    createSubjectRow(
+        "practical"
+    );
+
+}
+
+
+/* =========================================================
+   REMOVE
+========================================================= */
+
+function removeSubject(button){
+
+    button
+        .closest("tr")
+        .remove();
+
+    calculateSGPA();
+
+}
+
+
+/* =========================================================
+   MARK → GRADE
+========================================================= */
+
+/*
+   Automatic marks-to-grade helper.
+
+   This is intentionally only a helper.
+   Different universities can have different
+   marks-to-grade boundaries.
+
+   User can always manually select grade.
+*/
+
+function autoGrade(total){
+
+    if(total >= 90)
+        return "O";
+
+    if(total >= 80)
+        return "A+";
+
+    if(total >= 70)
+        return "A";
+
+    if(total >= 60)
+        return "B+";
+
+    if(total >= 50)
+        return "B";
+
+    if(total >= 45)
+        return "C";
+
+    if(total >= 40)
+        return "P";
+
+    return "F";
+
+}
+
+
+/* =========================================================
+   UPDATE ROW
+========================================================= */
+
+function updateRow(input){
 
     const row =
-    document.createElement("div");
-
-    row.className =
-    "practical-row";
-
-    row.innerHTML = `
-
-        <input
-            class="subject-name"
-            type="text"
-            value="Practical ${practicalCount}"
-            placeholder="Practical name"
-        >
+        input.closest(
+            ".subject-row"
+        );
 
 
-        <select class="credit">
-
-            <option selected>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-
-        </select>
+    const internal =
+        parseFloat(
+            row.querySelector(
+                ".internal"
+            ).value
+        ) || 0;
 
 
-        <select class="grade">
-
-            <option value="">
-                Select
-            </option>
-
-            ${gradeOptions()}
-
-        </select>
+    const external =
+        parseFloat(
+            row.querySelector(
+                ".external"
+            ).value
+        ) || 0;
 
 
-        <div class="total-marks point">
-            0
-        </div>
+    const total =
+        internal +
+        external;
 
 
-        <div class="total-marks credit-point">
-            0
-        </div>
+    row.querySelector(
+        ".total-mark"
+    ).textContent =
+        total;
 
 
-        <button
-            class="remove"
-            onclick="removeRow(this)"
-        >
-            ×
-        </button>
+    /*
+       Automatic grade suggestion.
+       It will update according to marks.
+    */
+
+    const grade =
+        autoGrade(total);
+
+
+    const gradeSelect =
+        row.querySelector(
+            ".grade"
+        );
+
+
+    gradeSelect.value =
+        grade;
+
+
+    updateGrade(
+        gradeSelect
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE GRADE
+========================================================= */
+
+function updateGrade(select){
+
+    const row =
+        select.closest(
+            ".subject-row"
+        );
+
+
+    const point =
+        parseFloat(
+            select.value
+        ) || 0;
+
+
+    row.querySelector(
+        ".grade-point"
+    ).textContent =
+        point;
+
+
+    calculateSGPA();
+
+}
+
+
+/* =========================================================
+   CALCULATE SGPA
+========================================================= */
+
+function calculateSGPA(){
+
+    const rows =
+        document.querySelectorAll(
+            ".subject-row"
+        );
+
+
+    let totalCredits = 0;
+
+    let totalPoints = 0;
+
+    let validSubjects = 0;
+
+
+    const resultRows = [];
+
+
+    rows.forEach(
+        row => {
+
+            const credit =
+                parseFloat(
+                    row.querySelector(
+                        ".credit"
+                    ).value
+                );
+
+
+            const point =
+                parseFloat(
+                    row.querySelector(
+                        ".grade"
+                    ).value
+                );
+
+
+            const internal =
+                parseFloat(
+                    row.querySelector(
+                        ".internal"
+                    ).value
+                ) || 0;
+
+
+            const external =
+                parseFloat(
+                    row.querySelector(
+                        ".external"
+                    ).value
+                ) || 0;
+
+
+            const total =
+                internal +
+                external;
+
+
+            const valid =
+                !isNaN(credit) &&
+                credit > 0;
+
+
+            const creditPoint =
+                valid
+                ? credit * point
+                : 0;
+
+
+            row.querySelector(
+                ".credit-point"
+            ).textContent =
+                creditPoint.toFixed(2);
+
+
+            if(valid){
+
+                totalCredits +=
+                    credit;
+
+                totalPoints +=
+                    creditPoint;
+
+                validSubjects++;
+
+            }
+
+
+            resultRows.push({
+
+                code:
+                    row.querySelector(
+                        ".code"
+                    ).value,
+
+                subject:
+                    row.querySelector(
+                        ".subject"
+                    ).value,
+
+                internal,
+
+                external,
+
+                total,
+
+                grade:
+                    row.querySelector(
+                        ".grade option:checked"
+                    )?.dataset.grade || "",
+
+                credit,
+
+                point
+
+            });
+
+        }
+    );
+
+
+    let sgpa = 0;
+
+
+    if(totalCredits > 0){
+
+        sgpa =
+            totalPoints /
+            totalCredits;
+
+    }
+
+
+    const precision =
+        parseInt(
+            document.getElementById(
+                "precision"
+            ).value
+        );
+
+
+    const percentageMethod =
+        document.getElementById(
+            "percentageMethod"
+        ).value;
+
+
+    let percentage = null;
+
+
+    if(
+        percentageMethod === "x10"
+    ){
+
+        percentage =
+            sgpa * 10;
+
+    }
+
+    else if(
+        percentageMethod === "minus075"
+    ){
+
+        percentage =
+            (sgpa - .75) * 10;
+
+    }
+
+    else if(
+        percentageMethod === "x95"
+    ){
+
+        percentage =
+            sgpa * 9.5;
+
+    }
+
+
+    updateResultCard({
+
+        sgpa,
+        totalCredits,
+        totalPoints,
+        validSubjects,
+        percentage,
+        resultRows,
+        precision
+
+    });
+
+}
+
+
+/* =========================================================
+   CGPA FROM SEMESTERS
+========================================================= */
+
+function calculateCGPA(){
+
+    const inputs =
+        document.querySelectorAll(
+            ".previous-semester"
+        );
+
+
+    let totalCredits = 0;
+
+    let weighted = 0;
+
+
+    inputs.forEach(
+        row => {
+
+            const sgpa =
+                parseFloat(
+                    row.querySelector(
+                        ".prev-sgpa"
+                    ).value
+                );
+
+
+            const credit =
+                parseFloat(
+                    row.querySelector(
+                        ".prev-credit"
+                    ).value
+                );
+
+
+            if(
+                !isNaN(sgpa) &&
+                !isNaN(credit) &&
+                credit > 0
+            ){
+
+                weighted +=
+                    sgpa * credit;
+
+                totalCredits +=
+                    credit;
+
+            }
+
+        }
+    );
+
+
+    return totalCredits
+        ? weighted / totalCredits
+        : null;
+
+}
+
+
+/* =========================================================
+   RESULT CARD
+========================================================= */
+
+function updateResultCard(data){
+
+    const card =
+        document.getElementById(
+            "resultCard"
+        );
+
+
+    card.style.display =
+        "block";
+
+
+    const precision =
+        data.precision;
+
+
+    const sgpa =
+        data.sgpa;
+
+
+    document.getElementById(
+        "finalSGPA"
+    ).textContent =
+        sgpa.toFixed(
+            precision
+        );
+
+
+    document.getElementById(
+        "finalSGPA2"
+    ).textContent =
+        sgpa.toFixed(
+            precision
+        );
+
+
+    document.getElementById(
+        "finalSubjects"
+    ).textContent =
+        data.validSubjects;
+
+
+    document.getElementById(
+        "finalCredits"
+    ).textContent =
+        data.totalCredits;
+
+
+    document.getElementById(
+        "finalPoints"
+    ).textContent =
+        data.totalPoints.toFixed(2);
+
+
+    document.getElementById(
+        "finalPercentage"
+    ).textContent =
+        data.percentage === null
+        ? "—"
+        : data.percentage.toFixed(2) + "%";
+
+
+    /* PROFILE */
+
+    const name =
+        document.getElementById(
+            "studentName"
+        ).value ||
+        "Student Name";
+
+
+    const roll =
+        document.getElementById(
+            "rollNumber"
+        ).value;
+
+
+    const college =
+        document.getElementById(
+            "collegeName"
+        ).value;
+
+
+    const university =
+        document.getElementById(
+            "universityName"
+        ).value;
+
+
+    const branch =
+        document.getElementById(
+            "branchName"
+        ).value;
+
+
+    const semester =
+        document.getElementById(
+            "semesterName"
+        ).value;
+
+
+    const exam =
+        document.getElementById(
+            "examDate"
+        ).value;
+
+
+    document.getElementById(
+        "resultStudentName"
+    ).textContent =
+        name;
+
+
+    document.getElementById(
+        "resultDetails"
+    ).innerHTML = `
+
+        ${roll ? "Registration: " + roll + "<br>" : ""}
+
+        ${college ? college + "<br>" : ""}
+
+        ${university ? university + "<br>" : ""}
+
+        ${branch ? branch : ""}
 
     `;
 
 
-    document
-    .getElementById("practicalList")
-    .appendChild(row);
-
-}
-
-
-/* =====================================================
-   REMOVE
-===================================================== */
-
-function removeRow(button){
-
-    button.parentElement.remove();
-
-    calculate();
-
-}
-
-
-/* =====================================================
-   CALCULATE
-===================================================== */
-
-function calculate(){
-
-    let maxMarks = 0;
-    let obtainedMarks = 0;
-    let totalCredits = 0;
-    let creditPoints = 0;
-    let totalSubjects = 0;
-
-
-    /* THEORY */
-
-    document
-    .querySelectorAll(".subject-row")
-    .forEach(row => {
-
-        const max =
-        Number(
-            row.querySelector(".max-marks").value
-        ) || 0;
-
-
-        const obtained =
-        Number(
-            row.querySelector(".obtained").value
-        ) || 0;
-
-
-        const credit =
-        Number(
-            row.querySelector(".credit").value
-        ) || 0;
-
-
-        const grade =
-        row.querySelector(".grade").value;
-
-
-        row.querySelector(".total-marks")
-        .textContent =
-        obtained;
-
-
-        maxMarks += max;
-
-        obtainedMarks +=
-        Math.min(obtained,max);
-
-        totalCredits += credit;
-
-
-        if(grade){
-
-            creditPoints +=
-            credit * grades[grade];
-
-        }
-
-
-        if(
-            row.querySelector(".obtained").value !== "" ||
-            grade
-        ){
-
-            totalSubjects++;
-
-        }
-
-    });
-
-
-    /* PRACTICAL */
-
-    document
-    .querySelectorAll(".practical-row")
-    .forEach(row => {
-
-        const credit =
-        Number(
-            row.querySelector(".credit").value
-        ) || 0;
-
-
-        const grade =
-        row.querySelector(".grade").value;
-
-
-        const point =
-        grade
-        ? grades[grade]
-        : 0;
-
-
-        row.querySelector(".point")
-        .textContent =
-        point;
-
-
-        row.querySelector(".credit-point")
-        .textContent =
-        (point * credit).toFixed(1);
-
-
-        totalCredits += credit;
-
-
-        if(grade){
-
-            creditPoints +=
-            credit * point;
-
-            totalSubjects++;
-
-        }
-
-    });
-
-
-    const sgpa =
-    totalCredits > 0
-    ? creditPoints / totalCredits
-    : 0;
-
-
-    const percentage =
-    maxMarks > 0
-    ? (obtainedMarks / maxMarks) * 100
-    : 0;
-
-
-    document.getElementById("totalSubjects")
-    .textContent =
-    totalSubjects;
-
-
-    document.getElementById("maxMarks")
-    .textContent =
-    maxMarks;
-
-
-    document.getElementById("obtainedMarks")
-    .textContent =
-    obtainedMarks;
-
-
-    document.getElementById("percentage")
-    .textContent =
-    percentage.toFixed(2) + "%";
-
-
-    document.getElementById("totalCredits")
-    .textContent =
-    totalCredits;
-
-
-    document.getElementById("sgpa")
-    .textContent =
-    sgpa.toFixed(2);
-
-
-    const name =
     document.getElementById(
-        "studentName"
-    ).value.trim();
-
-
-    document.getElementById(
-        "resultStudent"
+        "resultSemester"
     ).textContent =
-    name
-    ? name + " • Academic Result"
-    : "Student Result Summary";
+        semester +
+        (exam ? " • " + exam : "");
+
+
+    /* PHOTO */
+
+    const source =
+        document.querySelector(
+            "#photoPreview img"
+        );
+
+
+    const resultPhoto =
+        document.getElementById(
+            "resultPhoto"
+        );
+
+
+    if(source){
+
+        resultPhoto.src =
+            source.src;
+
+    }
+
+    else{
+
+        resultPhoto.src =
+            createPlaceholder();
+
+    }
+
+
+    /* PERFORMANCE */
+
+    let performance =
+        "Needs Improvement";
+
+
+    if(sgpa >= 9){
+
+        performance =
+            "Outstanding";
+
+    }
+
+    else if(sgpa >= 8){
+
+        performance =
+            "Excellent";
+
+    }
+
+    else if(sgpa >= 7){
+
+        performance =
+            "Very Good";
+
+    }
+
+    else if(sgpa >= 6){
+
+        performance =
+            "Good";
+
+    }
+
+    else if(sgpa >= 5){
+
+        performance =
+            "Average";
+
+    }
 
 
     document.getElementById(
-        "resultDate"
+        "finalPerformance"
     ).textContent =
-    new Date().toLocaleDateString();
+        performance;
 
 
-    return {
+    /* CGPA */
 
-        totalSubjects,
-        maxMarks,
-        obtainedMarks,
-        totalCredits,
-        creditPoints,
-        sgpa,
-        percentage
-
-    };
-
-}
+    const currentSemester =
+        parseInt(
+            semester
+                .replace(/\D/g,"")
+        );
 
 
-/* =====================================================
-   PHOTO
-===================================================== */
-
-document
-.getElementById("photoInput")
-.addEventListener(
-    "change",
-    function(){
-
-        const file =
-        this.files[0];
-
-        if(!file){
-
-            return;
-
-        }
+    let cgpa = null;
 
 
-        if(
-            !file.type.startsWith("image/")
-        ){
+    if(
+        currentSemester === 1 ||
+        isNaN(currentSemester)
+    ){
 
-            toast(
-                "Please select an image."
+        cgpa =
+            sgpa;
+
+    }
+
+
+    if(cgpa !== null){
+
+        document.getElementById(
+            "finalCGPA"
+        ).textContent =
+            cgpa.toFixed(
+                precision
             );
 
-            return;
+    }
 
-        }
+    else{
 
+        document.getElementById(
+            "finalCGPA"
+        ).textContent =
+            "—";
 
-        if(
-            file.size > 2 * 1024 * 1024
-        ){
-
-            toast(
-                "Photo must be below 2MB."
-            );
-
-            return;
-
-        }
+    }
 
 
-        const reader =
-        new FileReader();
+    /* TABLE */
+
+    const body =
+        document.getElementById(
+            "resultTableBody"
+        );
 
 
-        reader.onload =
-        function(e){
+    body.innerHTML = "";
 
-            document.getElementById(
-                "photoPreview"
-            ).innerHTML = `
 
-                <img
-                    src="${e.target.result}"
-                    alt="Student Photo"
-                >
+    data.resultRows.forEach(
+        item => {
+
+            if(
+                !item.code &&
+                !item.subject &&
+                !item.credit
+            ){
+
+                return;
+
+            }
+
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML = `
+
+                <td>
+                    ${item.code || "—"}
+                </td>
+
+                <td>
+                    ${item.subject || "—"}
+                </td>
+
+                <td>
+                    ${item.internal}
+                </td>
+
+                <td>
+                    ${item.external}
+                </td>
+
+                <td>
+                    ${item.total}
+                </td>
+
+                <td>
+                    ${item.grade || "—"}
+                </td>
+
+                <td>
+                    ${item.credit || 0}
+                </td>
 
             `;
 
 
-            localStorage.setItem(
-                "gpaStudentPhoto",
-                e.target.result
-            );
+            body.appendChild(tr);
 
-        };
+        }
+    );
 
 
-        reader.readAsDataURL(file);
+    card.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 
-    }
-);
+}
 
 
-/* =====================================================
-   PROFILE DATA
-===================================================== */
+/* =========================================================
+   PLACEHOLDER PHOTO
+========================================================= */
 
-function getProfile(){
+function createPlaceholder(){
 
-    return {
+    const svg = `
 
-        name:
-        document.getElementById(
-            "studentName"
-        ).value,
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="300"
+            height="350"
+        >
 
-        roll:
-        document.getElementById(
-            "rollNumber"
-        ).value,
+            <rect
+                width="100%"
+                height="100%"
+                fill="#eeeeF5"
+            />
 
-        registration:
-        document.getElementById(
-            "registrationNumber"
-        ).value,
+            <circle
+                cx="150"
+                cy="120"
+                r="55"
+                fill="#cfd2df"
+            />
 
-        college:
-        document.getElementById(
-            "collegeName"
-        ).value,
+            <rect
+                x="70"
+                y="190"
+                width="160"
+                height="100"
+                rx="50"
+                fill="#cfd2df"
+            />
 
-        university:
-        document.getElementById(
-            "universityName"
-        ).value,
+            <text
+                x="150"
+                y="330"
+                text-anchor="middle"
+                font-size="20"
+                fill="#777"
+            >
+                Student
+            </text>
 
-        branch:
-        document.getElementById(
-            "branchName"
-        ).value,
+        </svg>
 
-        semester:
-        document.getElementById(
-            "semester"
-        ).value,
+    `;
 
-        session:
-        document.getElementById(
-            "academicSession"
-        ).value
+
+    return "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(svg);
+
+}
+
+
+/* =========================================================
+   PHOTO UPLOAD
+========================================================= */
+
+document
+    .getElementById(
+        "photoInput"
+    )
+    .addEventListener(
+        "change",
+        function(){
+
+            const file =
+                this.files[0];
+
+
+            if(!file)
+                return;
+
+
+            if(
+                !file.type.startsWith(
+                    "image/"
+                )
+            ){
+
+                showToast(
+                    "Please select an image."
+                );
+
+                return;
+
+            }
+
+
+            if(
+                file.size >
+                2 * 1024 * 1024
+            ){
+
+                showToast(
+                    "Maximum photo size is 2MB."
+                );
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(event){
+
+                    document.getElementById(
+                        "photoPreview"
+                    ).innerHTML = `
+
+                        <img
+                            src="${event.target.result}"
+                            alt="Student Photo"
+                        >
+
+                    `;
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+/* =========================================================
+   SAVE DATA
+========================================================= */
+
+function saveData(){
+
+    const data = {
+
+        profile:{
+
+            name:
+                document.getElementById(
+                    "studentName"
+                ).value,
+
+            roll:
+                document.getElementById(
+                    "rollNumber"
+                ).value,
+
+            father:
+                document.getElementById(
+                    "fatherName"
+                ).value,
+
+            mother:
+                document.getElementById(
+                    "motherName"
+                ).value,
+
+            college:
+                document.getElementById(
+                    "collegeName"
+                ).value,
+
+            university:
+                document.getElementById(
+                    "universityName"
+                ).value,
+
+            branch:
+                document.getElementById(
+                    "branchName"
+                ).value,
+
+            semester:
+                document.getElementById(
+                    "semesterName"
+                ).value,
+
+            exam:
+                document.getElementById(
+                    "examDate"
+                ).value,
+
+            session:
+                document.getElementById(
+                    "session"
+                ).value
+
+        }
 
     };
 
-}
-
-
-/* =====================================================
-   SAVE PROFILE
-===================================================== */
-
-function saveProfile(){
 
     localStorage.setItem(
-        "gpaStudentProfile",
-        JSON.stringify(
-            getProfile()
-        )
+        "calculatorWorldSGPA",
+        JSON.stringify(data)
     );
 
 
-    toast(
-        "Student profile saved."
+    showToast(
+        "Data saved in this browser."
     );
 
 }
 
 
-/* =====================================================
-   LOAD PROFILE
-===================================================== */
+/* =========================================================
+   LOAD DATA
+========================================================= */
 
-function loadProfile(){
+function loadData(){
 
     const saved =
-    localStorage.getItem(
-        "gpaStudentProfile"
-    );
+        localStorage.getItem(
+            "calculatorWorldSGPA"
+        );
 
 
-    if(saved){
+    if(!saved){
 
-        const data =
+        showToast(
+            "No saved data found."
+        );
+
+        return;
+
+    }
+
+
+    const data =
         JSON.parse(saved);
 
 
-        document.getElementById(
-            "studentName"
-        ).value =
-        data.name || "";
+    const p =
+        data.profile || {};
 
 
-        document.getElementById(
-            "rollNumber"
-        ).value =
-        data.roll || "";
+    document.getElementById(
+        "studentName"
+    ).value =
+        p.name || "";
 
 
-        document.getElementById(
-            "registrationNumber"
-        ).value =
-        data.registration || "";
+    document.getElementById(
+        "rollNumber"
+    ).value =
+        p.roll || "";
 
 
-        document.getElementById(
-            "collegeName"
-        ).value =
-        data.college || "";
+    document.getElementById(
+        "fatherName"
+    ).value =
+        p.father || "";
 
 
-        document.getElementById(
-            "universityName"
-        ).value =
-        data.university || "";
+    document.getElementById(
+        "motherName"
+    ).value =
+        p.mother || "";
 
 
-        document.getElementById(
-            "branchName"
-        ).value =
-        data.branch || "";
+    document.getElementById(
+        "collegeName"
+    ).value =
+        p.college || "";
 
 
-        document.getElementById(
-            "semester"
-        ).value =
-        data.semester || "";
+    document.getElementById(
+        "universityName"
+    ).value =
+        p.university || "";
 
 
-        document.getElementById(
-            "academicSession"
-        ).value =
-        data.session || "";
-
-    }
+    document.getElementById(
+        "branchName"
+    ).value =
+        p.branch || "";
 
 
-    const photo =
-    localStorage.getItem(
-        "gpaStudentPhoto"
-    );
+    document.getElementById(
+        "semesterName"
+    ).value =
+        p.semester ||
+        "Semester I";
 
 
-    if(photo){
-
-        document.getElementById(
-            "photoPreview"
-        ).innerHTML = `
-
-            <img
-                src="${photo}"
-                alt="Student Photo"
-            >
-
-        `;
-
-    }
+    document.getElementById(
+        "examDate"
+    ).value =
+        p.exam || "";
 
 
-    calculate();
+    document.getElementById(
+        "session"
+    ).value =
+        p.session || "";
 
-    toast(
+
+    showToast(
         "Profile loaded."
     );
 
 }
 
 
-/* =====================================================
-   CLEAR PROFILE
-===================================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
-function clearProfile(){
+function resetAll(){
 
     if(
         !confirm(
-            "Delete saved profile and photo?"
+            "Reset all profile and subject data?"
         )
     ){
 
@@ -2364,144 +3848,117 @@ function clearProfile(){
 
 
     localStorage.removeItem(
-        "gpaStudentProfile"
-    );
-
-    localStorage.removeItem(
-        "gpaStudentPhoto"
+        "calculatorWorldSGPA"
     );
 
 
-    document.getElementById(
-        "photoPreview"
-    ).innerHTML =
-    "No Photo";
-
-
-    document.querySelectorAll(
-        "#studentName,#rollNumber,#registrationNumber,#collegeName,#universityName,#branchName,#academicSession"
-    ).forEach(
-        input => input.value=""
-    );
-
-
-    document.getElementById(
-        "semester"
-    ).value="";
-
-
-    toast(
-        "Profile cleared."
-    );
+    location.reload();
 
 }
 
 
-/* =====================================================
-   RESET CALCULATOR
-===================================================== */
+/* =========================================================
+   DOWNLOAD RESULT CARD
+========================================================= */
 
-function resetCalculator(){
+function downloadResult(){
+
+    const card =
+        document.getElementById(
+            "resultCard"
+        );
+
 
     if(
-        !confirm(
-            "Reset all subjects?"
-        )
+        card.style.display !== "block"
     ){
+
+        showToast(
+            "Calculate SGPA first."
+        );
 
         return;
 
     }
 
 
-    document.getElementById(
-        "theoryList"
-    ).innerHTML="";
+    /*
+       Browser print dialog gives the user
+       Save as PDF option.
 
+       It is more reliable than forcing a
+       fake PDF download without external libraries.
+    */
 
-    document.getElementById(
-        "practicalList"
-    ).innerHTML="";
-
-
-    theoryCount=0;
-    practicalCount=0;
-
-
-    createDefaultSubjects();
-
-    calculate();
+    window.print();
 
 }
 
 
-/* =====================================================
+/* =========================================================
    DEFAULT SUBJECTS
-===================================================== */
+========================================================= */
 
-function createDefaultSubjects(){
+function defaultSubjects(){
 
-    for(let i=0;i<5;i++){
+    const theorySubjects = [
 
-        addTheory();
+        ["","Subject 1","","","","P",""],
+        ["","Subject 2","","","","P",""],
+        ["","Subject 3","","","","P",""],
+        ["","Subject 4","","","","P",""],
+        ["","Subject 5","","","","P",""]
 
-    }
-
-
-    for(let i=0;i<2;i++){
-
-        addPractical();
-
-    }
-
-}
+    ];
 
 
-/* =====================================================
-   GENERATE PDF
-===================================================== */
+    theorySubjects.forEach(
+        item => {
 
-function generatePDF(){
+            createSubjectRow(
+                "theory",
+                item[0],
+                item[1],
+                item[2],
+                item[3],
+                item[5],
+                item[6]
+            );
 
-    const result =
-    calculate();
-
-
-    if(!result){
-
-        return;
-
-    }
-
-
-    saveProfile();
-
-
-    setTimeout(
-        ()=>{
-
-            window.print();
-
-        },
-        300
+        }
     );
 
+
+    for(
+        let i=1;
+        i<=3;
+        i++
+    ){
+
+        createSubjectRow(
+            "practical",
+            "",
+            "Practical " + i,
+            "",
+            "",
+            "P",
+            ""
+        );
+
+    }
+
 }
 
 
-/* =====================================================
-   AUTO LOAD
-===================================================== */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 window.addEventListener(
     "DOMContentLoaded",
-    ()=>{
+    function(){
 
-        loadProfile();
-
-        createDefaultSubjects();
-
-        calculate();
+        defaultSubjects();
 
     }
 );

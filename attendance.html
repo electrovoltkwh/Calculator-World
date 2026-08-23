@@ -3,229 +3,926 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced Attendance Calculator</title>
+
+<title>Premium Attendance Calculator</title>
 
 <style>
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f172a,#1e293b);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 15px;
+    background:
+        radial-gradient(circle at top left,#2563eb55,transparent 35%),
+        radial-gradient(circle at bottom right,#7c3aed55,transparent 35%),
+        linear-gradient(135deg,#020617,#0f172a,#111827);
+    color:#fff;
 }
 
+/* MAIN CONTAINER */
+
 .container{
-width:100%;
-max-width:700px;
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,.3);
+    width:100%;
+    max-width:850px;
+    background:rgba(15,23,42,.72);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-radius:28px;
+    padding:35px;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    animation:fadeUp .7s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
 }
 
 .icon{
-text-align:center;
-font-size:60px;
-margin-bottom:10px;
+    width:78px;
+    height:78px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:24px;
+    font-size:40px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
 }
 
 h1{
-text-align:center;
-color:#2563eb;
-margin-bottom:20px;
+    margin-top:18px;
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.subtitle{
+    margin-top:8px;
+    color:#94a3b8;
+    font-size:15px;
+}
+
+/* INPUT GRID */
+
+.input-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:25px;
 }
 
 .input-group{
-margin-bottom:15px;
+    position:relative;
 }
 
 label{
-display:block;
-margin-bottom:6px;
-font-weight:600;
+    display:block;
+    margin-bottom:8px;
+    color:#cbd5e1;
+    font-size:14px;
+    font-weight:600;
+}
+
+.input-box{
+    position:relative;
 }
 
 input{
-width:100%;
-padding:12px;
-border:2px solid #ddd;
-border-radius:10px;
-font-size:16px;
+    width:100%;
+    padding:15px 45px 15px 15px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.12);
+    outline:none;
+    background:rgba(255,255,255,.06);
+    color:white;
+    font-size:16px;
+    transition:.25s;
+}
+
+input::placeholder{
+    color:#64748b;
+}
+
+input:focus{
+    border-color:#3b82f6;
+    background:rgba(59,130,246,.08);
+    box-shadow:0 0 0 4px rgba(59,130,246,.12);
+}
+
+.unit{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#64748b;
+    font-size:13px;
+}
+
+/* BUTTONS */
+
+.button-row{
+    display:flex;
+    gap:12px;
+    margin-top:22px;
 }
 
 button{
-width:100%;
-padding:14px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
+    flex:1;
+    border:none;
+    padding:16px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
 }
 
-button:hover{
-background:#1d4ed8;
+.calculate-btn{
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 10px 25px rgba(37,99,235,.28);
 }
+
+.calculate-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 35px rgba(37,99,235,.4);
+}
+
+.reset-btn{
+    flex:0 0 120px;
+    color:#cbd5e1;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.reset-btn:hover{
+    background:rgba(255,255,255,.12);
+}
+
+/* RESULT */
 
 .result{
-display:none;
-margin-top:20px;
-background:#f8fafc;
-padding:20px;
-border-radius:15px;
+    display:none;
+    margin-top:30px;
+    animation:resultIn .5s ease;
 }
 
-.card{
-background:white;
-padding:12px;
-margin:10px 0;
-border-left:5px solid #2563eb;
-border-radius:8px;
-font-size:17px;
+@keyframes resultIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.good{
-color:#16a34a;
-font-weight:bold;
+/* TOP RESULT */
+
+.result-top{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:25px;
+    align-items:center;
 }
 
-.warning{
-color:#dc2626;
-font-weight:bold;
+/* CIRCLE */
+
+.circle-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
+
+.progress{
+    width:210px;
+    height:210px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    background:conic-gradient(
+        #22c55e 0deg,
+        #22c55e 0deg,
+        rgba(255,255,255,.08) 0deg
+    );
+}
+
+.progress::before{
+    content:"";
+    position:absolute;
+    width:165px;
+    height:165px;
+    border-radius:50%;
+    background:#0f172a;
+}
+
+.progress-content{
+    position:relative;
+    text-align:center;
+}
+
+.progress-value{
+    font-size:34px;
+    font-weight:800;
+}
+
+.progress-label{
+    color:#94a3b8;
+    font-size:13px;
+    margin-top:3px;
+}
+
+/* STATUS */
+
+.status-box{
+    padding:24px;
+    border-radius:20px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.status-title{
+    color:#94a3b8;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.status{
+    margin-top:8px;
+    font-size:25px;
+    font-weight:800;
+}
+
+.status-description{
+    margin-top:8px;
+    color:#94a3b8;
+    line-height:1.5;
+}
+
+/* CARDS */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:22px;
+}
+
+.stat-card{
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.25s;
+}
+
+.stat-card:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,.08);
+}
+
+.stat-icon{
+    font-size:23px;
+}
+
+.stat-title{
+    margin-top:12px;
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.stat-value{
+    margin-top:5px;
+    font-size:22px;
+    font-weight:800;
+}
+
+/* INFO */
+
+.info{
+    margin-top:18px;
+    padding:15px 17px;
+    border-radius:14px;
+    background:rgba(37,99,235,.08);
+    border:1px solid rgba(59,130,246,.15);
+    color:#94a3b8;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#475569;
+    font-size:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    .container{
+        padding:25px 18px;
+        border-radius:22px;
+    }
+
+    h1{
+        font-size:26px;
+    }
+
+    .input-grid{
+        grid-template-columns:1fr;
+    }
+
+    .result-top{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .progress{
+        width:190px;
+        height:190px;
+    }
+
+    .progress::before{
+        width:150px;
+        height:150px;
+    }
+
+    .button-row{
+        flex-direction:column;
+    }
+
+    .reset-btn{
+        flex:1;
+    }
+}
+
 </style>
 </head>
+
+
 <body>
 
 <div class="container">
 
-<div class="icon">🎓</div>
+    <!-- HEADER -->
 
-<h1>Advanced Attendance Calculator</h1>
+    <div class="header">
 
-<div class="input-group">
-<label>Total Classes Conducted</label>
-<input type="number" id="totalClasses" placeholder="Enter Total Classes">
+        <div class="icon">🎓</div>
+
+        <h1>Attendance Calculator</h1>
+
+        <p class="subtitle">
+            Calculate your attendance, required classes & safe leaves
+        </p>
+
+    </div>
+
+
+    <!-- INPUTS -->
+
+    <div class="input-grid">
+
+        <div class="input-group">
+
+            <label>Total Classes Conducted</label>
+
+            <div class="input-box">
+
+                <input
+                    type="number"
+                    id="totalClasses"
+                    placeholder="Example: 60"
+                    min="1"
+                >
+
+                <span class="unit">Classes</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Classes Attended</label>
+
+            <div class="input-box">
+
+                <input
+                    type="number"
+                    id="attendedClasses"
+                    placeholder="Example: 45"
+                    min="0"
+                >
+
+                <span class="unit">Classes</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Target Attendance</label>
+
+            <div class="input-box">
+
+                <input
+                    type="number"
+                    id="targetAttendance"
+                    placeholder="Example: 75"
+                    min="1"
+                    max="100"
+                >
+
+                <span class="unit">%</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="button-row">
+
+        <button
+            class="calculate-btn"
+            onclick="calculateAttendance()"
+        >
+            Calculate Attendance
+        </button>
+
+        <button
+            class="reset-btn"
+            onclick="resetCalculator()"
+        >
+            Reset
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div class="result" id="result">
+
+        <div class="result-top">
+
+            <!-- PROGRESS CIRCLE -->
+
+            <div class="circle-wrapper">
+
+                <div class="progress" id="progressCircle">
+
+                    <div class="progress-content">
+
+                        <div
+                            class="progress-value"
+                            id="currentAttendance"
+                        >
+                            0%
+                        </div>
+
+                        <div class="progress-label">
+                            Current Attendance
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status-box">
+
+                <div class="status-title">
+                    Attendance Status
+                </div>
+
+                <div
+                    class="status"
+                    id="status"
+                >
+                    —
+                </div>
+
+                <div
+                    class="status-description"
+                    id="statusDescription"
+                >
+                    Calculate your attendance to see your status.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🟢
+                </div>
+
+                <div class="stat-title">
+                    Classes You Can Miss
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="canMiss"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div class="stat-title">
+                    Classes Needed
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="needClasses"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div class="stat-title">
+                    Target Attendance
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="targetResult"
+                >
+                    0%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div
+            class="info"
+            id="info"
+        >
+            Enter your class data above to calculate your attendance.
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        Premium Student Utility • Attendance Calculator
+    </div>
+
 </div>
 
-<div class="input-group">
-<label>Classes Attended</label>
-<input type="number" id="attendedClasses" placeholder="Enter Attended Classes">
-</div>
-
-<div class="input-group">
-<label>Target Attendance (%)</label>
-<input type="number" id="targetAttendance" placeholder="Example: 75">
-</div>
-
-<button onclick="calculateAttendance()">
-Calculate Attendance
-</button>
-
-<div class="result" id="result">
-
-<div class="card">
-📊 Current Attendance:
-<span id="currentAttendance"></span>
-</div>
-
-<div class="card">
-✅ Classes You Can Miss:
-<span id="canMiss"></span>
-</div>
-
-<div class="card">
-📚 Classes Needed To Reach Target:
-<span id="needClasses"></span>
-</div>
-
-<div class="card">
-🎯 Attendance Status:
-<span id="status"></span>
-</div>
-
-</div>
-
-</div>
 
 <script>
 
 function calculateAttendance(){
 
-let total =
-parseFloat(document.getElementById("totalClasses").value);
+    const total =
+        parseFloat(
+            document.getElementById("totalClasses").value
+        );
 
-let attended =
-parseFloat(document.getElementById("attendedClasses").value);
+    const attended =
+        parseFloat(
+            document.getElementById("attendedClasses").value
+        );
 
-let target =
-parseFloat(document.getElementById("targetAttendance").value);
+    const target =
+        parseFloat(
+            document.getElementById("targetAttendance").value
+        );
 
-if(isNaN(total) || isNaN(attended) || isNaN(target)){
-alert("Please fill all fields");
-return;
+
+    /* VALIDATION */
+
+    if(
+        isNaN(total) ||
+        isNaN(attended) ||
+        isNaN(target)
+    ){
+
+        alert("Please fill all fields.");
+        return;
+
+    }
+
+
+    if(total <= 0){
+
+        alert("Total classes must be greater than 0.");
+        return;
+
+    }
+
+
+    if(attended < 0){
+
+        alert("Attended classes cannot be negative.");
+        return;
+
+    }
+
+
+    if(attended > total){
+
+        alert(
+            "Attended classes cannot exceed total classes."
+        );
+
+        return;
+
+    }
+
+
+    if(target <= 0 || target > 100){
+
+        alert(
+            "Target attendance must be between 1% and 100%."
+        );
+
+        return;
+
+    }
+
+
+    /* CURRENT ATTENDANCE */
+
+    const attendance =
+        (attended / total) * 100;
+
+
+    /* CLASSES CAN MISS */
+
+    let canMiss = 0;
+
+    if(attendance >= target){
+
+        canMiss =
+            Math.floor(
+                (attended / (target / 100)) - total
+            );
+
+    }
+
+
+    /* CLASSES NEEDED */
+
+    let needed = 0;
+
+    if(attendance < target){
+
+        needed =
+            Math.ceil(
+                ((target / 100) * total - attended) /
+                (1 - target / 100)
+            );
+
+    }
+
+
+    /* DISPLAY */
+
+    document.getElementById(
+        "currentAttendance"
+    ).innerHTML =
+        attendance.toFixed(2) + "%";
+
+
+    document.getElementById(
+        "canMiss"
+    ).innerHTML =
+        canMiss + " Classes";
+
+
+    document.getElementById(
+        "needClasses"
+    ).innerHTML =
+        needed + " Classes";
+
+
+    document.getElementById(
+        "targetResult"
+    ).innerHTML =
+        target + "%";
+
+
+    /* PROGRESS */
+
+    const degrees =
+        Math.min(attendance,100) * 3.6;
+
+    const circle =
+        document.getElementById("progressCircle");
+
+
+    let progressColor =
+        "#22c55e";
+
+
+    if(attendance < target){
+
+        progressColor =
+            attendance < target - 10
+            ? "#ef4444"
+            : "#f59e0b";
+
+    }
+
+
+    circle.style.background =
+        `conic-gradient(
+            ${progressColor} ${degrees}deg,
+            rgba(255,255,255,.08) ${degrees}deg
+        )`;
+
+
+    /* STATUS */
+
+    const status =
+        document.getElementById("status");
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
+
+    const info =
+        document.getElementById("info");
+
+
+    if(attendance >= target){
+
+        status.innerHTML =
+            "Target Achieved 🎉";
+
+        status.style.color =
+            "#22c55e";
+
+        description.innerHTML =
+            `Great! Your attendance is ${attendance.toFixed(2)}%.
+             You can miss approximately ${canMiss} more class${canMiss === 1 ? "" : "es"} and still maintain your target.`;
+
+        info.innerHTML =
+            `🎯 Target: ${target}% &nbsp; • &nbsp;
+             📊 Current: ${attendance.toFixed(2)}% &nbsp; • &nbsp;
+             🟢 Safe to miss: ${canMiss} class${canMiss === 1 ? "" : "es"}.`;
+
+    }
+
+    else{
+
+        status.innerHTML =
+            "Below Target ⚠️";
+
+        status.style.color =
+            attendance < target - 10
+            ? "#ef4444"
+            : "#f59e0b";
+
+        description.innerHTML =
+            `You need to attend the next ${needed} consecutive class${needed === 1 ? "" : "es"} 
+             to reach approximately ${target}% attendance.`;
+
+        info.innerHTML =
+            `⚠️ Target: ${target}% &nbsp; • &nbsp;
+             📊 Current: ${attendance.toFixed(2)}% &nbsp; • &nbsp;
+             📚 Required: ${needed} more class${needed === 1 ? "" : "es"}.`;
+
+    }
+
+
+    /* SHOW RESULT */
+
+    document.getElementById(
+        "result"
+    ).style.display = "block";
+
 }
 
-if(attended > total){
-alert("Attended classes cannot exceed total classes");
-return;
+
+/* RESET */
+
+function resetCalculator(){
+
+    document.getElementById(
+        "totalClasses"
+    ).value = "";
+
+    document.getElementById(
+        "attendedClasses"
+    ).value = "";
+
+    document.getElementById(
+        "targetAttendance"
+    ).value = "";
+
+
+    document.getElementById(
+        "result"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "progressCircle"
+    ).style.background =
+        `conic-gradient(
+            #22c55e 0deg,
+            rgba(255,255,255,.08) 0deg
+        )`;
+
 }
 
-let attendance =
-(attended/total)*100;
 
-document.getElementById("currentAttendance").innerHTML =
-attendance.toFixed(2)+"%";
+/* ENTER KEY */
 
-let canMiss =
-Math.floor((attended*100/target)-total);
+document.addEventListener(
+    "keydown",
+    function(event){
 
-if(canMiss < 0) canMiss = 0;
+        if(event.key === "Enter"){
 
-document.getElementById("canMiss").innerHTML =
-canMiss + " Classes";
+            calculateAttendance();
 
-let needed = 0;
+        }
 
-if(attendance < target){
-
-needed =
-Math.ceil(
-((target*total) - (100*attended))
-/
-(100-target)
+    }
 );
-
-}
-
-document.getElementById("needClasses").innerHTML =
-needed + " Classes";
-
-if(attendance >= target){
-
-document.getElementById("status").innerHTML =
-'<span class="good">Excellent 👍 Target Achieved</span>';
-
-}else{
-
-document.getElementById("status").innerHTML =
-'<span class="warning">Below Target ⚠️</span>';
-
-}
-
-document.getElementById("result").style.display =
-"block";
-
-}
 
 </script>
 

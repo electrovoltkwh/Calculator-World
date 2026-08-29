@@ -1,97 +1,1504 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Energy Bill Calculator</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>⚡ Energy Bill Pro Calculator</title>
 
 <style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-text-align:center;
-padding:50px;
+
+    font-family:Arial,sans-serif;
+
+    min-height:100vh;
+
+    color:white;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        #123c72,
+        transparent 35%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        #32105c,
+        transparent 35%
+    ),
+    #050816;
+
+    padding:30px;
 }
 
-h1{
-color:#2563eb;
+
+.container{
+
+    max-width:1150px;
+
+    margin:auto;
 }
 
-input{
-padding:10px;
-margin:10px;
-width:280px;
-font-size:18px;
+
+header{
+
+    text-align:center;
+
+    margin-bottom:30px;
 }
+
+
+header h1{
+
+    font-size:38px;
+
+    color:#38bdf8;
+
+    text-shadow:
+    0 0 20px #38bdf8;
+}
+
+
+header p{
+
+    color:#94a3b8;
+
+    margin-top:8px;
+}
+
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:22px;
+}
+
+
+.card{
+
+    background:
+    rgba(15,23,42,.85);
+
+    border:
+    1px solid
+    rgba(56,189,248,.25);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 40px
+    rgba(0,0,0,.4);
+
+    backdrop-filter:blur(15px);
+}
+
+
+.card h2{
+
+    color:#7dd3fc;
+
+    margin-bottom:20px;
+}
+
+
+.badge{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    background:#0c4a6e;
+
+    color:#7dd3fc;
+
+    font-size:12px;
+
+    margin-bottom:10px;
+}
+
+
+.input-group{
+
+    margin-bottom:16px;
+}
+
+
+label{
+
+    display:block;
+
+    color:#cbd5e1;
+
+    margin-bottom:7px;
+
+    font-weight:bold;
+}
+
+
+input,
+select{
+
+    width:100%;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    border:
+    1px solid #334155;
+
+    background:#020617;
+
+    color:white;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+
+input:focus,
+select:focus{
+
+    border-color:#38bdf8;
+
+    box-shadow:
+    0 0 12px
+    rgba(56,189,248,.3);
+}
+
 
 button{
-padding:10px 20px;
-font-size:18px;
-cursor:pointer;
+
+    width:100%;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0284c7,
+        #7c3aed
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:8px;
 }
 
-#result{
-margin-top:20px;
-font-size:22px;
-font-weight:bold;
+
+button:hover{
+
+    opacity:.9;
+
+    transform:translateY(-1px);
 }
+
+
+.reset{
+
+    background:#1e293b;
+}
+
+
+.appliances{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+
+.appliance{
+
+    background:#020617;
+
+    border:
+    1px solid #1e3a5f;
+
+    border-radius:12px;
+
+    padding:15px;
+}
+
+
+.appliance h3{
+
+    color:#38bdf8;
+
+    margin-bottom:12px;
+
+}
+
+
+.remove{
+
+    background:#7f1d1d;
+
+    font-size:13px;
+
+    padding:9px;
+
+}
+
+
+.results{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+}
+
+
+.result-box{
+
+    background:#020617;
+
+    border:
+    1px solid #1e40af;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    text-align:center;
+}
+
+
+.result-box small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
+}
+
+
+.result-box strong{
+
+    font-size:23px;
+
+    color:#38bdf8;
+}
+
+
+.bill{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #082f49,
+        #172554
+    );
+
+    text-align:center;
+}
+
+
+.bill h3{
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
+}
+
+
+.bill-value{
+
+    font-size:35px;
+
+    color:#facc15;
+
+    font-weight:bold;
+}
+
+
+.status{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:#111827;
+
+    color:#cbd5e1;
+
+    text-align:center;
+}
+
+
+.full{
+
+    grid-column:
+    1 / -1;
+}
+
+
+.breakdown{
+
+    line-height:2;
+
+    color:#cbd5e1;
+}
+
+
+.breakdown span{
+
+    float:right;
+
+    color:#38bdf8;
+
+    font-weight:bold;
+}
+
+
+@media(max-width:750px){
+
+    body{
+        padding:15px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .appliances{
+        grid-template-columns:1fr;
+    }
+
+    .results{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:28px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<h1>⚡ Energy Bill Calculator</h1>
 
-<input type="number" id="power" placeholder="Appliance Power (W)">
+<div class="container">
+
+
+<header>
+
+<h1>
+⚡ ENERGY BILL PRO
+</h1>
+
+<p>
+Advanced Electricity Consumption & Bill Calculator
+</p>
+
+</header>
+
+
+
+<div class="grid">
+
+
+
+<!-- SETTINGS -->
+
+<div class="card">
+
+<span class="badge">
+BILL SETTINGS
+</span>
+
+<h2>
+⚙️ Electricity Tariff
+</h2>
+
+
+<div class="input-group">
+
+<label>
+Electricity Rate (₹ / kWh)
+</label>
+
+<input
+type="number"
+id="rate"
+placeholder="Example: 8"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Fixed Charge (₹ / Month)
+</label>
+
+<input
+type="number"
+id="fixedCharge"
+placeholder="Example: 100"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Electricity Tax / Other Charges (%)
+</label>
+
+<input
+type="number"
+id="tax"
+placeholder="Example: 5"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Billing Period</label>
+
+<select id="period">
+
+<option value="1">
+Daily
+</option>
+
+<option value="30" selected>
+Monthly (30 Days)
+</option>
+
+<option value="365">
+Yearly (365 Days)
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- QUICK APPLIANCE -->
+
+<div class="card">
+
+<span class="badge">
+QUICK APPLIANCE
+</span>
+
+<h2>
+🔌 Add Appliance
+</h2>
+
+
+<div class="input-group">
+
+<label>
+Appliance Name
+</label>
+
+<input
+type="text"
+id="applianceName"
+placeholder="Example: Fan"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Power (W)
+</label>
+
+<input
+type="number"
+id="appliancePower"
+placeholder="Example: 75"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Quantity
+</label>
+
+<input
+type="number"
+id="quantity"
+placeholder="Example: 2"
+value="1"
+min="1"
+step="1"
+inputmode="numeric"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Hours Used Per Day
+</label>
+
+<input
+type="number"
+id="applianceHours"
+placeholder="Example: 8"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<button onclick="addAppliance()">
+
+➕ Add Appliance
+
+</button>
+
+
+</div>
+
+
+
+
+<!-- APPLIANCE LIST -->
+
+<div class="card full">
+
+<span class="badge">
+APPLIANCE LIST
+</span>
+
+<h2>
+🏠 Connected Appliances
+</h2>
+
+
+<div
+id="appliances"
+class="appliances"
+>
+
+<p style="color:#64748b;">
+No appliances added yet.
+</p>
+
+</div>
+
+
+<button
+class="reset"
+onclick="clearAppliances()"
+>
+
+🗑️ Clear All Appliances
+
+</button>
+
+</div>
+
+
+
+
+<!-- RESULTS -->
+
+<div class="card full">
+
+<span class="badge">
+ENERGY ANALYSIS
+</span>
+
+<h2>
+📊 Consumption Results
+</h2>
+
+
+<div class="results">
+
+
+<div class="result-box">
+
+<small>
+Total Connected Load
+</small>
+
+<strong id="totalLoad">
+0 W
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Daily Consumption
+</small>
+
+<strong id="dailyUnits">
+0 kWh
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Monthly Consumption
+</small>
+
+<strong id="monthlyUnits">
+0 kWh
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Yearly Consumption
+</small>
+
+<strong id="yearlyUnits">
+0 kWh
+</strong>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- BILL -->
+
+<div class="card">
+
+<span class="badge">
+ESTIMATED BILL
+</span>
+
+<h2>
+💰 Electricity Cost
+</h2>
+
+
+<div class="bill">
+
+<h3>
+Estimated Bill
+</h3>
+
+<div
+class="bill-value"
+id="bill"
+>
+₹0.00
+</div>
+
+</div>
+
+
+<div
+class="status"
+id="status"
+>
+
+Add appliances and enter tariff details.
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- BREAKDOWN -->
+
+<div class="card">
+
+<span class="badge">
+BILL BREAKDOWN
+</span>
+
+<h2>
+🧾 Cost Details
+</h2>
+
+
+<div class="breakdown">
+
+Energy Charges
+
+<span id="energyCost">
+₹0.00
+</span>
 
 <br>
 
-<input type="number" id="hours" placeholder="Hours Used Per Day">
+
+Fixed Charges
+
+<span id="fixedCost">
+₹0.00
+</span>
 
 <br>
 
-<input type="number" id="days" placeholder="Number of Days">
+
+Tax / Other Charges
+
+<span id="taxCost">
+₹0.00
+</span>
 
 <br>
 
-<input type="number" id="rate" placeholder="Electricity Rate (₹/kWh)">
 
-<br>
+<b>
+Total Bill
+</b>
 
-<button onclick="calculateBill()">Calculate Bill</button>
+<span id="totalCost">
+₹0.00
+</span>
 
-<div id="result"></div>
+</div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
 
 <script>
 
-function calculateBill(){
 
-let power =
-parseFloat(document.getElementById("power").value);
+/* ======================================
+   DATA
+====================================== */
 
-let hours =
-parseFloat(document.getElementById("hours").value);
 
-let days =
-parseFloat(document.getElementById("days").value);
+let appliances = [];
 
-let rate =
-parseFloat(document.getElementById("rate").value);
 
-let units =
-(power * hours * days)/1000;
 
-let bill =
-units * rate;
+/* ======================================
+   INPUT PROTECTION
+====================================== */
 
-document.getElementById("result").innerHTML =
-`
-Units Consumed: ${units.toFixed(2)} kWh
-<br><br>
-Estimated Bill: ₹${bill.toFixed(2)}
-`;
+
+const numericIds = [
+
+    "rate",
+
+    "fixedCharge",
+
+    "tax",
+
+    "appliancePower",
+
+    "quantity",
+
+    "applianceHours"
+
+];
+
+
+numericIds.forEach(function(id){
+
+    const input =
+        document.getElementById(id);
+
+
+    input.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "-" ||
+                event.key === "e" ||
+                event.key === "E"
+            ){
+
+                event.preventDefault();
+
+            }
+
+
+            if(event.key === "Enter"){
+
+                if(id === "applianceHours"){
+
+                    addAppliance();
+
+                }else{
+
+                    calculate();
+
+                }
+
+            }
+
+        }
+    );
+
+
+    input.addEventListener(
+        "input",
+        function(){
+
+            let value =
+                this.value;
+
+
+            value =
+                value.replace(/-/g,"");
+
+
+            value =
+                value.replace(
+                    /[eE]/g,
+                    ""
+                );
+
+
+            value =
+                value.replace(
+                    /[^0-9.]/g,
+                    ""
+                );
+
+
+            let parts =
+                value.split(".");
+
+
+            if(parts.length > 2){
+
+                value =
+                    parts[0] +
+                    "." +
+                    parts.slice(1).join("");
+
+            }
+
+
+            this.value =
+                value;
+
+        }
+    );
+
+});
+
+
+
+/* ======================================
+   ADD APPLIANCE
+====================================== */
+
+
+function addAppliance(){
+
+
+    let name =
+        document.getElementById(
+            "applianceName"
+        ).value.trim();
+
+
+    let power =
+        parseFloat(
+            document.getElementById(
+                "appliancePower"
+            ).value
+        );
+
+
+    let quantity =
+        parseFloat(
+            document.getElementById(
+                "quantity"
+            ).value
+        );
+
+
+    let hours =
+        parseFloat(
+            document.getElementById(
+                "applianceHours"
+            ).value
+        );
+
+
+
+    if(name === ""){
+
+        name = "Appliance";
+
+    }
+
+
+    if(
+        isNaN(power) ||
+        isNaN(quantity) ||
+        isNaN(hours)
+    ){
+
+        showStatus(
+            "⚠️ Please enter appliance power, quantity and hours."
+        );
+
+        return;
+
+    }
+
+
+    if(power < 0 ||
+       quantity <= 0 ||
+       hours < 0){
+
+        showStatus(
+            "⚠️ Values cannot be negative."
+        );
+
+        return;
+
+    }
+
+
+    if(hours > 24){
+
+        showStatus(
+            "⚠️ Hours per day cannot exceed 24."
+        );
+
+        return;
+
+    }
+
+
+
+    appliances.push({
+
+        name:name,
+
+        power:power,
+
+        quantity:quantity,
+
+        hours:hours
+
+    });
+
+
+    document.getElementById(
+        "applianceName"
+    ).value = "";
+
+
+    document.getElementById(
+        "appliancePower"
+    ).value = "";
+
+
+    document.getElementById(
+        "quantity"
+    ).value = "1";
+
+
+    document.getElementById(
+        "applianceHours"
+    ).value = "";
+
+
+    renderAppliances();
+
+    calculate();
 
 }
 
+
+
+/* ======================================
+   DISPLAY APPLIANCES
+====================================== */
+
+
+function renderAppliances(){
+
+
+    const box =
+        document.getElementById(
+            "appliances"
+        );
+
+
+    box.innerHTML = "";
+
+
+    if(appliances.length === 0){
+
+        box.innerHTML = `
+        <p style="color:#64748b;">
+        No appliances added yet.
+        </p>
+        `;
+
+        return;
+
+    }
+
+
+
+    appliances.forEach(
+        function(item,index){
+
+            let daily =
+                (
+                    item.power *
+                    item.quantity *
+                    item.hours
+                ) / 1000;
+
+
+            let div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "appliance";
+
+
+            div.innerHTML = `
+
+                <h3>
+                ⚡ ${escapeHTML(item.name)}
+                </h3>
+
+                <p>
+                Power:
+                ${format(item.power)} W
+                </p>
+
+                <p>
+                Quantity:
+                ${item.quantity}
+                </p>
+
+                <p>
+                Usage:
+                ${item.hours} h/day
+                </p>
+
+                <p>
+                Daily:
+                ${format(daily)} kWh
+                </p>
+
+                <button
+                class="remove"
+                onclick="removeAppliance(${index})"
+                >
+                ❌ Remove
+                </button>
+
+            `;
+
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+
+/* ======================================
+   REMOVE
+====================================== */
+
+
+function removeAppliance(index){
+
+    appliances.splice(index,1);
+
+    renderAppliances();
+
+    calculate();
+
+}
+
+
+
+/* ======================================
+   CALCULATE
+====================================== */
+
+
+function calculate(){
+
+
+    let rate =
+        parseFloat(
+            document.getElementById(
+                "rate"
+            ).value
+        );
+
+
+    let fixed =
+        parseFloat(
+            document.getElementById(
+                "fixedCharge"
+            ).value
+        );
+
+
+    let tax =
+        parseFloat(
+            document.getElementById(
+                "tax"
+            ).value
+        );
+
+
+    if(isNaN(rate))
+        rate = 0;
+
+
+    if(isNaN(fixed))
+        fixed = 0;
+
+
+    if(isNaN(tax))
+        tax = 0;
+
+
+
+    let totalLoad = 0;
+
+    let daily = 0;
+
+
+
+    appliances.forEach(
+        function(item){
+
+            totalLoad +=
+                item.power *
+                item.quantity;
+
+
+            daily +=
+                (
+                    item.power *
+                    item.quantity *
+                    item.hours
+                ) / 1000;
+
+        }
+    );
+
+
+
+    let monthly =
+        daily * 30;
+
+
+    let yearly =
+        daily * 365;
+
+
+
+    /*
+      Energy charge
+    */
+
+
+    let energyCost =
+        monthly * rate;
+
+
+
+    /*
+      Tax
+    */
+
+
+    let taxCost =
+        (
+            energyCost *
+            tax
+        ) / 100;
+
+
+
+    /*
+      Total monthly bill
+    */
+
+
+    let total =
+        energyCost +
+        fixed +
+        taxCost;
+
+
+
+    /*
+      Display
+    */
+
+
+    document.getElementById(
+        "totalLoad"
+    ).innerText =
+        format(totalLoad) + " W";
+
+
+    document.getElementById(
+        "dailyUnits"
+    ).innerText =
+        format(daily) + " kWh";
+
+
+    document.getElementById(
+        "monthlyUnits"
+    ).innerText =
+        format(monthly) + " kWh";
+
+
+    document.getElementById(
+        "yearlyUnits"
+    ).innerText =
+        format(yearly) + " kWh";
+
+
+    document.getElementById(
+        "energyCost"
+    ).innerText =
+        "₹" + totalNumber(energyCost);
+
+
+    document.getElementById(
+        "fixedCost"
+    ).innerText =
+        "₹" + totalNumber(fixed);
+
+
+    document.getElementById(
+        "taxCost"
+    ).innerText =
+        "₹" + totalNumber(taxCost);
+
+
+    document.getElementById(
+        "totalCost"
+    ).innerText =
+        "₹" + totalNumber(total);
+
+
+    document.getElementById(
+        "bill"
+    ).innerText =
+        "₹" + totalNumber(total);
+
+
+    showStatus(
+        "✅ Calculation updated successfully."
+    );
+
+}
+
+
+
+/* ======================================
+   CLEAR
+====================================== */
+
+
+function clearAppliances(){
+
+    appliances = [];
+
+    renderAppliances();
+
+    calculate();
+
+}
+
+
+
+/* ======================================
+   FORMAT
+====================================== */
+
+
+function format(number){
+
+    return Number(number)
+        .toFixed(2);
+
+}
+
+
+function totalNumber(number){
+
+    return Number(number)
+        .toFixed(2);
+
+}
+
+
+
+/* ======================================
+   STATUS
+====================================== */
+
+
+function showStatus(text){
+
+    document.getElementById(
+        "status"
+    ).innerText = text;
+
+}
+
+
+
+/* ======================================
+   SECURITY
+====================================== */
+
+
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* ======================================
+   INITIAL CALCULATION
+====================================== */
+
+
+renderAppliances();
+
+calculate();
+
+
 </script>
 
+
 </body>
+
 </html>

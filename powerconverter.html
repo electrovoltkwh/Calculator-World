@@ -1,204 +1,2091 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced Power Converter</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>⚡ Power Converter Pro</title>
+
 
 <style>
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f172a,#1e293b);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+
+    min-height:100vh;
+
+    padding:25px;
+
+    color:white;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        #123c72,
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        #32105c,
+        transparent 35%
+    ),
+
+    #050816;
 }
+
 
 .container{
-width:100%;
-max-width:650px;
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+    max-width:1100px;
+
+    margin:auto;
 }
+
+
+header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
 
 .icon{
-text-align:center;
-font-size:60px;
-margin-bottom:10px;
+
+    font-size:55px;
+
+    margin-bottom:5px;
+
 }
+
 
 h1{
-text-align:center;
-color:#2563eb;
-margin-bottom:20px;
+
+    color:#38bdf8;
+
+    font-size:38px;
+
+    text-shadow:
+    0 0 20px #38bdf8;
 }
+
+
+.subtitle{
+
+    color:#94a3b8;
+
+    margin-top:7px;
+}
+
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+}
+
+
+.card{
+
+    background:
+    rgba(15,23,42,.86);
+
+    border:
+    1px solid
+    rgba(56,189,248,.25);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 40px
+    rgba(0,0,0,.4);
+
+    backdrop-filter:blur(15px);
+}
+
+
+.card h2{
+
+    color:#7dd3fc;
+
+    margin-bottom:18px;
+}
+
+
+.badge{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    background:#0c4a6e;
+
+    color:#7dd3fc;
+
+    font-size:12px;
+
+    margin-bottom:10px;
+}
+
 
 .input-group{
-margin-bottom:15px;
+
+    margin-bottom:16px;
 }
+
 
 label{
-display:block;
-margin-bottom:6px;
-font-weight:600;
+
+    display:block;
+
+    color:#cbd5e1;
+
+    margin-bottom:7px;
+
+    font-weight:bold;
 }
 
-input,select{
-width:100%;
-padding:12px;
-border:2px solid #ddd;
-border-radius:10px;
-font-size:16px;
+
+input,
+select{
+
+    width:100%;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    border:
+    1px solid #334155;
+
+    background:#020617;
+
+    color:white;
+
+    font-size:16px;
+
+    outline:none;
 }
+
 
 input:focus,
 select:focus{
-outline:none;
-border-color:#2563eb;
+
+    border-color:#38bdf8;
+
+    box-shadow:
+    0 0 12px
+    rgba(56,189,248,.3);
 }
+
 
 button{
-width:100%;
-padding:14px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
+
+    width:100%;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0284c7,
+        #7c3aed
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:8px;
+
+    transition:.2s;
 }
+
 
 button:hover{
-background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 0 20px
+    rgba(56,189,248,.35);
 }
 
-.result{
-display:none;
-margin-top:20px;
-background:#f8fafc;
-padding:20px;
-border-radius:15px;
+
+.secondary{
+
+    background:#1e293b;
 }
 
-.card{
-background:white;
-padding:12px;
-margin:10px 0;
-border-left:5px solid #2563eb;
-border-radius:8px;
-font-size:17px;
+
+.result-main{
+
+    text-align:center;
+
+    padding:22px;
+
+    margin-top:15px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #082f49,
+        #172554
+    );
 }
 
-.highlight{
-color:#16a34a;
-font-weight:bold;
+
+.result-main small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
 }
+
+
+.result-main strong{
+
+    font-size:32px;
+
+    color:#facc15;
+}
+
+
+.results{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+
+.result-box{
+
+    background:#020617;
+
+    border:
+    1px solid #1e40af;
+
+    border-radius:13px;
+
+    padding:15px;
+
+    text-align:center;
+}
+
+
+.result-box small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:7px;
+}
+
+
+.result-box strong{
+
+    color:#38bdf8;
+
+    font-size:20px;
+}
+
+
+.status{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    background:#111827;
+
+    border-radius:10px;
+
+    color:#cbd5e1;
+
+    text-align:center;
+}
+
+
+.full{
+
+    grid-column:
+    1 / -1;
+}
+
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    margin-top:15px;
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+
+th,
+td{
+
+    padding:12px;
+
+    border-bottom:
+    1px solid #1e293b;
+
+    text-align:left;
+}
+
+
+th{
+
+    color:#7dd3fc;
+
+    background:#020617;
+}
+
+
+td{
+
+    color:#cbd5e1;
+}
+
+
+.history{
+
+    max-height:250px;
+
+    overflow-y:auto;
+}
+
+
+.history-item{
+
+    padding:12px;
+
+    margin-bottom:8px;
+
+    border-radius:10px;
+
+    background:#020617;
+
+    border-left:
+    3px solid #38bdf8;
+
+    color:#cbd5e1;
+
+    font-size:14px;
+}
+
+
+.formula{
+
+    text-align:center;
+
+    font-size:22px;
+
+    line-height:2;
+
+    color:#facc15;
+}
+
+
+.info{
+
+    color:#94a3b8;
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+
+@media(max-width:750px){
+
+    body{
+        padding:15px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .results{
+        grid-template-columns:1fr;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-<div class="icon">⚡</div>
 
-<h1>Advanced Power Converter</h1>
+<header>
 
-<div class="input-group">
-<label>Enter Power Value</label>
-<input type="number" id="value" placeholder="Enter Power">
+<div class="icon">
+⚡
 </div>
 
+<h1>
+POWER CONVERTER PRO
+</h1>
+
+<p class="subtitle">
+Advanced Electrical Engineering Power Calculator
+</p>
+
+</header>
+
+
+
+<div class="grid">
+
+
+
+<!-- POWER CONVERSION -->
+
+<div class="card">
+
+<span class="badge">
+POWER CONVERSION
+</span>
+
+<h2>
+🔄 Convert Power
+</h2>
+
+
 <div class="input-group">
-<label>From Unit</label>
+
+<label>
+Power Value
+</label>
+
+<input
+type="number"
+id="value"
+placeholder="Enter power value"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+From Unit
+</label>
+
 <select id="fromUnit">
-<option value="w">Watt (W)</option>
-<option value="kw">Kilowatt (kW)</option>
-<option value="mw">Megawatt (MW)</option>
-<option value="hp">Horsepower (HP)</option>
-<option value="btu">BTU/hr</option>
+
+<option value="w">
+Watt (W)
+</option>
+
+<option value="kw">
+Kilowatt (kW)
+</option>
+
+<option value="mw">
+Megawatt (MW)
+</option>
+
+<option value="gw">
+Gigawatt (GW)
+</option>
+
+<option value="hp">
+Horsepower (HP)
+</option>
+
+<option value="btu">
+BTU/hr
+</option>
+
+<option value="va">
+Volt-Ampere (VA)
+</option>
+
+<option value="kva">
+Kilovolt-Ampere (kVA)
+</option>
+
+<option value="mva">
+Megavolt-Ampere (MVA)
+</option>
+
 </select>
+
 </div>
 
+
 <div class="input-group">
-<label>To Unit</label>
+
+<label>
+To Unit
+</label>
+
 <select id="toUnit">
-<option value="w">Watt (W)</option>
-<option value="kw">Kilowatt (kW)</option>
-<option value="mw">Megawatt (MW)</option>
-<option value="hp">Horsepower (HP)</option>
-<option value="btu">BTU/hr</option>
+
+<option value="w">
+Watt (W)
+</option>
+
+<option value="kw">
+Kilowatt (kW)
+</option>
+
+<option value="mw">
+Megawatt (MW)
+</option>
+
+<option value="gw">
+Gigawatt (GW)
+</option>
+
+<option value="hp">
+Horsepower (HP)
+</option>
+
+<option value="btu">
+BTU/hr
+</option>
+
+<option value="va">
+Volt-Ampere (VA)
+</option>
+
+<option value="kva">
+Kilovolt-Ampere (kVA)
+</option>
+
+<option value="mva">
+Megavolt-Ampere (MVA)
+</option>
+
 </select>
+
 </div>
+
 
 <button onclick="convertPower()">
-Convert Power
+
+⚡ Convert
+
 </button>
 
-<div class="result" id="result">
+
+<button
+class="secondary"
+onclick="resetAll()"
+>
+
+↻ Reset
+
+</button>
+
+
+</div>
+
+
+
+
+<!-- POWER FACTOR -->
 
 <div class="card">
-⚡ Converted Power:
-<span class="highlight" id="output"></span>
+
+<span class="badge">
+AC POWER ANALYSIS
+</span>
+
+<h2>
+🔌 Electrical Power
+</h2>
+
+
+<div class="input-group">
+
+<label>
+System
+</label>
+
+<select id="system">
+
+<option value="dc">
+DC
+</option>
+
+<option value="single">
+1-Phase AC
+</option>
+
+<option value="three">
+3-Phase AC
+</option>
+
+</select>
+
 </div>
+
+
+<div class="input-group">
+
+<label>
+Voltage (V)
+</label>
+
+<input
+type="number"
+id="voltage"
+placeholder="Example: 230"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Current (A)
+</label>
+
+<input
+type="number"
+id="current"
+placeholder="Example: 10"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Power Factor
+</label>
+
+<input
+type="number"
+id="pf"
+value="1"
+placeholder="0.80"
+min="0.01"
+max="1"
+step="0.01"
+inputmode="decimal"
+>
+
+</div>
+
+
+<button onclick="calculateElectricalPower()">
+
+🧮 Calculate Power
+
+</button>
+
+
+</div>
+
+
+
+
+<!-- RESULT -->
+
+<div class="card full">
+
+<span class="badge">
+CONVERSION RESULT
+</span>
+
+<h2>
+📊 Result
+</h2>
+
+
+<div class="result-main">
+
+<small>
+CONVERTED POWER
+</small>
+
+<strong id="output">
+—
+</strong>
+
+</div>
+
+
+<div class="results">
+
+
+<div class="result-box">
+
+<small>
+Watts
+</small>
+
+<strong id="watts">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Kilowatts
+</small>
+
+<strong id="kilowatts">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Megawatts
+</small>
+
+<strong id="megawatts">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Horsepower
+</small>
+
+<strong id="horsepower">
+—
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div
+class="status"
+id="status"
+>
+
+Enter a value and convert.
+
+</div>
+
+
+<button
+class="secondary"
+onclick="copyResult()"
+>
+
+📋 Copy Result
+
+</button>
+
+
+</div>
+
+
+
+
+<!-- ALL UNITS -->
+
+<div class="card full">
+
+<span class="badge">
+ENGINEERING CONVERSION TABLE
+</span>
+
+<h2>
+📐 All Unit Values
+</h2>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Unit
+</th>
+
+<th>
+Value
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+<td>Watt</td>
+<td id="tableW">—</td>
+</tr>
+
+<tr>
+<td>Kilowatt</td>
+<td id="tableKW">—</td>
+</tr>
+
+<tr>
+<td>Megawatt</td>
+<td id="tableMW">—</td>
+</tr>
+
+<tr>
+<td>Gigawatt</td>
+<td id="tableGW">—</td>
+</tr>
+
+<tr>
+<td>Horsepower</td>
+<td id="tableHP">—</td>
+</tr>
+
+<tr>
+<td>BTU/hr</td>
+<td id="tableBTU">—</td>
+</tr>
+
+<tr>
+<td>VA</td>
+<td id="tableVA">—</td>
+</tr>
+
+<tr>
+<td>kVA</td>
+<td id="tableKVA">—</td>
+</tr>
+
+<tr>
+<td>MVA</td>
+<td id="tableMVA">—</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+
+
+<!-- ELECTRICAL RESULT -->
+
+<div class="card full">
+
+<span class="badge">
+ELECTRICAL POWER RESULT
+</span>
+
+<h2>
+⚡ AC/DC Power Analysis
+</h2>
+
+
+<div class="results">
+
+
+<div class="result-box">
+
+<small>
+Real Power
+</small>
+
+<strong id="realPower">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Apparent Power
+</small>
+
+<strong id="apparentPower">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Reactive Power
+</small>
+
+<strong id="reactivePower">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Power Factor
+</small>
+
+<strong id="powerFactor">
+—
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div
+class="status"
+id="electricalStatus"
+>
+
+Enter voltage and current.
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- HISTORY -->
+
+<div class="card full">
+
+<span class="badge">
+HISTORY
+</span>
+
+<h2>
+📝 Calculation History
+</h2>
+
+
+<div
+class="history"
+id="history"
+>
+
+<p style="color:#64748b;">
+No calculations yet.
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- FORMULA -->
 
 <div class="card">
-🔋 Engineering Grade Conversion
-</div>
+
+<span class="badge">
+FORMULAS
+</span>
+
+<h2>
+📚 Engineering Formulas
+</h2>
+
+
+<div class="formula">
+
+DC:
+
+<br>
+
+P = V × I
+
+<br><br>
+
+1-Phase AC:
+
+<br>
+
+P = V × I × PF
+
+<br><br>
+
+3-Phase AC:
+
+<br>
+
+P = √3 × V × I × PF
 
 </div>
 
 </div>
+
+
+
+
+<!-- NOTES -->
+
+<div class="card">
+
+<span class="badge">
+ENGINEERING NOTES
+</span>
+
+<h2>
+💡 Notes
+</h2>
+
+
+<div class="info">
+
+<p>
+<strong>W:</strong>
+Unit of real power.
+</p>
+
+<p>
+<strong>VA:</strong>
+Unit of apparent power.
+</p>
+
+<p>
+<strong>VAR:</strong>
+Unit of reactive power.
+</p>
+
+<p>
+For AC systems,
+real power depends on
+power factor.
+</p>
+
+<p>
+Actual equipment ratings,
+efficiency and operating conditions
+should be considered for engineering design.
+</p>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
 
 <script>
 
-function convertPower(){
 
-let value =
-parseFloat(document.getElementById("value").value);
+/* =========================================
+   UNIT DEFINITIONS
+========================================= */
 
-let from =
-document.getElementById("fromUnit").value;
 
-let to =
-document.getElementById("toUnit").value;
+const units = {
 
-if(isNaN(value)){
-alert("Please enter power value");
-return;
-}
+    w:1,
 
-const watts = {
-w:1,
-kw:1000,
-mw:1000000,
-hp:745.699872,
-btu:0.29307107
+    kw:1000,
+
+    mw:1000000,
+
+    gw:1000000000,
+
+    hp:745.699872,
+
+    btu:0.29307107,
+
+    va:1,
+
+    kva:1000,
+
+    mva:1000000
+
 };
 
-let wattValue = value * watts[from];
-let result = wattValue / watts[to];
 
-document.getElementById("output").innerHTML =
-result.toLocaleString('en-IN',{
-maximumFractionDigits:8
-}) + " " + to.toUpperCase();
 
-document.getElementById("result").style.display =
-"block";
+/* =========================================
+   INPUT PROTECTION
+========================================= */
+
+
+const numericIds = [
+
+    "value",
+
+    "voltage",
+
+    "current",
+
+    "pf"
+
+];
+
+
+numericIds.forEach(function(id){
+
+    const input =
+        document.getElementById(id);
+
+
+    input.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "-" ||
+                event.key === "e" ||
+                event.key === "E"
+            ){
+
+                event.preventDefault();
+
+            }
+
+
+            if(event.key === "Enter"){
+
+                if(id === "value"){
+
+                    convertPower();
+
+                }else{
+
+                    calculateElectricalPower();
+
+                }
+
+            }
+
+        }
+    );
+
+
+    input.addEventListener(
+        "input",
+        function(){
+
+            let value =
+                this.value;
+
+
+            value =
+                value.replace(
+                    /-/g,
+                    ""
+                );
+
+
+            value =
+                value.replace(
+                    /[eE]/g,
+                    ""
+                );
+
+
+            value =
+                value.replace(
+                    /[^0-9.]/g,
+                    ""
+                );
+
+
+            let parts =
+                value.split(".");
+
+
+            if(parts.length > 2){
+
+                value =
+                    parts[0] +
+                    "." +
+                    parts.slice(1).join("");
+
+            }
+
+
+            this.value =
+                value;
+
+        }
+    );
+
+});
+
+
+
+/* =========================================
+   POWER CONVERSION
+========================================= */
+
+
+function convertPower(){
+
+
+    let value =
+        parseFloat(
+            document.getElementById(
+                "value"
+            ).value
+        );
+
+
+    let from =
+        document.getElementById(
+            "fromUnit"
+        ).value;
+
+
+    let to =
+        document.getElementById(
+            "toUnit"
+        ).value;
+
+
+
+    if(
+        isNaN(value)
+    ){
+
+        showStatus(
+            "⚠️ Please enter a power value."
+        );
+
+        return;
+
+    }
+
+
+
+    if(value < 0){
+
+        showStatus(
+            "⚠️ Negative values are not allowed."
+        );
+
+        return;
+
+    }
+
+
+
+    /* Convert to watts */
+
+    let wattValue =
+        value *
+        units[from];
+
+
+    /* Convert target */
+
+    let result =
+        wattValue /
+        units[to];
+
+
+
+    let formatted =
+        formatNumber(result);
+
+
+
+    document.getElementById(
+        "output"
+    ).innerText =
+        formatted +
+        " " +
+        unitName(to);
+
+
+
+    /*
+      Main conversions
+    */
+
+
+    document.getElementById(
+        "watts"
+    ).innerText =
+        formatNumber(wattValue) +
+        " W";
+
+
+    document.getElementById(
+        "kilowatts"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000
+        ) +
+        " kW";
+
+
+    document.getElementById(
+        "megawatts"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000000
+        ) +
+        " MW";
+
+
+    document.getElementById(
+        "horsepower"
+    ).innerText =
+        formatNumber(
+            wattValue /
+            745.699872
+        ) +
+        " HP";
+
+
+
+    /*
+      Table
+    */
+
+
+    document.getElementById(
+        "tableW"
+    ).innerText =
+        formatNumber(wattValue)
+        + " W";
+
+
+    document.getElementById(
+        "tableKW"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000
+        )
+        + " kW";
+
+
+    document.getElementById(
+        "tableMW"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000000
+        )
+        + " MW";
+
+
+    document.getElementById(
+        "tableGW"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000000000
+        )
+        + " GW";
+
+
+    document.getElementById(
+        "tableHP"
+    ).innerText =
+        formatNumber(
+            wattValue /
+            745.699872
+        )
+        + " HP";
+
+
+    document.getElementById(
+        "tableBTU"
+    ).innerText =
+        formatNumber(
+            wattValue /
+            0.29307107
+        )
+        + " BTU/hr";
+
+
+    document.getElementById(
+        "tableVA"
+    ).innerText =
+        formatNumber(wattValue)
+        + " VA";
+
+
+    document.getElementById(
+        "tableKVA"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000
+        )
+        + " kVA";
+
+
+    document.getElementById(
+        "tableMVA"
+    ).innerText =
+        formatNumber(
+            wattValue / 1000000
+        )
+        + " MVA";
+
+
+
+    showStatus(
+        "✅ Power conversion completed."
+    );
+
+
+
+    addHistory(
+        value,
+        unitName(from),
+        result,
+        unitName(to)
+    );
+
+}
+
+
+
+/* =========================================
+   ELECTRICAL POWER
+========================================= */
+
+
+function calculateElectricalPower(){
+
+
+    let system =
+        document.getElementById(
+            "system"
+        ).value;
+
+
+    let V =
+        parseFloat(
+            document.getElementById(
+                "voltage"
+            ).value
+        );
+
+
+    let I =
+        parseFloat(
+            document.getElementById(
+                "current"
+            ).value
+        );
+
+
+    let PF =
+        parseFloat(
+            document.getElementById(
+                "pf"
+            ).value
+        );
+
+
+
+    if(
+        isNaN(V) ||
+        isNaN(I)
+    ){
+
+        document.getElementById(
+            "electricalStatus"
+        ).innerText =
+            "⚠️ Enter voltage and current.";
+
+        return;
+
+    }
+
+
+    if(
+        V < 0 ||
+        I < 0
+    ){
+
+        document.getElementById(
+            "electricalStatus"
+        ).innerText =
+            "⚠️ Negative values are not allowed.";
+
+        return;
+
+    }
+
+
+    if(
+        isNaN(PF) ||
+        PF <= 0 ||
+        PF > 1
+    ){
+
+        document.getElementById(
+            "electricalStatus"
+        ).innerText =
+            "⚠️ Power factor must be between 0.01 and 1.";
+
+        return;
+
+    }
+
+
+
+    let apparent;
+
+
+    let real;
+
+
+    let reactive;
+
+
+
+    /*
+      DC
+    */
+
+    if(system === "dc"){
+
+        apparent =
+            V * I;
+
+        real =
+            V * I;
+
+        reactive =
+            0;
+
+    }
+
+
+
+    /*
+      1 Phase
+    */
+
+    else if(system === "single"){
+
+        apparent =
+            V * I;
+
+        real =
+            V * I * PF;
+
+        reactive =
+            Math.sqrt(
+                Math.max(
+                    0,
+                    apparent * apparent -
+                    real * real
+                )
+            );
+
+    }
+
+
+
+    /*
+      3 Phase
+    */
+
+    else{
+
+        apparent =
+            Math.sqrt(3) *
+            V *
+            I;
+
+        real =
+            Math.sqrt(3) *
+            V *
+            I *
+            PF;
+
+        reactive =
+            Math.sqrt(
+                Math.max(
+                    0,
+                    apparent * apparent -
+                    real * real
+                )
+            );
+
+    }
+
+
+
+    document.getElementById(
+        "realPower"
+    ).innerText =
+        formatNumber(real) +
+        " W";
+
+
+    document.getElementById(
+        "apparentPower"
+    ).innerText =
+        formatNumber(apparent) +
+        " VA";
+
+
+    document.getElementById(
+        "reactivePower"
+    ).innerText =
+        formatNumber(reactive) +
+        " VAR";
+
+
+    document.getElementById(
+        "powerFactor"
+    ).innerText =
+        PF.toFixed(2);
+
+
+
+    document.getElementById(
+        "electricalStatus"
+    ).innerText =
+        "✅ Electrical power calculated successfully.";
+
+}
+
+
+
+/* =========================================
+   UNIT NAME
+========================================= */
+
+
+function unitName(unit){
+
+    const names = {
+
+        w:"W",
+
+        kw:"kW",
+
+        mw:"MW",
+
+        gw:"GW",
+
+        hp:"HP",
+
+        btu:"BTU/hr",
+
+        va:"VA",
+
+        kva:"kVA",
+
+        mva:"MVA"
+
+    };
+
+
+    return names[unit];
+
+}
+
+
+
+/* =========================================
+   FORMAT
+========================================= */
+
+
+function formatNumber(number){
+
+    if(!isFinite(number))
+        return "Error";
+
+
+    if(number === 0)
+        return "0";
+
+
+    if(
+        Math.abs(number) >=
+        1000000000
+    ){
+
+        return (
+            number /
+            1000000000
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits:6
+            }
+        );
+
+    }
+
+
+    if(
+        Math.abs(number) >=
+        1000000
+    ){
+
+        return (
+            number /
+            1000000
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits:6
+            }
+        );
+
+    }
+
+
+    return number.toLocaleString(
+        "en-IN",
+        {
+            maximumFractionDigits:8
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+
+function showStatus(text){
+
+    document.getElementById(
+        "status"
+    ).innerText =
+        text;
+
+}
+
+
+
+/* =========================================
+   HISTORY
+========================================= */
+
+
+function addHistory(
+    value,
+    from,
+    result,
+    to
+){
+
+    let history =
+        document.getElementById(
+            "history"
+        );
+
+
+    if(
+        history.querySelector(
+            "p"
+        )
+    ){
+
+        history.innerHTML = "";
+
+    }
+
+
+    let item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.className =
+        "history-item";
+
+
+    item.innerHTML = `
+
+        ⚡ ${value} ${from}
+
+        →
+
+        <b>
+        ${formatNumber(result)}
+        ${to}
+        </b>
+
+    `;
+
+
+    history.prepend(item);
+
+
+    /*
+      Maximum 10 history items
+    */
+
+
+    while(
+        history.children.length > 10
+    ){
+
+        history.removeChild(
+            history.lastChild
+        );
+
+    }
+
+}
+
+
+
+/* =========================================
+   COPY
+========================================= */
+
+
+function copyResult(){
+
+    let output =
+        document.getElementById(
+            "output"
+        ).innerText;
+
+
+    if(output === "—"){
+
+        showStatus(
+            "⚠️ Calculate a result first."
+        );
+
+        return;
+
+    }
+
+
+    navigator.clipboard.writeText(
+        output
+    );
+
+
+    showStatus(
+        "📋 Result copied to clipboard."
+    );
+
+}
+
+
+
+/* =========================================
+   RESET
+========================================= */
+
+
+function resetAll(){
+
+    document.getElementById(
+        "value"
+    ).value = "";
+
+
+    document.getElementById(
+        "voltage"
+    ).value = "";
+
+
+    document.getElementById(
+        "current"
+    ).value = "";
+
+
+    document.getElementById(
+        "pf"
+    ).value = "1";
+
+
+    document.getElementById(
+        "output"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "watts"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "kilowatts"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "megawatts"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "horsepower"
+    ).innerText = "—";
+
+
+    const tableIds = [
+
+        "tableW",
+        "tableKW",
+        "tableMW",
+        "tableGW",
+        "tableHP",
+        "tableBTU",
+        "tableVA",
+        "tableKVA",
+        "tableMVA"
+
+    ];
+
+
+    tableIds.forEach(
+        function(id){
+
+            document.getElementById(
+                id
+            ).innerText = "—";
+
+        }
+    );
+
+
+    document.getElementById(
+        "realPower"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "apparentPower"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "reactivePower"
+    ).innerText = "—";
+
+
+    document.getElementById(
+        "powerFactor"
+    ).innerText = "—";
+
+
+    showStatus(
+        "Enter a value and convert."
+    );
+
+
+    document.getElementById(
+        "electricalStatus"
+    ).innerText =
+        "Enter voltage and current.";
 
 }
 
 </script>
 
+
 </body>
+
 </html>

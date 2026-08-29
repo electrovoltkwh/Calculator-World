@@ -1,107 +1,1448 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voltage Drop Calculator</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>⚡ Voltage Drop Pro Calculator</title>
+
 
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f7fc;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    min-height:100vh;
+
+    padding:30px;
+
+    color:white;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        #123c72,
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        #32105c,
+        transparent 35%
+    ),
+
+    #050816;
+}
+
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+}
+
+
+header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+
+header h1{
+
+    color:#38bdf8;
+
+    font-size:38px;
+
+    text-shadow:
+    0 0 20px #38bdf8;
+}
+
+
+header p{
+
+    color:#94a3b8;
+
+    margin-top:8px;
+}
+
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:22px;
+}
+
 
 .card{
-background:white;
-padding:30px;
-width:420px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,0.15);
+
+    background:
+    rgba(15,23,42,.86);
+
+    border:
+    1px solid
+    rgba(56,189,248,.25);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 40px
+    rgba(0,0,0,.4);
+
+    backdrop-filter:blur(15px);
 }
 
-h1{
-text-align:center;
-color:#0d6efd;
+
+.card h2{
+
+    color:#7dd3fc;
+
+    margin-bottom:20px;
 }
 
-input{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:1px solid #ccc;
-border-radius:10px;
+
+.badge{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    background:#0c4a6e;
+
+    color:#7dd3fc;
+
+    font-size:12px;
+
+    margin-bottom:10px;
 }
+
+
+.input-group{
+
+    margin-bottom:16px;
+}
+
+
+label{
+
+    display:block;
+
+    color:#cbd5e1;
+
+    margin-bottom:7px;
+
+    font-weight:bold;
+}
+
+
+input,
+select{
+
+    width:100%;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    border:
+    1px solid #334155;
+
+    background:#020617;
+
+    color:white;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+
+input:focus,
+select:focus{
+
+    border-color:#38bdf8;
+
+    box-shadow:
+    0 0 12px
+    rgba(56,189,248,.3);
+}
+
 
 button{
-width:100%;
-padding:12px;
-background:#0d6efd;
-color:white;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-size:16px;
+
+    width:100%;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0284c7,
+        #7c3aed
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:8px;
 }
 
-.result{
-margin-top:20px;
-font-size:20px;
-font-weight:bold;
-text-align:center;
-color:green;
+
+button:hover{
+
+    opacity:.9;
+
+    transform:translateY(-1px);
 }
 
-.back{
-display:block;
-text-align:center;
-margin-top:15px;
-text-decoration:none;
+
+.reset{
+
+    background:#1e293b;
 }
+
+
+.results{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+}
+
+
+.result-box{
+
+    background:#020617;
+
+    border:
+    1px solid #1e40af;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    text-align:center;
+}
+
+
+.result-box small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
+}
+
+
+.result-box strong{
+
+    font-size:23px;
+
+    color:#38bdf8;
+}
+
+
+.main-result{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #082f49,
+        #172554
+    );
+}
+
+
+.main-result small{
+
+    color:#94a3b8;
+
+    display:block;
+
+    margin-bottom:8px;
+}
+
+
+.main-result strong{
+
+    font-size:34px;
+
+    color:#facc15;
+}
+
+
+.status{
+
+    margin-top:18px;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    background:#111827;
+
+    color:#cbd5e1;
+}
+
+
+.formula{
+
+    text-align:center;
+
+    font-size:23px;
+
+    color:#facc15;
+
+    padding:15px;
+
+    line-height:2;
+}
+
+
+.full{
+
+    grid-column:
+    1 / -1;
+}
+
+
+.info{
+
+    color:#94a3b8;
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+
+.good{
+
+    color:#22c55e;
+}
+
+
+.warning{
+
+    color:#facc15;
+}
+
+
+.danger{
+
+    color:#ef4444;
+}
+
+
+@media(max-width:750px){
+
+    body{
+        padding:15px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .results{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:28px;
+    }
+
+}
+
 </style>
 
 </head>
+
+
 <body>
+
+
+<div class="container">
+
+
+<header>
+
+<h1>
+⚡ VOLTAGE DROP PRO
+</h1>
+
+<p>
+Advanced Electrical Cable Voltage Drop Calculator
+</p>
+
+</header>
+
+
+
+<div class="grid">
+
+
+
+<!-- SYSTEM -->
 
 <div class="card">
 
-<h1>📉 Voltage Drop Calculator</h1>
+<span class="badge">
+SYSTEM
+</span>
 
-<input type="number" id="current" placeholder="Current (Ampere)">
+<h2>
+⚙️ Electrical System
+</h2>
 
-<input type="number" id="resistance" placeholder="Resistance (Ohm)">
 
-<button onclick="calculateVD()">Calculate</button>
+<div class="input-group">
 
-<div class="result" id="result"></div>
+<label>
+System Type
+</label>
 
-<a href="electrical.html" class="back">⬅ Back</a>
+<select id="system">
+
+<option value="dc">
+DC
+</option>
+
+<option value="single">
+1-Phase AC
+</option>
+
+<option value="three">
+3-Phase AC
+</option>
+
+</select>
 
 </div>
 
+
+<div class="input-group">
+
+<label>
+Supply Voltage (V)
+</label>
+
+<input
+type="number"
+id="voltage"
+placeholder="Example: 230"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Load Current (A)
+</label>
+
+<input
+type="number"
+id="current"
+placeholder="Example: 20"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Power Factor
+</label>
+
+<input
+type="number"
+id="pf"
+placeholder="Example: 0.8"
+value="1"
+min="0.01"
+max="1"
+step="0.01"
+inputmode="decimal"
+>
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- CABLE -->
+
+<div class="card">
+
+<span class="badge">
+CABLE DATA
+</span>
+
+<h2>
+🔌 Cable Parameters
+</h2>
+
+
+<div class="input-group">
+
+<label>
+Cable Material
+</label>
+
+<select id="material">
+
+<option value="copper">
+Copper
+</option>
+
+<option value="aluminium">
+Aluminium
+</option>
+
+</select>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Cable Cross Section (mm²)
+</label>
+
+<select id="size">
+
+<option value="1.72">
+1.0 mm²
+</option>
+
+<option value="0.0172">
+2.5 mm²
+</option>
+
+<option value="0.01075">
+4 mm²
+</option>
+
+<option value="0.00688">
+6 mm²
+</option>
+
+<option value="0.00430">
+10 mm²
+</option>
+
+<option value="0.00287">
+16 mm²
+</option>
+
+<option value="0.00172">
+25 mm²
+</option>
+
+<option value="0.001075">
+35 mm²
+</option>
+
+<option value="0.000688">
+50 mm²
+</option>
+
+<option value="0.000430">
+70 mm²
+</option>
+
+<option value="0.000287">
+95 mm²
+</option>
+
+<option value="0.000206">
+120 mm²
+</option>
+
+</select>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+One-Way Cable Length (m)
+</label>
+
+<input
+type="number"
+id="length"
+placeholder="Example: 30"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Maximum Allowed Voltage Drop (%)
+</label>
+
+<input
+type="number"
+id="maxDrop"
+value="3"
+min="0"
+step="any"
+inputmode="decimal"
+>
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- RESULT -->
+
+<div class="card full">
+
+<span class="badge">
+CALCULATION RESULT
+</span>
+
+<h2>
+📊 Voltage Drop Analysis
+</h2>
+
+
+<div class="results">
+
+
+<div class="result-box">
+
+<small>
+Cable Resistance
+</small>
+
+<strong id="resistance">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Voltage Drop
+</small>
+
+<strong id="drop">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Voltage Drop %
+</small>
+
+<strong id="dropPercent">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Load Voltage
+</small>
+
+<strong id="loadVoltage">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Cable Power Loss
+</small>
+
+<strong id="loss">
+—
+</strong>
+
+</div>
+
+
+<div class="result-box">
+
+<small>
+Power at Load</small>
+
+<strong id="loadPower">
+—
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="main-result">
+
+<small>
+VOLTAGE DROP STATUS
+</small>
+
+<strong id="statusText">
+—
+</strong>
+
+</div>
+
+
+<div
+class="status"
+id="status"
+>
+
+Enter values and press Calculate.
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- FORMULAS -->
+
+<div class="card">
+
+<span class="badge">
+ENGINEERING FORMULAS
+</span>
+
+<h2>
+📐 Formula
+</h2>
+
+
+<div class="formula">
+
+DC / 1-Phase:
+
+<br>
+
+Vd = I × R
+
+<br><br>
+
+3-Phase:
+
+<br>
+
+Vd = √3 × I × R
+
+<br><br>
+
+Voltage Drop %:
+
+<br>
+
+(Vd / V) × 100
+
+</div>
+
+</div>
+
+
+
+
+<!-- INFORMATION -->
+
+<div class="card">
+
+<span class="badge">
+REFERENCE
+</span>
+
+<h2>
+📚 Notes
+</h2>
+
+
+<div class="info">
+
+<p>
+<strong>DC:</strong>
+Uses the complete circuit loop resistance.
+</p>
+
+<p>
+<strong>1-Phase AC:</strong>
+Uses the approximate two-conductor path.
+</p>
+
+<p>
+<strong>3-Phase AC:</strong>
+Uses √3 × I × R.
+</p>
+
+<p>
+The calculation uses cable resistivity and cross-sectional area.
+Actual installations can also be affected by temperature,
+reactance, installation method and conductor configuration.
+</p>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
 <script>
+
+
+/* ====================================
+   INPUT PROTECTION
+==================================== */
+
+
+const numericInputs = [
+
+    "voltage",
+
+    "current",
+
+    "pf",
+
+    "length",
+
+    "maxDrop"
+
+];
+
+
+numericInputs.forEach(function(id){
+
+    const input =
+        document.getElementById(id);
+
+
+    input.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "-" ||
+                event.key === "e" ||
+                event.key === "E"
+            ){
+
+                event.preventDefault();
+
+            }
+
+
+            if(event.key === "Enter"){
+
+                calculateVD();
+
+            }
+
+        }
+    );
+
+
+    input.addEventListener(
+        "input",
+        function(){
+
+            let value =
+                this.value;
+
+
+            value =
+                value.replace(
+                    /-/g,
+                    ""
+                );
+
+
+            value =
+                value.replace(
+                    /[eE]/g,
+                    ""
+                );
+
+
+            value =
+                value.replace(
+                    /[^0-9.]/g,
+                    ""
+                );
+
+
+            let parts =
+                value.split(".");
+
+
+            if(parts.length > 2){
+
+                value =
+                    parts[0] +
+                    "." +
+                    parts.slice(1).join("");
+
+            }
+
+
+            this.value =
+                value;
+
+        }
+    );
+
+});
+
+
+
+/* ====================================
+   CALCULATE
+==================================== */
+
 
 function calculateVD(){
 
-let I = parseFloat(document.getElementById("current").value);
-let R = parseFloat(document.getElementById("resistance").value);
 
-if(!I || !R){
-document.getElementById("result").innerHTML="Enter valid values";
-return;
+    let system =
+        document.getElementById(
+            "system"
+        ).value;
+
+
+    let voltage =
+        parseFloat(
+            document.getElementById(
+                "voltage"
+            ).value
+        );
+
+
+    let current =
+        parseFloat(
+            document.getElementById(
+                "current"
+            ).value
+        );
+
+
+    let pf =
+        parseFloat(
+            document.getElementById(
+                "pf"
+            ).value
+        );
+
+
+    let length =
+        parseFloat(
+            document.getElementById(
+                "length"
+            ).value
+        );
+
+
+    let maxDrop =
+        parseFloat(
+            document.getElementById(
+                "maxDrop"
+            ).value
+        );
+
+
+    let resistivity =
+        parseFloat(
+            document.getElementById(
+                "size"
+            ).value
+        );
+
+
+    let material =
+        document.getElementById(
+            "material"
+        ).value;
+
+
+
+    /* VALIDATION */
+
+
+    if(
+        isNaN(voltage) ||
+        isNaN(current) ||
+        isNaN(length)
+    ){
+
+        showStatus(
+            "⚠️ Please enter voltage, current and cable length."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        voltage <= 0 ||
+        current < 0 ||
+        length < 0
+    ){
+
+        showStatus(
+            "⚠️ Values cannot be negative."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        pf <= 0 ||
+        pf > 1
+    ){
+
+        showStatus(
+            "⚠️ Power factor must be between 0.01 and 1."
+        );
+
+        return;
+
+    }
+
+
+
+    /* MATERIAL RESISTIVITY */
+
+    let rho;
+
+
+    if(material === "copper"){
+
+        rho = 0.0175;
+
+    }else{
+
+        rho = 0.0282;
+
+    }
+
+
+
+    /*
+      Get cable area.
+
+      The select currently stores
+      resistance-per-metre values
+      for copper.
+
+      We instead calculate
+      resistance from material
+      and area.
+    */
+
+
+    const sizeSelect =
+        document.getElementById(
+            "size"
+        );
+
+
+    const areaText =
+        sizeSelect.options[
+            sizeSelect.selectedIndex
+        ].text;
+
+
+    const area =
+        parseFloat(
+            areaText
+        );
+
+
+
+    /*
+      Resistance
+
+      R = rho × L / A
+
+      For AC single phase,
+      return path = 2 × L.
+
+      For DC,
+      also use 2 × L.
+
+      For 3-phase,
+      use one conductor length.
+    */
+
+
+    let pathLength;
+
+
+    if(system === "three"){
+
+        pathLength =
+            length;
+
+    }else{
+
+        pathLength =
+            length * 2;
+
+    }
+
+
+    let R =
+        rho *
+        pathLength /
+        area;
+
+
+
+    /*
+      Voltage Drop
+    */
+
+
+    let Vd;
+
+
+    if(system === "three"){
+
+        Vd =
+            Math.sqrt(3) *
+            current *
+            R *
+            pf;
+
+    }else{
+
+        Vd =
+            current *
+            R *
+            pf;
+
+    }
+
+
+
+    /*
+      Voltage Drop %
+    */
+
+
+    let dropPercent =
+        (Vd / voltage) *
+        100;
+
+
+
+    /*
+      Load Voltage
+    */
+
+
+    let loadVoltage =
+        voltage - Vd;
+
+
+
+    /*
+      Cable Power Loss
+    */
+
+
+    let cableLoss;
+
+
+    if(system === "three"){
+
+        cableLoss =
+            3 *
+            current *
+            current *
+            R;
+
+    }else{
+
+        cableLoss =
+            2 *
+            current *
+            current *
+            R;
+
+    }
+
+
+
+    /*
+      Load Power
+    */
+
+
+    let loadPower;
+
+
+    if(system === "three"){
+
+        loadPower =
+            Math.sqrt(3) *
+            voltage *
+            current *
+            pf;
+
+    }else{
+
+        loadPower =
+            voltage *
+            current *
+            pf;
+
+    }
+
+
+
+    /*
+      DISPLAY
+    */
+
+
+    document.getElementById(
+        "resistance"
+    ).innerText =
+        R.toFixed(4) + " Ω";
+
+
+    document.getElementById(
+        "drop"
+    ).innerText =
+        Vd.toFixed(2) + " V";
+
+
+    document.getElementById(
+        "dropPercent"
+    ).innerText =
+        dropPercent.toFixed(2) + " %";
+
+
+    document.getElementById(
+        "loadVoltage"
+    ).innerText =
+        loadVoltage.toFixed(2) + " V";
+
+
+    document.getElementById(
+        "loss"
+    ).innerText =
+        cableLoss.toFixed(2) + " W";
+
+
+    document.getElementById(
+        "loadPower"
+    ).innerText =
+        loadPower.toFixed(2) + " W";
+
+
+
+    /*
+      STATUS
+    */
+
+
+    const statusText =
+        document.getElementById(
+            "statusText"
+        );
+
+
+    if(dropPercent <= maxDrop){
+
+        statusText.innerText =
+            "✅ ACCEPTABLE";
+
+
+        statusText.className =
+            "good";
+
+    }
+
+    else if(
+        dropPercent <= maxDrop + 1
+    ){
+
+        statusText.innerText =
+            "⚠️ HIGH VOLTAGE DROP";
+
+
+        statusText.className =
+            "warning";
+
+    }
+
+    else{
+
+        statusText.innerText =
+            "❌ EXCEEDS LIMIT";
+
+
+        statusText.className =
+            "danger";
+
+    }
+
+
+    showStatus(
+        "✅ Voltage drop calculation completed."
+    );
+
 }
 
-let Vd = I * R;
 
-document.getElementById("result").innerHTML =
-"Voltage Drop = " + Vd.toFixed(2) + " Volt";
+
+/* ====================================
+   STATUS
+==================================== */
+
+
+function showStatus(text){
+
+    document.getElementById(
+        "status"
+    ).innerText =
+        text;
 
 }
+
+
+
+/* ====================================
+   INITIAL
+==================================== */
+
+
+document
+.getElementById("system")
+.addEventListener(
+    "change",
+    calculateVD
+);
+
+
+document
+.getElementById("material")
+.addEventListener(
+    "change",
+    calculateVD
+);
+
+
+document
+.getElementById("size")
+.addEventListener(
+    "change",
+    calculateVD
+);
 
 </script>
 
+
 </body>
+
 </html>
